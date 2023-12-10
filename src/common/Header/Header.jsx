@@ -5,7 +5,9 @@ import './Header.css';
 export const Header = () => {
     return (
         <>
-            <h1>Header</h1>
+        <div className='header-design'>
+            <h1>Geek Zone</h1>
+        </div>
         </>
     )
 }

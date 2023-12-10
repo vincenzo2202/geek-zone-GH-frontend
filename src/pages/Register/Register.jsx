@@ -1,10 +1,10 @@
 import React from 'react';
-import './Home.css';
+import './Register.css';
 
-export const Home = () => {
+export const Register = () => {
     return (
         <div className='home-body'>
-            <h1>Welcome to the GEEK ZONE</h1> 
+            <h1>Esto es register</h1> 
         </div>
     );
 };
