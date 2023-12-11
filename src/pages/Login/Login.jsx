@@ -7,17 +7,17 @@ import { logUser } from "../../services/apiCalls";
 
 //Importo Rdx
 
-// import { useDispatch } from "react-redux";  //useDispatch es necesario para emitir acciones
-// import { login } from "../userSlice";
+import { useDispatch } from "react-redux";  //useDispatch es necesario para emitir acciones
+import { login } from "../userSlice";
 
-// //Rdx
-// import { useSelector } from "react-redux";
-// import { selectToken } from "../userSlice";
+//Rdx
+import { useSelector } from "react-redux";
+import { selectToken } from "../userSlice";
 
 export const Login = () => {
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    // const rdxToken = useSelector(selectToken);
+    const dispatch = useDispatch();
+    const rdxToken = useSelector(selectToken);
 
     const [credentials, setCredentials] = useState({
         email: "",
@@ -29,11 +29,11 @@ export const Login = () => {
         passwordError: "",
     });
 
-    // useEffect(() => {
-    //     if (rdxToken) {
-    //         navigate("/");
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (rdxToken) {
+            navigate("/");
+        }
+    }, []);
 
     const [message, setMessage] = useState("");
 
@@ -64,8 +64,8 @@ export const Login = () => {
                     console.log(credentials);
                     const { message, token } = response.data;
                     setMessage(message);
-                    if (message === "user logged succesfully") {
-                        // dispatch(login(token))
+                    if (message === "User Logged") {
+                        dispatch(login(token))
                         setTimeout(() => {
                             navigate("/profile");
                         }, 300)

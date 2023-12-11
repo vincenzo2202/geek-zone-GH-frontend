@@ -7,3 +7,19 @@ export const registerUser = async (body) => {
 export const logUser = async (body) => {
     return await axios.post(`http://localhost:8000/api/login`, body);
 }
+
+export const getProfile = async (token) => {
+    return await axios.get(`http://localhost:8000/api/profile`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+export const logout = async (token, body) => {    
+    return await axios.post(`http://localhost:8000/api/logout`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}

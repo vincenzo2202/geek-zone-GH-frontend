@@ -5,7 +5,16 @@ import { validator } from "../../services/validations";
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../services/apiCalls';
 
+import { useDispatch } from "react-redux";  //useDispatch es necesario para emitir acciones
+import { login } from "../userSlice";
+
+import { useSelector } from "react-redux";
+import { selectToken } from "../userSlice";
+
 export const Register = () => {
+    const navigate = useNavigate();
+    const rdxToken = useSelector(selectToken);
+    const dispatch = useDispatch();
  
     const [credentials, setCredentials] = useState({
         name: "",
@@ -26,6 +35,12 @@ export const Register = () => {
         phone_numberError: "",
         photoError:""
     });
+
+    useEffect(() => {
+        if (rdxToken) {
+            navigate("/");
+        }
+    }, []);
  
 
     const [message, setMessage] = useState("");
@@ -70,6 +85,27 @@ export const Register = () => {
                 });
         }
     };
+
+    useEffect(() => {
+        if (message == "user registered succesfully") { 
+            console.log(credentials);
+            logUser(credentials)
+                .then((response) => {
+                    const { message, token } = response.data;
+                    setMessage(message);
+                    if (message === "user logged succesfully") {
+                        dispatch(login(token)) 
+
+                        setTimeout(() => {
+                            navigate("/profile");
+                        }, 300)
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [message])
     return (
         <div className="register-body">
         <div className="input-card-register">
