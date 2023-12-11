@@ -12,11 +12,16 @@ export const Header = () => {
                     className={"header-button"}
                     path={"/"}
                     title={"Home"}
-                /> 
+                />
                 <LinkButton
                     className={"header-button"}
                     path={"/register"}
                     title={"Register"}
+                />
+                <LinkButton
+                    className={"header-button"}
+                    path={"/login"}
+                    title={"Login"}
                 />
             </div>
         </>
