@@ -7,7 +7,9 @@ export const LinkButton = ({path, title, className,emit}) => {
      const navigate = useNavigate();
      const superEmit = (argumento) =>{
         navigate(argumento)
-        emit()
+        if(emit){
+            emit()
+        } 
     }
      return (
          <div className={className} onClick={()=>superEmit(path)}>
