@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Register.css';
 import { CustomInput } from '../../common/CustomInput/CustomInput';
+import { validator } from "../../services/validations";
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../services/apiCalls';
 
 export const Register = () => {
-
+ 
     const [credentials, setCredentials] = useState({
-        full_name: "",
+        name: "",
+        last_name: "",
         email: "",
         password: "",
+        city: "",
         phone_number: "",
-        photo: ""
+        photo:""
     });
 
     const [credentialsError, setCredentialsError] = useState({
-        full_nameError: "",
+        nameError: "",
+        last_nameError: "",
         emailError: "",
         passwordError: "",
+        cityError: "",
         phone_numberError: "",
-        photoError: ""
+        photoError:""
     });
-
-    useEffect(() => {
-        if (rdxToken) {
-            navigate("/");
-        }
-    }, []);
+ 
 
     const [message, setMessage] = useState("");
 
@@ -47,7 +49,7 @@ export const Register = () => {
     const photoInputDefault = (photo) => (photo === "" ? undefined : photo);
 
     const SignUp = () => {
-        if (credentials.full_name != "" &&
+        if (credentials.name != "" &&
             credentials.password != "" &&
             credentials.email != "" &&
             credentials.phone_number != "") {
@@ -73,15 +75,25 @@ export const Register = () => {
         <div className="input-card-register">
             <div className="title-login">Register</div>
             <div className="inputs-register-container">
+            <div className='errorMsg'>{credentialsError.nameError}</div>
                 <CustomInput
                     design={"inputDesign"}
                     type={"name"}
-                    name={"full_name"}
-                    placeholder={"Full name"}
+                    name={"name"}
+                    placeholder={"Name"}
                     functionProp={functionHandler}
                     functionBlur={errorCheck}
                 />
-                {/* <div className='errorMsg'>{credentialsError.full_nameError}</div> */}
+                <div className='errorMsg'>{credentialsError.last_nameError}</div>
+                <CustomInput
+                    design={"inputDesign"}
+                    type={"name"}
+                    name={"last_name"}
+                    placeholder={"Last Name"}
+                    functionProp={functionHandler}
+                    functionBlur={errorCheck}
+                />
+                <div className='errorMsg'>{credentialsError.emailError}</div>
                 <CustomInput
                     design={"inputDesign"}
                     type={"mail"}
@@ -90,7 +102,7 @@ export const Register = () => {
                     functionProp={functionHandler}
                     functionBlur={errorCheck}
                 />
-                {/* <div className='errorMsg'>{credentialsError.emailError}</div> */}
+                <div className='errorMsg'>{credentialsError.passwordError}</div>
                 <CustomInput
                     design={"inputDesign"}
                     type={"password"}
@@ -99,7 +111,16 @@ export const Register = () => {
                     functionProp={functionHandler}
                     functionBlur={errorCheck}
                 />
-                {/* <div className='errorMsg'>{credentialsError.passwordError}</div> */}
+                <div className='errorMsg'>{credentialsError.cityError}</div>
+                <CustomInput
+                    design={"inputDesign"}
+                    type={"text"}
+                    name={"city"}
+                    placeholder={"City"}
+                    functionProp={functionHandler}
+                    functionBlur={errorCheck}
+                />
+                <div className='errorMsg'>{credentialsError.phone_numberError}</div>
                 <CustomInput
                     design={"inputDesign"}
                     type={"number"}
@@ -108,8 +129,8 @@ export const Register = () => {
                     functionProp={functionHandler}
                     functionBlur={errorCheck}
                 />
-                {/* <div className="not-necesarilly">* Optional</div> */}
-                {/* <div className='errorMsg'>{credentialsError.phone_numberError}</div> */}
+                <div className="not-necesarilly">* Optional</div> 
+                <div className='errorMsg'>{credentialsError.photoError}</div>
                 <CustomInput
                     design={"inputDesign"}
                     type={"text"}
@@ -117,11 +138,10 @@ export const Register = () => {
                     placeholder={"Introduce an URL image"}
                     functionProp={functionHandler}
                     functionBlur={errorCheck}
-                />
-                {/* <div className='errorMsg'>{credentialsError.photoError}</div> */}
+                /> 
             </div>
             <div className='animated-button' onClick={SignUp}>Sign up</div>
-            {/* <p>{message}</p> */}
+            <p>{message}</p>
         </div>
     </div>
     );

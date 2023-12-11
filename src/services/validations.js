@@ -20,7 +20,9 @@ export const validator = (type, value) => {
 
         case `name`:
         case `surname`:
+        case `last_name`:
         case `full_name`:
+        case `city`:
 
             if (!value) {
                 return `You must insert a ${type}`
@@ -55,7 +57,7 @@ export const validator = (type, value) => {
                 return `${type} is incorrect; only strings are allowed. Please try again`
             } else if (value.length > 100) {
                 return `${type} is too long, max100 characters`
-            } else if (! /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{4,12}$/.test(value)) {
+            } else if (! /^[a-zA-Z0-9._-]+$/.test(value)) {
                 return `Invalid ${type} format`;
             } else {
                 return ``;
@@ -108,10 +110,6 @@ export const validator = (type, value) => {
                 return `number too long, max 20,try again`
             } else {
                 return ``;
-            }
-
-      
-
-    
+            } 
     }
 }
