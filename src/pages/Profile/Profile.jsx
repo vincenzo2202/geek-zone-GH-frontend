@@ -39,7 +39,8 @@ export const Profile = () => {
         } else {
             navigate("/login");
         }
-    }, []);
+    }, [rdxToken]);
+ 
 
     return (
         <div className="profile-body">
