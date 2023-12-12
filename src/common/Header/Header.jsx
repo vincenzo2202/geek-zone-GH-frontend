@@ -51,6 +51,16 @@ export const Header = () => {
                                     path={"/profile"}
                                     title={"Profile"}
                                 />
+                                 <LinkButton
+                                    className={"header-button"}
+                                    path={"/feed"}
+                                    title={"Feed"}
+                                />
+                                 <LinkButton
+                                    className={"header-button"}
+                                    path={"/event"}
+                                    title={"Event"}
+                                />
                                 <div className='header-button' onClick={logOutMe}>
                                     <LinkButton
                                         classButton={"linkButtonDesign"}
@@ -58,11 +68,7 @@ export const Header = () => {
                                         title={"log out"}
                                     />
                                 </div>
-                                <LinkButton
-                                    className={"header-button"}
-                                    path={"/feed"}
-                                    title={"Feed"}
-                                />
+                               
 
                                  
                             </>

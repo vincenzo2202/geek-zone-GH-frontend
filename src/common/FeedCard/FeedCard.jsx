@@ -1,24 +1,25 @@
 import { useEffect, useState } from 'react';
-import './FeedCard.css'; 
+import './FeedCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../pages/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { getCommentsByFeedID } from '../../services/apiCalls';
- 
+
 
 export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo }) => {
 
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
-    const [comment, setComment] = useState([]) 
+    const [comment, setComment] = useState([])
     const [collapsed, setCollapsed] = useState(true);
-    
+ 
+
     const toggleCollapse = () => {
-        if (collapsed) {
+        if (collapsed) { 
             console.log(feedId);
-            getCommentsByFeedID(rdxToken,feedId)
+            getCommentsByFeedID(rdxToken, feedId)
                 .then(
                     response => {
                         setComment(response.data.data[0].comment);
@@ -26,9 +27,10 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                     })
                 .catch(error => console.log(error));
         }
-        setCollapsed(collapsed);
+        setCollapsed(!collapsed);
+        
     };
-    console.log(comment);
+    console.log(!comment);
 
     return (
         <div className='card'>
@@ -60,21 +62,25 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
 
 
             <button className="button-spoiler" onClick={toggleCollapse}>
-                {collapsed ? "comments" : "comments"}
+                {!collapsed ? "comments" : "comments"}
             </button>
 
-            {collapsed && (
+            {collapsed 
+            ? (
                 <div className="comments">
                     {comment.map((comment, index) => (
                         <div className='comment-card' key={index}>
                             <div className='comment-info'>
+                                <div className="comment-content">{comment.user.name}</div>
                                 <div className="comment-content">{comment.comment}</div>
-                             
+
                             </div>
                         </div>
                     ))}
                 </div>
-            )}
+            )
+            : (<div></div>)
+            }
 
         </div >
     )

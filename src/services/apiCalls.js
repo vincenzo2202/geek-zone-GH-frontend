@@ -39,3 +39,11 @@ export const getCommentsByFeedID = async (token,key) => {
         }
     });
 }
+
+export const getAllEvents = async (token ) => {    
+    return await axios.get(`http://localhost:8000/api/events`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}

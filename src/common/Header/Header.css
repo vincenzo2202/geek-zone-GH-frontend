@@ -1,17 +1,17 @@
 
 .button-container {
-    height: 16vh;
+    height: 10vh;
     width: 100vw;
-
     background-color: rgb(22, 143, 143);
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     color: rgb(0, 0, 0);
-    font-weight: bold;;
+    font-weight: bold;
+    position: sticky;
+    top: 0; 
 }
 
 .header-button{

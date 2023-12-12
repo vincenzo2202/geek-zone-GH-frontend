@@ -10,7 +10,7 @@ import { FeedCard } from '../../common/FeedCard/FeedCard';
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     const [feed, setFeed] = useState([])
 
@@ -26,30 +26,32 @@ export const Feed = () => {
             navigate("/");
         }
     }, []); // aqui si solo sigo al feed entra en bucle infinito
- 
+
 
     return (
         <div className="feed-body">
-            {feed.length > 0 ? (
-                <div className="feed-container">
-                    {feed.map(feedItem => (
-                        <FeedCard
-                            key={feedItem.id}
-                            userPhoto={feedItem.user.photo}
-                            user_id={feedItem.user.user_id}
-                            userName={feedItem.user.name}
-                            userLast_name={feedItem.user.last_name}
-                            title={feedItem.title}
-                            content={feedItem.content}
-                            photo={feedItem.photo} 
-                            feedId={feedItem.id}
-                        />
-                        
-                    ))}
-                </div>
-            ) : (
-                <div>Loading</div>
-            )}
+            <div className='feed-background'>
+                {feed.length > 0 ? (
+                    <div className="feed-container">
+                        {feed.map(feedItem => (
+                            <FeedCard
+                                key={feedItem.id}
+                                userPhoto={feedItem.user.photo}
+                                user_id={feedItem.user.user_id}
+                                userName={feedItem.user.name}
+                                userLast_name={feedItem.user.last_name}
+                                title={feedItem.title}
+                                content={feedItem.content}
+                                photo={feedItem.photo}
+                                feedId={feedItem.id}
+                            />
+
+                        ))}
+                    </div>
+                ) : (
+                    <div>Loading</div>
+                )}
+            </div>
         </div>
     );
 

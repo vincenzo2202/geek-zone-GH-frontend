@@ -4,7 +4,11 @@
      justify-content: center;
      align-items: center;
      margin-bottom: 5em;
-     background-color: cadetblue;
+     background-color: rgb(199, 202, 183);
+     width: 50em;
+     padding: 2em;
+     border-radius: 2em;
+     color: black;
 
  }
 
@@ -25,8 +29,8 @@
  }
 
  .pic-avatar {
-     width: 10em;
-     height: 10em;
+     width: 5em;
+     height: 5em;
      border-radius: 50%;
      margin-bottom: 1em;
  }
@@ -37,8 +41,8 @@
      margin-bottom: 1em;
  }
 
-  
- .user-info{
+
+ .user-info {
      display: flex;
      flex-direction: row;
      justify-content: space-between;
