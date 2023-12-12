@@ -4,8 +4,8 @@ export const FeedCard = ({ key, userPhoto, user_id, userName, userLast_name, tit
     return (
         <div className='card'>
             <div className="feed-card" key={key}>
-                <div className='desc'>Photo: </div>
-                <div className="user-photo">{userPhoto}</div>
+                <div className='desc'>Photo: </div> 
+                <img className="pic-avatar" src={userPhoto} alt={userPhoto} />
                 <div className='desc'>User ID: </div>
                 <div className="user-id"> {user_id}</div>
                 <div className='desc'>Name: </div>
@@ -16,13 +16,14 @@ export const FeedCard = ({ key, userPhoto, user_id, userName, userLast_name, tit
                 <div className="feed-title">{title}</div>
                 <div className='desc'>Content: </div>
                 <div className="feed-content">{content}</div>
+             
               
                 {
                     photo
                         ? (
                             <>
-                            <div className='desc'>Photo:  </div>
-                            <div className="feed-photo">{photo}</div>
+                            <div className='desc'>Photo:  </div> 
+                            <img className="pic-feed" src={photo} alt={photo} />
                             </>
                         )
                         : (

@@ -24,3 +24,16 @@
     font-style: italic; 
 
  }
+ 
+ .pic-avatar{
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    margin-bottom: 1em;
+ }
+
+    .pic-feed{
+        width: 20em;
+        height: 20em;
+        margin-bottom: 1em;
+    }
