@@ -23,3 +23,11 @@ export const logout = async (token, body) => {
         }
     });
 }
+
+export const getAllFeeds = async (token) => {    
+    return await axios.get(`http://localhost:8000/api/feeds`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
