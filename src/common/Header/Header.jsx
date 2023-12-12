@@ -5,28 +5,28 @@ import { LinkButton } from '../LinkButton/LinkButton';
 import { logout, selectToken } from '../../pages/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
 import { getProfile } from '../../services/apiCalls';
+import { jwtDecode } from 'jwt-decode';
 
 export const Header = () => {
 
     const dispatch = useDispatch();
     const rdxToken = useSelector(selectToken);
-    const [decodedToken, setDecodedToken] = useState(null);
-    const navigate = useNavigate();
-    const [stop, setStop] = useState(false)
+    const [decodedToken, setDecodedToken] = useState(null); 
 
     useEffect(() => {
-        if (rdxToken) {
-            getProfile(rdxToken)
-                .then((response) => {
-                    setDecodedToken(response.data.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        if (rdxToken !== null) {
+            try { 
+                const decoded = jwtDecode(rdxToken);
+                setDecodedToken(decoded); 
+
+            } catch (error) {
+                console.error("Error decoding token:", error);
+            }
         }
     }, [rdxToken]);
+
+    console.log(rdxToken);
 
 
     const logOutMe = () => {
@@ -44,7 +44,7 @@ export const Header = () => {
                 />
 
                 {
-                    rdxToken
+                    rdxToken 
                         ? (
                             <>
                                 <LinkButton
@@ -59,6 +59,13 @@ export const Header = () => {
                                         title={"log out"}
                                     />
                                 </div>
+                                <LinkButton
+                                    className={"header-button"}
+                                    path={"/feed"}
+                                    title={"Feed"}
+                                />
+
+                                 
                             </>
                         )
                         : (
@@ -72,7 +79,7 @@ export const Header = () => {
                                     className={"header-button"}
                                     path={"/login"}
                                     title={"Login"}
-                                />
+                                /> 
                             </>
                         )}
 

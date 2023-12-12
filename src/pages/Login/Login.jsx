@@ -60,8 +60,7 @@ export const Login = () => {
         if (credentials.password != "" &&
             credentials.email != "") {
             logUser(credentials)
-            .then((response) => {
-                    console.log(credentials);
+            .then((response) => { 
                     const { message, token } = response.data;
                     setMessage(message);
                     if (message === "User Logged") {
@@ -73,7 +72,8 @@ export const Login = () => {
                     console.log(token);
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log(error.response.data.message);
+                    setMessage(error.response.data.message)
                 });
         }
     };
