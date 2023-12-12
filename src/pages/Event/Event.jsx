@@ -25,14 +25,17 @@ export const Event = () => {
         } else {
             navigate("/");
         }
-    }, []);
+    }, [ rdxToken, navigate]);
+
+    console.log(event);
 
     return (
         <div className="event-body">
             <div className='event-background'>
                 {
-                    event.map((event) => (
+                    event.map((event, index) => (
                         <EventCard
+                            key={index}
                             eventId={event.id}
                             title={event.title}
                             content={event.content}

@@ -4,8 +4,8 @@ export const EventCard = ({eventId,title,content,date,time}) => {
 
     return(
         <div className='card-event'>
-            <div className="event-card" key={eventId}>
-                <div className='event-info'> 
+            <div className="event-card" >
+                <div className='event-info' key={eventId}> 
                     <div className='desc'>Title: </div>
                     <div className="event-title">{title}</div>
                     <div className='desc'>Content: </div>

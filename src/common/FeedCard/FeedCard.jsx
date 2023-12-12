@@ -18,7 +18,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
 
     const toggleCollapse = () => {
         if (collapsed) { 
-            console.log(feedId);
+            console.log(feedId); 
             getCommentsByFeedID(rdxToken, feedId)
                 .then(
                     response => {
@@ -26,11 +26,11 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         console.log(response);
                     })
                 .catch(error => console.log(error));
+            
         }
         setCollapsed(!collapsed);
         
-    };
-    console.log(!comment);
+    }; 
 
     return (
         <div className='card'>

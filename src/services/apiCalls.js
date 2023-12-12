@@ -32,6 +32,14 @@ export const getAllFeeds = async (token) => {
     });
 }
 
+export const getMyFeed = async (token) => {    
+    return await axios.get(`http://localhost:8000/api/feeds/profile`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
 export const getCommentsByFeedID = async (token,key) => {    
     return await axios.get(`http://localhost:8000/api/comments/${key}`, {
         headers: {

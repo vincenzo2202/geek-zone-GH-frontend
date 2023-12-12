@@ -1,66 +1,92 @@
 .profile-body {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(63, 95, 95);
-    display: flex;
-    justify-content: center;
-    background-image:url(../../assets/background.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%; 
-    top: 0;
-    z-index: -100;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(63, 95, 95);
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 1em;
+}
+
+.profile {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 5em;
 }
 
 .div-photo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.left-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 30em;
+  height: 100vh;
+}
+
+.my-feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  width: 50em;
+}
+
+.right-banner {
+  width: 20em;
 }
 
 .div-photo img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 14em;
-    height: 14em;
-    border-radius: 50%;
- 
-}
- 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
 
-.update-profile 
-.class-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    cursor: pointer;
-    width: 150px;
-    height: 50px;
-    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
-    border-radius: 30px;
-    border: 1px solid #8F9092;
-    transition: all 0.2s ease;
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: #606060;
-    text-shadow: 0 1px #fff;
-    margin-top: 2em;
-  }
-  
-  .class-button:hover {
-    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
-  }
-  
-  .class-button:active {
-    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
-  }
-  
-  .class-button:focus {
-    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
-  }
-  
+}
+
+
+.update-profile .class-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  border-radius: 30px;
+  border: 1px solid #8F9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+  margin-top: 2em;
+}
+
+.class-button:hover {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+}
+
+.class-button:active {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.class-button:focus {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
