@@ -4,6 +4,7 @@ import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllEvents } from '../../services/apiCalls';
+import { EventCard } from '../../common/EventCard/EventCard';
 
 export const Event = () => {
 
@@ -29,10 +30,17 @@ export const Event = () => {
     return (
         <div className="event-body">
             <div className='event-background'>
-                <div className="event-container">
-                    <h1>Event</h1>
-                </div>
+                {
+                    event.map((event) => (
+                        <EventCard
+                            eventId={event.id}
+                            title={event.title}
+                            content={event.content}
+                            date={event.event_date}
+                            time={event.event_time}
+                        />
+                    ))}
             </div>
         </div>
-    );
+    )
 };
