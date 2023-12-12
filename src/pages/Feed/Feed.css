@@ -3,11 +3,10 @@
     width: 100vw;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;  
 
     background-color: beige;
-    color: black;
+    color: black; 
     
 }
+ 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { selectToken } from '../userSlice';
 import { getAllFeeds } from '../../services/apiCalls';
+import { FeedCard } from '../../common/FeedCard/FeedCard';
 
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
@@ -18,8 +19,8 @@ export const Feed = () => {
         if (rdxToken) {
             getAllFeeds(rdxToken)
                 .then(
-                    response => { 
-                        setFeed(response.data.data);  
+                    response => {
+                        setFeed(response.data.data);
                     })
                 .catch(error => console.log(error));
         } else {
@@ -31,11 +32,24 @@ export const Feed = () => {
 
     return (
         <div className="feed-body">
-           {feed.length > 0
-           ?( <div className="feed-container"> SI viene el feed</div>
-           )
-           :( <div>Loading</div>)
-           }
+            {feed.length > 0 ? (
+                <div className="feed-container">
+                    {feed.map(feedItem => (
+                        <FeedCard
+                            key={feedItem.id}
+                            userPhoto={feedItem.user.photo}
+                            user_id={feedItem.user.user_id}
+                            userName={feedItem.user.name}
+                            userLast_name={feedItem.user.last_name}
+                            title={feedItem.title}
+                            content={feedItem.content}
+                            photo={feedItem.photo}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div>Loading</div>
+            )}
         </div>
     );
 
