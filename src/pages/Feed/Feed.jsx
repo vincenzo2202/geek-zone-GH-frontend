@@ -10,8 +10,7 @@ import { FeedCard } from '../../common/FeedCard/FeedCard';
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    console.log(rdxToken);
+    const dispatch = useDispatch(); 
 
     const [feed, setFeed] = useState([])
 
@@ -27,8 +26,7 @@ export const Feed = () => {
             navigate("/");
         }
     }, []); // aqui si solo sigo al feed entra en bucle infinito
-
-    console.log(feed);
+ 
 
     return (
         <div className="feed-body">
@@ -43,8 +41,10 @@ export const Feed = () => {
                             userLast_name={feedItem.user.last_name}
                             title={feedItem.title}
                             content={feedItem.content}
-                            photo={feedItem.photo}
+                            photo={feedItem.photo} 
+                            feedId={feedItem.id}
                         />
+                        
                     ))}
                 </div>
             ) : (

@@ -25,8 +25,7 @@ export const Header = () => {
             }
         }
     }, [rdxToken]);
-
-    console.log(rdxToken);
+ 
 
 
     const logOutMe = () => {

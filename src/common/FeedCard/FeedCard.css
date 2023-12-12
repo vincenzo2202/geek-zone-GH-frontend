@@ -1,40 +1,49 @@
- 
- .card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    margin-bottom: 5em;
- }
- .card,
- .feed-card{
-    color: black; 
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: cadetblue;
-    width: 80vw;
-    font-size: 1.5em;
- }
-
- .desc{
-    font-size: 1.5em;
-    font-style: italic; 
+ .card {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     margin-bottom: 5em;
+     background-color: cadetblue;
 
  }
- 
- .pic-avatar{
-    width: 10em;
-    height: 10em;
-    border-radius: 50%;
-    margin-bottom: 1em;
+
+ .feed-card {
+     color: black;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     justify-content: space-between;
+
  }
 
-    .pic-feed{
-        width: 20em;
-        height: 20em;
-        margin-bottom: 1em;
-    }
+ .desc {
+     font-size: 1.5em;
+     font-style: italic;
+
+ }
+
+ .pic-avatar {
+     width: 10em;
+     height: 10em;
+     border-radius: 50%;
+     margin-bottom: 1em;
+ }
+
+ .pic-feed {
+     width: 20em;
+     height: 20em;
+     margin-bottom: 1em;
+ }
+
+  
+ .user-info{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+     margin-bottom: 1em;
+     padding: 1em;
+ }

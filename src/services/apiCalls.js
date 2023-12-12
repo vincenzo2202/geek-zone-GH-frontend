@@ -31,3 +31,11 @@ export const getAllFeeds = async (token) => {
         }
     });
 }
+
+export const getCommentsByFeedID = async (token,key) => {    
+    return await axios.get(`http://localhost:8000/api/comments/${key}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
