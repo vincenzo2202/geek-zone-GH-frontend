@@ -4,24 +4,24 @@ import './Header.css';
 import { LinkButton } from '../LinkButton/LinkButton';
 import { logout, selectToken } from '../../pages/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 export const Header = () => {
 
     const dispatch = useDispatch();
     const rdxToken = useSelector(selectToken);
-    const [decodedToken, setDecodedToken] = useState(null); 
+    const [decodedToken, setDecodedToken] = useState(null);
     const navigate = useNavigate();
     const tokenDecoded = jwtDecode(rdxToken);
-    
+
 
     useEffect(() => {
-        
-        if (rdxToken !== null && tokenDecoded.exp > Date.now() / 1000 ) {
-            try { 
+
+        if (rdxToken !== null && tokenDecoded.exp > Date.now() / 1000) {
+            try {
                 const decoded = jwtDecode(rdxToken);
-                setDecodedToken(decoded); 
+                setDecodedToken(decoded);
 
             } catch (error) {
                 console.error("Error decoding token:", error);
@@ -31,8 +31,8 @@ export const Header = () => {
             dispatch(logout());
         }
     }, [rdxToken]);
- 
- 
+
+
 
 
     const logOutMe = () => {
@@ -50,7 +50,7 @@ export const Header = () => {
                 />
 
                 {
-                    rdxToken 
+                    rdxToken
                         ? (
                             <>
                                 <LinkButton
@@ -60,10 +60,15 @@ export const Header = () => {
                                 />
                                  <LinkButton
                                     className={"header-button"}
+                                    path={"/users"}
+                                    title={"Community"}
+                                />
+                                <LinkButton
+                                    className={"header-button"}
                                     path={"/feed"}
                                     title={"Feed"}
                                 />
-                                 <LinkButton
+                                <LinkButton
                                     className={"header-button"}
                                     path={"/event"}
                                     title={"Event"}
@@ -75,9 +80,9 @@ export const Header = () => {
                                         title={"log out"}
                                     />
                                 </div>
-                               
 
-                                 
+
+
                             </>
                         )
                         : (
@@ -91,7 +96,7 @@ export const Header = () => {
                                     className={"header-button"}
                                     path={"/login"}
                                     title={"Login"}
-                                /> 
+                                />
                             </>
                         )}
 

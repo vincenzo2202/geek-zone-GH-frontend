@@ -5,6 +5,7 @@ import { Login } from "../Login/Login"
 import { Profile } from "../Profile/Profile" 
 import { Feed } from "../Feed/Feed"
 import { Event } from "../Event/Event"
+import { Users } from "../GetAllUser/GetAllUser"
 
 export const Body = () => {
     return (
@@ -17,6 +18,7 @@ export const Body = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/event" element={<Event />} />
+                <Route path="/users" element={<Users />} />
             </Routes>
         </>
     )

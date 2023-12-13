@@ -3,6 +3,8 @@ import './GetAllUser.css';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
 import { getAllUsers } from '../../services/apiCalls';
+import { useEffect, useState } from 'react';
+import { CardUser } from '../../common/UserCard/UserCard';
 
 
 export const Users = () => {
@@ -10,6 +12,8 @@ export const Users = () => {
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [users, setUsers] = useState([])
  
 
     useEffect(() => {
@@ -17,7 +21,7 @@ export const Users = () => {
             getAllUsers(rdxToken)
                 .then(
                     response => {
-                        setFeed(response.data.data);
+                        setUsers(response.data.data);
                     })
                 .catch(error => console.log(error));
         } else {
@@ -28,8 +32,44 @@ export const Users = () => {
   
 
     return(
-        <div className='users-body'>
-            <h1>Users</h1>
+        <div className="users-body">
+ 
+        <div className="container-all-users">
+        {
+            users.length > 0
+                ? (<div className='users-Roster'>
+                    {
+                        users.map(users => { 
+
+                            if (users.role === "user") {
+                                users.role = "Estudent"
+                            } else if (users.role== "admin") {
+                                users.role = "Teacher"
+                            } else if (users.role == "super_admin") {
+                                users.role = "Director"
+                            }
+
+                            return (
+                                <CardUser
+                                    key={users.id}
+                                    photo={users.photo}
+                                    name={users.name}
+                                    last_name={users.last_name}
+                                    email={users.email}
+                                    phone_number={users.phone_number}
+                                    role={users.role}
+                                    city={users.city}
+                                />
+                            )
+                        }
+                        )}
+                </div>
+                )
+                : (
+                    <div>Loading</div>
+                )
+        }
         </div>
+    </div>
     )
 }
