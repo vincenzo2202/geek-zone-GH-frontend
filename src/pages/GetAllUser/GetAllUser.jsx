@@ -14,13 +14,24 @@ export const Users = () => {
     const dispatch = useDispatch();
 
     const [users, setUsers] = useState([])
- 
+    const [filtered, setFilteredUsers] = useState('')
+
 
     useEffect(() => {
         if (rdxToken) {
             getAllUsers(rdxToken)
                 .then(
                     response => {
+                        const transformedUsers = response.data.data.map(user => {
+                            if (user.role === "user") {
+                                user.role = "Student";
+                            } else if (user.role === "admin") {
+                                user.role = "Teacher";
+                            } else if (user.role === "super_admin") {
+                                user.role = "Director";
+                            }
+                            return user;
+                        });
                         setUsers(response.data.data);
                     })
                 .catch(error => console.log(error));
@@ -29,47 +40,49 @@ export const Users = () => {
         }
     }, []);
 
-  
 
-    return(
+
+    const filteredUsers = filtered ? users.filter(user => user.role === (filtered ?filtered : '' )) : users;
+
+    return (
         <div className="users-body">
- 
-        <div className="container-all-users">
-        {
-            users.length > 0
-                ? (<div className='users-Roster'>
-                    {
-                        users.map(users => { 
 
-                            if (users.role === "user") {
-                                users.role = "Estudent"
-                            } else if (users.role== "admin") {
-                                users.role = "Teacher"
-                            } else if (users.role == "super_admin") {
-                                users.role = "Director"
-                            }
+            <div>
+                <button onClick={() => setFilteredUsers('Student')}>Show Students</button>
+                <button onClick={() => setFilteredUsers('Teacher')}>Show Teachers</button>
+                <button onClick={() => setFilteredUsers('Director')}>Show Directors</button>
+                <button onClick={() => setFilteredUsers('')}>Show All</button>
+            </div>
 
-                            return (
-                                <CardUser
-                                    key={users.id}
-                                    photo={users.photo}
-                                    name={users.name}
-                                    last_name={users.last_name}
-                                    email={users.email}
-                                    phone_number={users.phone_number}
-                                    role={users.role}
-                                    city={users.city}
-                                />
-                            )
-                        }
-                        )}
-                </div>
-                )
-                : (
-                    <div>Loading</div>
-                )
-        }
+            <div className="container-all-users">
+                {
+                    filteredUsers.length > 0
+                        ? (<div className='users-Roster'>
+                            {
+                                filteredUsers.map(users => {
+
+
+                                    return (
+                                        <CardUser
+                                            key={users.id}
+                                            photo={users.photo}
+                                            name={users.name}
+                                            last_name={users.last_name}
+                                            email={users.email}
+                                            phone_number={users.phone_number}
+                                            role={users.role}
+                                            city={users.city}
+                                        />
+                                    )
+                                }
+                                )}
+                        </div>
+                        )
+                        : (
+                            <div>Loading</div>
+                        )
+                }
+            </div>
         </div>
-    </div>
     )
 }

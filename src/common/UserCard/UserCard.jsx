@@ -1,10 +1,10 @@
 import React from "react";
 import "./UserCard.css"
 
-export const CardUser = ({ name,last_name, photo, phone_number, email, key, city, role }) => {
+export const CardUser = ({name,last_name, photo, phone_number, email, userid, city, role }) => {
 
     return (
-        <div className="card-worker" key={key} dragable="false"> 
+        <div className="card-worker" userid={userid} dragable="false"> 
             <img className="worker" src={photo} alt={photo} /> 
             <div className="desc-user">
                 <div className="name">{name}</div>
