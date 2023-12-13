@@ -30,8 +30,7 @@ export const Follow = () => {
             dispatch(logout());
         }
     }, []);
-
-    console.log(follow);
+ 
     return (
         <div className="follow-body">
             <div className='follow-background'>
@@ -39,6 +38,7 @@ export const Follow = () => {
                     <div className="follow-container">
                         {follow.map(follow => (
                             <FollowCard
+                                key={follow.id}
                                 name={follow.follower.name}
                                 last_name={follow.follower.last_name}
                                 photo={follow.follower.photo}

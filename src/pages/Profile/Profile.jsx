@@ -73,8 +73,7 @@ export const Profile = () => {
             navigate("/");
         }
     }, [feed]);
-
-    console.log(feed);
+ 
 
     const FollowersClick = () => {
         navigate('/follow');
