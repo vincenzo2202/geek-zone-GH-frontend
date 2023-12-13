@@ -7,6 +7,7 @@ import { Feed } from "../Feed/Feed"
 import { Event } from "../Event/Event"
 import { Users } from "../GetAllUser/GetAllUser"
 import { Follow } from "../Follow/Follow"
+import { UpdateProfile } from "../UpdateProfile/UpdateProfile"
 
 export const Body = () => {
     return (
@@ -21,6 +22,7 @@ export const Body = () => {
                 <Route path="/event" element={<Event />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/follow" element={<Follow />} />
+                <Route path="/updateProfile" element={<UpdateProfile />} />
             </Routes>
         </>
     )

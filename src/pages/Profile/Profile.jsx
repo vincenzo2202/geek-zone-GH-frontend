@@ -72,7 +72,7 @@ export const Profile = () => {
         } else {
             navigate("/");
         }
-    }, [feed]);
+    }, []);
  
 
     const FollowersClick = () => {
@@ -91,6 +91,7 @@ export const Profile = () => {
                                 <div className="left-banner">
                                     <div className="div-photo" ><img src={user.photo} alt="User" /></div>
                                     <div>Name: {user.name}</div>
+                                    <div>Last Name: {user.last_name}</div>
                                     <div>Email: {user.email}</div>
                                     <div>Phone: {user.phone_number}</div>
                                     <div>City: {user.city}</div> 
@@ -124,7 +125,7 @@ export const Profile = () => {
                                         ))}
                                 </div>
                                 <div className="right-banner">
-                                    hola
+                                    Hola
                                 </div>
                             </div>
 

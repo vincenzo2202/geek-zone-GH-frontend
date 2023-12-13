@@ -80,3 +80,11 @@ export const getMyFollowings= async (token ) => {
     });
 }
 
+export const updateProfile = async ( body,token) => {    
+    return await axios.put(`http://localhost:8000/api/profile`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
