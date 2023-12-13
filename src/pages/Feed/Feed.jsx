@@ -3,19 +3,21 @@ import './Feed.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { selectToken } from '../userSlice';
+import { logout, selectToken } from '../userSlice';
 import { getAllFeeds } from '../../services/apiCalls';
-import { FeedCard } from '../../common/FeedCard/FeedCard';
-
+import { FeedCard } from '../../common/FeedCard/FeedCard'; 
+import { jwtDecode } from 'jwt-decode';
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const tokenDecoded = jwtDecode(rdxToken);
+ 
 
     const [feed, setFeed] = useState([])
 
     useEffect(() => {
-        if (rdxToken) {
+        if (rdxToken && tokenDecoded.exp > Date.now() / 1000) {
             getAllFeeds(rdxToken)
                 .then(
                     response => {
@@ -24,9 +26,14 @@ export const Feed = () => {
                 .catch(error => console.log(error));
         } else {
             navigate("/");
+            dispatch(logout());
         }
     }, []); // aqui si solo sigo al feed entra en bucle infinito
+ 
 
+
+    
+     
 
     return (
         <div className="feed-body">

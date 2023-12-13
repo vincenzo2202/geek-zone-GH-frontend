@@ -4,8 +4,7 @@ import './Header.css';
 import { LinkButton } from '../LinkButton/LinkButton';
 import { logout, selectToken } from '../../pages/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getProfile } from '../../services/apiCalls';
+import { useNavigate } from 'react-router-dom'; 
 import { jwtDecode } from 'jwt-decode';
 
 export const Header = () => {
@@ -13,9 +12,13 @@ export const Header = () => {
     const dispatch = useDispatch();
     const rdxToken = useSelector(selectToken);
     const [decodedToken, setDecodedToken] = useState(null); 
+    const navigate = useNavigate();
+    const tokenDecoded = jwtDecode(rdxToken);
+    
 
     useEffect(() => {
-        if (rdxToken !== null) {
+        
+        if (rdxToken !== null && tokenDecoded.exp > Date.now() / 1000 ) {
             try { 
                 const decoded = jwtDecode(rdxToken);
                 setDecodedToken(decoded); 
@@ -23,8 +26,12 @@ export const Header = () => {
             } catch (error) {
                 console.error("Error decoding token:", error);
             }
+        } else {
+            navigate("/");
+            dispatch(logout());
         }
     }, [rdxToken]);
+ 
  
 
 

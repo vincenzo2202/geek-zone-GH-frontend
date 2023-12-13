@@ -55,3 +55,11 @@ export const getAllEvents = async (token ) => {
         }
     });
 }
+
+export const getAllUsers = async (token ) => {    
+    return await axios.get(`http://localhost:8000/api/allUsers`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
