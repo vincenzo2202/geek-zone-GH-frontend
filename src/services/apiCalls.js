@@ -63,3 +63,20 @@ export const getAllUsers = async (token ) => {
         }
     });
 }
+
+export const getMyFollowers= async (token ) => {    
+    return await axios.get(`http://localhost:8000/api/followers`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+export const getMyFollowings= async (token ) => {    
+    return await axios.get(`http://localhost:8000/api/followings`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+

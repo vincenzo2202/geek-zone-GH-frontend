@@ -48,10 +48,9 @@ export const Users = () => {
         <div className="users-body">
 
             <div>
+                <button onClick={() => setFilteredUsers('')}>Show All</button>
                 <button onClick={() => setFilteredUsers('Student')}>Show Students</button>
                 <button onClick={() => setFilteredUsers('Teacher')}>Show Teachers</button>
-                <button onClick={() => setFilteredUsers('Director')}>Show Directors</button>
-                <button onClick={() => setFilteredUsers('')}>Show All</button>
             </div>
 
             <div className="container-all-users">

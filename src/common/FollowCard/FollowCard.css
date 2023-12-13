@@ -1,0 +1,29 @@
+.card-follow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #7d7a7a;
+    background-color: #ebe7e7;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.follow {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.desc-follow {
+    display: flex;
+    flex-direction: column;
+}
+
+.desc-follow div {
+    margin-bottom: 5px;
+}

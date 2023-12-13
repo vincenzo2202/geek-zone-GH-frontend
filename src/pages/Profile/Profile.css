@@ -33,19 +33,23 @@
   align-items: center;
   width: 30em;
   height: 100vh;
+  padding: 1em;
 }
 
 .my-feed {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-top: 2em;
-  width: 50em;
+  margin-top: 2em; 
+  height: 100vh;
+  padding: 1em;
 }
 
 .right-banner {
   width: 20em;
+  height: 100vh;
+  padding: 1em;
 }
 
 .div-photo img {
@@ -65,8 +69,8 @@
   justify-content: center;
   outline: none;
   cursor: pointer;
-  width: 150px;
-  height: 50px;
+  width: 100px;
+  height: 25px;
   background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
   border-radius: 30px;
   border: 1px solid #8F9092;
@@ -89,4 +93,18 @@
 
 .class-button:focus {
   box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.followers-box{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2em; 
+  width: 5em;
+}
+
+.followers-container{
+  padding: 1em;
+  cursor: pointer;
 }

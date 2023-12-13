@@ -1,0 +1,24 @@
+
+.follow-body{
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;   
+    align-items: center;  
+    padding-top: 2em;
+    margin: 0;
+    padding: 0;
+    color: black;
+    
+}
+
+.follow-background{
+    display: flex;
+    flex-direction: column;   
+    align-items: center;  
+    width: 100vw;
+    height: 100vh;
+    background-color: beige;
+}
+ 

@@ -2,18 +2,18 @@ import './LinkButton.css'
 
 import { useNavigate } from 'react-router-dom';
 
-export const LinkButton = ({path, title, className,emit}) => {
+export const LinkButton = ({ path, title, className, emit }) => {
 
-     const navigate = useNavigate();
-     const superEmit = (argumento) =>{
+    const navigate = useNavigate();
+    const superEmit = (argumento) => {
         navigate(argumento)
-        if(emit){
+        if (emit) {
             emit()
-        } 
+        }
     }
-     return (
-         <div className={className} onClick={()=>superEmit(path)}>
+    return (
+        <div className={className} onClick={() => superEmit(path)}>
             {title}
-         </div>
-     )
+        </div>
+    )
 }
