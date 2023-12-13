@@ -41,7 +41,6 @@ export const Users = () => {
     }, []);
 
 
-
     const filteredUsers = filtered ? users.filter(user => user.role === (filtered ?filtered : '' )) : users;
 
     return (

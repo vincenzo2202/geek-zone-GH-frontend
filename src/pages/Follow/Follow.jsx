@@ -3,9 +3,10 @@ import './Follow.css';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
-import { getMyFollowers } from '../../services/apiCalls';
+import { getMyFollowers, getMyFollowings, getProfile } from '../../services/apiCalls';
 import { useEffect, useState } from 'react';
 import { FollowCard } from '../../common/FollowCard/FollowCard';
+import { LinkButton } from '../../common/LinkButton/LinkButton';
 
 export const Follow = () => {
 
@@ -14,8 +15,17 @@ export const Follow = () => {
     const dispatch = useDispatch();
     const tokenDecoded = jwtDecode(rdxToken);
 
+    const [user, setUser] = useState({
+        full_name: "",
+        email: "",
+        phone_number: "",
+        photo: ""
+    });
+
 
     const [follow, setfollow] = useState([])
+    const [myFollowings, setMyFollowings] = useState([])
+    const [buttonFollows, setbuttonFollows] = useState(true)
 
     useEffect(() => {
         if (rdxToken && tokenDecoded.exp > Date.now() / 1000) {
@@ -25,30 +35,48 @@ export const Follow = () => {
                         setfollow(response.data.data);
                     })
                 .catch(error => console.log(error));
+
+            getMyFollowings(rdxToken)
+                .then(
+                    response => {
+                        setMyFollowings(response.data.data);
+                    })
+                .catch(error => console.log(error));
         } else {
             navigate("/");
             dispatch(logout());
         }
     }, []);
- 
+
+    const listToShow = buttonFollows ? myFollowings : follow;
+    console.log(listToShow);
+
     return (
         <div className="follow-body">
             <div className='follow-background'>
-                {follow.length > 0 ? (
-                    <div className="follow-container">
-                        {follow.map(follow => (
-                            <FollowCard
-                                key={follow.id}
-                                name={follow.follower.name}
-                                last_name={follow.follower.last_name}
-                                photo={follow.follower.photo}
-                            />
-                        ))
-                        }
-                    </div>
-                ) : (
-                    <div>Loading</div>
-                )}
+                <div className="follow-header"> <h1>Follows</h1> </div>
+                <div>
+                    <button onClick={() => setbuttonFollows(true)}>Show Followings</button>
+                    <button onClick={() => setbuttonFollows(false)}>Show Followers</button>
+                </div>
+
+                {listToShow.length > 0  
+                    ? (
+                        <div className="follow-container">
+                            {listToShow.map(follow => (
+                                <FollowCard
+                                    key={follow.follow_info.id}
+                                    name={follow.follow_info.name}
+                                    last_name={follow.follow_info.last_name}
+                                    photo={follow.follow_info.photo}
+                                />
+                            ))
+                            }
+                        </div>
+                    )
+                    : (
+                        <div>Loading</div>
+                    )}
             </div>
         </div>
     )
