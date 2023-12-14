@@ -16,7 +16,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     const dispatch = useDispatch();
 
     const [comment, setComment] = useState([])
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
     const [commentInput, setCommentInput] = useState({
         feed_id: feedId,
         comment: '',
@@ -123,7 +123,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 ? (
 
                     <div className="comments">
-                        <div className='comments input-comment'>
+                        <div className='input-comment'>
                             <CustomInput
                                 design={'input-create-comment'}
                                 type={'text'}
@@ -136,7 +136,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                             <button className="button-send" onClick={SendComment}>Send </button>
                         </div>
 
-                        {comment && comment.map((comment, index) => (
+                        {comment && [...comment].reverse().map((comment, index) => (
 
                             <div className='comment-card' key={index}>
                                 <div className='comment-info' >
