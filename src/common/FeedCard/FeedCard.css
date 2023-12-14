@@ -26,10 +26,10 @@
     margin-right: 10px;
 }
 
-.user-name, 
-.user-lastname, 
+.user-name,
+.user-lastname,
 .user-id {
-    margin: 5px 0; 
+    margin: 5px 0;
     margin-right: 0.3em;
 }
 
@@ -39,7 +39,8 @@
     margin-bottom: 5px;
 }
 
-.feed-title, .feed-content {
+.feed-title,
+.feed-content {
     color: #666;
     margin-bottom: 10px;
 }
@@ -57,66 +58,78 @@
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer; 
+    cursor: pointer;
     width: 10em;
- 
+
 }
 
 .comments {
     margin-top: 10px;
     color: black;
     display: flex;
-    flex-direction: column;  
+    flex-direction: column;
     width: 100%;
 
 }
 
 .comment-card {
+    margin-top: 0.5em;
     border-top: 1px solid #ccc;
     padding: 10px 0;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(214, 217, 217);
+    margin-bottom: 1em;
+    border-radius: 10px;
+    padding: 0.8em;
 }
 
 .comment-content {
     margin-bottom: 1em;
     display: flex;
     padding-right: 0.3em;
-    
+
 }
 
-.coment-owner-info{
+.coment-owner-info {
     display: flex;
     align-items: center;
-   
+
 }
 
-.input-comment{
+.input-comment {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;  
+    justify-content: space-between;
 }
 
-.input-create-comment{
+.input-create-comment {
     width: 100%;
-    height:  auto;
+    height: auto;
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 0.5em;
     margin-right: 0.5em;
 }
 
-.button-send{
+.button-send {
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer; 
+    cursor: pointer;
     width: 5em;
-    height: 2em; 
+    height: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.del { 
+    width: 1em;
+    cursor: pointer;
+    margin-right: 2em;
 }

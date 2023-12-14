@@ -3,9 +3,10 @@ import './FeedCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../pages/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { createComment, getCommentsByFeedID } from '../../services/apiCalls';
+import { createComment, deleteComment, getCommentsByFeedID } from '../../services/apiCalls';
 import { CustomInput } from '../CustomInput/CustomInput';
 import { validator } from '../../services/validations';
+import { DeleteLink } from '../DeleteLink/DeleteLink';
 
 
 export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo }) => {
@@ -19,29 +20,29 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     const [commentInput, setCommentInput] = useState({
         feed_id: feedId,
         comment: '',
-    }); 
-    const [commentInputError, setCommentInputError] = useState({}); 
+    });
+    const [commentInputError, setCommentInputError] = useState({});
 
     const toggleCollapse = () => {
         if (collapsed) {
             getCommentsByFeedID(rdxToken, feedId)
                 .then(
                     response => {
-                        setComment(response.data.data[0].comment); 
+                        setComment(response.data.data[0].comment);
                     })
                 .catch(error => console.log(error));
 
         }
         setCollapsed(!collapsed);
 
-    };  
+    };
 
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value
         }));
-    }; 
+    };
 
     const errorCheck = (e) => {
         let error = "";
@@ -54,10 +55,10 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
 
     const SendComment = () => {
         if (commentInput.comment !== '') {
-            console.log(commentInput); 
+            console.log(commentInput);
             createComment(rdxToken, commentInput)
                 .then(
-                    response => { 
+                    response => {
                         setCommentInput(prevState => ({
                             ...prevState,
                             comment: ''
@@ -65,7 +66,15 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                     })
                 .catch(error => console.log(error));
         }
-    } 
+    }
+
+    const deleted = (id) => {
+        deleteComment(rdxToken, id)
+            .then(response => {
+                setComment(delComment => delComment.filter(comment => comment.id !== id));
+            })
+            .catch(error => console.log(error));
+    }
 
     return (
         <div className='card'>
@@ -115,8 +124,9 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         </div>
 
                         {comment && comment.map((comment, index) => (
+
                             <div className='comment-card' key={index}>
-                                <div className='comment-info'>
+                                <div className='comment-info' >
                                     <div className='coment-owner-info'>
                                         <div className="comment-content">{comment.user.name}</div>
                                         <div className="comment-content">{comment.user.last_name}</div>
@@ -124,6 +134,12 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                                     <div className="comment-content">{comment.comment}</div>
 
                                 </div>
+                                <DeleteLink
+                                    deleted={() => deleted(comment.id)}
+                                    title={<div className="button-delete-comment" >
+                                        <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
+                                    </div>}
+                                />
                             </div>
                         ))}
 

@@ -96,3 +96,11 @@ export const createComment = async (token, body) => {
     });
 }
 
+export const deleteComment = async (token, id) => {    
+    return await axios.delete(`http://localhost:8000/api/comments/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
