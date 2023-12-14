@@ -70,15 +70,18 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 <div className="comments">
                     {comment.map((comment, index) => (
                         <div className='comment-card' key={index}>
-                            <div className='comment-info'>
+                            <div className='comment-info'>  
+                            <div className='coment-owner-info'>
                                 <div className="comment-content">{comment.user.name}</div>
+                                <div className="comment-content">{comment.user.last_name}</div> 
+                            </div>
                                 <div className="comment-content">{comment.comment}</div>
 
                             </div>
                         </div>
                     ))}
                 </div>
-            )
+            )   
             : (<div></div>)
             }
 
