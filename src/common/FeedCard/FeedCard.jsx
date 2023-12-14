@@ -30,12 +30,25 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                     response => {
                         setComment(response.data.data[0].comment);
                     })
-                .catch(error => console.log(error));
+                .catch(error => console.log(error)); 
+        }
+        setCollapsed(!collapsed); 
+    };
+
+    useEffect(() => {
+        if(collapsed){
+            getCommentsByFeedID(rdxToken, feedId)
+                .then(
+                    response => {
+                        setComment(response.data.data[0].comment);
+                    })
+                .catch(error => console.log(error)); 
 
         }
-        setCollapsed(!collapsed);
+    }, [commentInput])
 
-    };
+
+    console.log(commentInput); 
 
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
