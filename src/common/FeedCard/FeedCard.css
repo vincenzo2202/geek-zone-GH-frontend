@@ -1,53 +1,70 @@
- .card {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     margin-bottom: 5em;
-     background-color: rgb(199, 202, 183);
-     width: 50em;
-     padding: 2em;
-     border-radius: 2em;
-     color: black;
+.card {
+    width: 40em;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
 
- }
+.feed-card {
+    display: flex;
+    flex-direction: column;
+}
 
- .feed-card {
-     color: black;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-     justify-content: space-between;
+.user-info {
+    display: flex;
+    align-items: center;
+}
 
- }
+.pic-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 
- .desc {
-     font-size: 1.5em;
-     font-style: italic;
+.user-name, .user-lastname, .user-id {
+    margin: 5px 0;
+}
 
- }
+.desc {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
 
- .pic-avatar {
-     width: 5em;
-     height: 5em;
-     border-radius: 50%;
-     margin-bottom: 1em;
- }
+.feed-title, .feed-content {
+    color: #666;
+    margin-bottom: 10px;
+}
 
- .pic-feed {
-     width: 20em;
-     height: 20em;
-     margin-bottom: 1em;
- }
+.pic-feed {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
 
+.button-spoiler {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
- .user-info {
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
-     align-items: center;
-     width: 100%;
-     margin-bottom: 1em;
-     padding: 1em;
- }
+.comments {
+    margin-top: 10px;
+}
+
+.comment-card {
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.comment-content {
+    margin-bottom: 5px;
+}
