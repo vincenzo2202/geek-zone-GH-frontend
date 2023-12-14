@@ -1,0 +1,45 @@
+.card-event {
+    width: 20em;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.event-card {
+    padding: 20px;
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.desc {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.event-title {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.event-content {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.event-date {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.event-time {
+    color: #666;
+    margin-bottom: 10px;
+}
