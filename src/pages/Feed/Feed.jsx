@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { logout, selectToken } from '../userSlice';
 import { getAllFeeds } from '../../services/apiCalls';
-import { FeedCard } from '../../common/FeedCard/FeedCard'; 
+import { FeedCard } from '../../common/FeedCard/FeedCard';
 import { jwtDecode } from 'jwt-decode';
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const tokenDecoded = jwtDecode(rdxToken);
- 
+
 
     const [feed, setFeed] = useState([])
 
@@ -21,7 +21,11 @@ export const Feed = () => {
             getAllFeeds(rdxToken)
                 .then(
                     response => {
-                        setFeed(response.data.data);
+                        if (response.data.data.length > 0 ) {
+                            setFeed(response.data.data);
+                        } else {    
+                            setFeed([]);
+                        } 
                     })
                 .catch(error => console.log(error));
         } else {
@@ -29,13 +33,17 @@ export const Feed = () => {
             dispatch(logout());
         }
     }, []); // aqui si solo sigo al feed entra en bucle infinito
-  
+
+    const handleDeleteFeed = (id) => {
+        setFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
+    }
+
     return (
         <div className="feed-body">
             <div className='feed-background'>
                 {feed.length > 0 ? (
-                    <div className="feed-container">
-                        {feed.map(feedItem => (
+                    <div className="feed-container"> 
+                        {[...feed].reverse().map(feedItem => (
                             <FeedCard
                                 key={feedItem.id}
                                 userPhoto={feedItem.user.photo}
@@ -45,7 +53,8 @@ export const Feed = () => {
                                 title={feedItem.title}
                                 content={feedItem.content}
                                 photo={feedItem.photo}
-                                feedId={feedItem.id}
+                                feedId={feedItem.id} 
+                                onDeleteFeed={handleDeleteFeed}
                             />
 
                         ))}

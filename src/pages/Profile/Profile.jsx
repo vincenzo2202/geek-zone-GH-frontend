@@ -66,11 +66,15 @@ export const Profile = () => {
             getMyFeed(rdxToken)
                 .then(
                     response => {
-                        setMyFeed(response.data.data);
+                        if (response.data.data.length > 0) {
+                            setMyFeed(response.data.data);
+                        } else {
+                            setMyFeed([]); 
+                        }
                     })
-                .catch(error => console.log(error));
+                .catch(error => console.log(error)); 
         } else {
-            navigate("/");
+            navigate("/"); 
         }
     }, []);
  
@@ -79,6 +83,9 @@ export const Profile = () => {
         navigate('/follow');
     }
 
+    const handleDeleteFeed = (id) => {
+        setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
+    }
 
     return (
         <div className="profile-body">
@@ -110,7 +117,7 @@ export const Profile = () => {
                                 <div className="my-feed">
                                     <h1>Hi, {user.name}!</h1>
                                     {
-                                        feed.map((feed, index) => (
+                                      feed.map((feed, index) => (
                                             <FeedCard
                                                 key={index}
                                                 feedId={feed.id}
@@ -121,6 +128,7 @@ export const Profile = () => {
                                                 userName={feed.user.name}
                                                 userLast_name={feed.user.last_name}
                                                 user_id={feed.user.id}
+                                                onDeleteFeed={handleDeleteFeed}
                                             />
                                         ))}
                                 </div>

@@ -3,13 +3,13 @@ import './FeedCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../pages/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { createComment, deleteComment, getCommentsByFeedID } from '../../services/apiCalls';
+import { createComment, deleteComment, deleteFeed, getCommentsByFeedID } from '../../services/apiCalls';
 import { CustomInput } from '../CustomInput/CustomInput';
 import { validator } from '../../services/validations';
 import { DeleteLink } from '../DeleteLink/DeleteLink';
 
 
-export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo }) => {
+export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo ,onDeleteFeed }) => {
 
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
@@ -30,25 +30,27 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                     response => {
                         setComment(response.data.data[0].comment);
                     })
-                .catch(error => console.log(error)); 
+                .catch(error => console.log(error));
         }
-        setCollapsed(!collapsed); 
+        setCollapsed(!collapsed);
     };
 
     useEffect(() => {
-        if(collapsed){
+        if (collapsed) {
             getCommentsByFeedID(rdxToken, feedId)
                 .then(
                     response => {
                         setComment(response.data.data[0].comment);
                     })
-                .catch(error => console.log(error)); 
+                .catch(error => console.log(error));
 
         }
     }, [commentInput])
 
+    console.log(commentInput);
 
-    console.log(commentInput); 
+
+    console.log(commentInput);
 
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
@@ -89,13 +91,29 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
             .catch(error => console.log(error));
     }
 
+    const deletedFeed = (id) => {
+        deleteFeed(rdxToken, id)
+            .then(response => {
+                props.onDeleteFeed(id);
+            })
+            .catch(error => console.log(error));
+    }
+
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>
-                <div className='user-info'>
-                    <img className="pic-avatar" src={userPhoto} alt={userPhoto} />
-                    <div className="user-name">{userName}</div>
-                    <div className="user-lastname">{userLast_name}</div>
+                <div className='top-banner'>
+                    <div className='user-info'>
+                        <img className="pic-avatar" src={userPhoto} alt={userPhoto} />
+                        <div className="user-name">{userName}</div>
+                        <div className="user-lastname">{userLast_name}</div>
+                    </div>
+                    <DeleteLink
+                        deleted={() => deletedFeed(feedId)}
+                        title={<div className="button-delete-comment" >
+                            <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
+                        </div>}
+                    />
                 </div>
                 <div className='feed-info'>
                     <div className='desc'>Title: </div>
@@ -119,7 +137,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 {!collapsed ? "comments" : "comments"}
             </button>
 
-            {collapsed
+            {collapsed  
                 ? (
 
                     <div className="comments">
@@ -136,7 +154,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                             <button className="button-send" onClick={SendComment}>Send </button>
                         </div>
 
-                        {comment && [...comment].reverse().map((comment, index) => (
+                        {comment.length >0 && [...comment].reverse().map((comment, index) => (
 
                             <div className='comment-card' key={index}>
                                 <div className='comment-info' >

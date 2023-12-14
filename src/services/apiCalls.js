@@ -104,3 +104,10 @@ export const deleteComment = async (token, id) => {
     });
 }
 
+export const deleteFeed = async (token, id) => {    
+    return await axios.delete(`http://localhost:8000/api/deleteFeed/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
