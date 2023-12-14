@@ -88,3 +88,11 @@ export const updateProfile = async ( body,token) => {
     });
 }
 
+export const createComment = async (token, body) => {    
+    return await axios.post(`http://localhost:8000/api/comments`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+

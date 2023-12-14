@@ -1,7 +1,7 @@
 import React from "react";
 import "./CustomInput.css"
 
-export const CustomInput = ({ design, type, name, placeholder, functionProp, functionBlur }) => {
+export const CustomInput = ({ design, type, name, placeholder, functionProp, functionBlur , value}) => {
     return (
         <input
             className={design}
@@ -10,6 +10,7 @@ export const CustomInput = ({ design, type, name, placeholder, functionProp, fun
             placeholder={placeholder}
             onChange={(e) => functionProp(e)}
             onBlur={(e) => functionBlur(e)}
+            value={value}
         />
     )
 }

@@ -3,7 +3,9 @@ import './FeedCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../pages/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { getCommentsByFeedID } from '../../services/apiCalls';
+import { createComment, getCommentsByFeedID } from '../../services/apiCalls';
+import { CustomInput } from '../CustomInput/CustomInput';
+import { validator } from '../../services/validations';
 
 
 export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo }) => {
@@ -14,23 +16,58 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
 
     const [comment, setComment] = useState([])
     const [collapsed, setCollapsed] = useState(true);
- 
 
     const toggleCollapse = () => {
-        if (collapsed) { 
-            console.log(feedId); 
+        if (collapsed) {
             getCommentsByFeedID(rdxToken, feedId)
                 .then(
                     response => {
-                        setComment(response.data.data[0].comment);
-                        console.log(response);
+                        setComment(response.data.data[0].comment); 
                     })
                 .catch(error => console.log(error));
-            
+
         }
         setCollapsed(!collapsed);
-        
+
     }; 
+ 
+    const [commentInput, setCommentInput] = useState({
+        feed_id: feedId,
+        comment: '',
+    }); 
+
+    const functionHandler = (e) => {
+        setCommentInput((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }));
+    };
+ 
+    const [commentInputError, setCommentInputError] = useState({}); 
+
+    const errorCheck = (e) => {
+        let error = "";
+        error = validator(e.target.name, e.target.value);
+        setCommentInputError((prevState) => ({
+            ...prevState,
+            [e.target.name + 'Error']: error,
+        }));
+    }
+
+    const SendComment = () => {
+        if (commentInput.comment !== '') {
+            console.log(commentInput); 
+            createComment(rdxToken, commentInput)
+                .then(
+                    response => { 
+                        setCommentInput(prevState => ({
+                            ...prevState,
+                            comment: ''
+                        }));
+                    })
+                .catch(error => console.log(error));
+        }
+    } 
 
     return (
         <div className='card'>
@@ -39,8 +76,6 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                     <img className="pic-avatar" src={userPhoto} alt={userPhoto} />
                     <div className="user-name">{userName}</div>
                     <div className="user-lastname">{userLast_name}</div>
-                    <div className='desc'>User ID: </div>
-                    <div className="user-id"> {user_id}</div>
                 </div>
                 <div className='feed-info'>
                     <div className='desc'>Title: </div>
@@ -60,29 +95,43 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 }
             </div>
 
-
             <button className="button-spoiler" onClick={toggleCollapse}>
                 {!collapsed ? "comments" : "comments"}
             </button>
 
-            {collapsed 
-            ? (
-                <div className="comments">
-                    {comment.map((comment, index) => (
-                        <div className='comment-card' key={index}>
-                            <div className='comment-info'>  
-                            <div className='coment-owner-info'>
-                                <div className="comment-content">{comment.user.name}</div>
-                                <div className="comment-content">{comment.user.last_name}</div> 
-                            </div>
-                                <div className="comment-content">{comment.comment}</div>
+            {collapsed
+                ? (
 
-                            </div>
+                    <div className="comments">
+                        <div className='comments input-comment'>
+                            <CustomInput
+                                design={'input-create-comment'}
+                                type={'text'}
+                                name={'comment'}
+                                placeholder={'Comments'}
+                                functionProp={functionHandler}
+                                functionBlur={errorCheck}
+                                value={commentInput.comment}
+                            />
+                            <button className="button-send" onClick={SendComment}>Send </button>
                         </div>
-                    ))}
-                </div>
-            )   
-            : (<div></div>)
+
+                        {comment && comment.map((comment, index) => (
+                            <div className='comment-card' key={index}>
+                                <div className='comment-info'>
+                                    <div className='coment-owner-info'>
+                                        <div className="comment-content">{comment.user.name}</div>
+                                        <div className="comment-content">{comment.user.last_name}</div>
+                                    </div>
+                                    <div className="comment-content">{comment.comment}</div>
+
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+                )
+                : (<div></div>)
             }
 
         </div >
