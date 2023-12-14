@@ -16,6 +16,11 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
 
     const [comment, setComment] = useState([])
     const [collapsed, setCollapsed] = useState(true);
+    const [commentInput, setCommentInput] = useState({
+        feed_id: feedId,
+        comment: '',
+    }); 
+    const [commentInputError, setCommentInputError] = useState({}); 
 
     const toggleCollapse = () => {
         if (collapsed) {
@@ -29,21 +34,14 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
         }
         setCollapsed(!collapsed);
 
-    }; 
- 
-    const [commentInput, setCommentInput] = useState({
-        feed_id: feedId,
-        comment: '',
-    }); 
+    };  
 
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value
         }));
-    };
- 
-    const [commentInputError, setCommentInputError] = useState({}); 
+    }; 
 
     const errorCheck = (e) => {
         let error = "";

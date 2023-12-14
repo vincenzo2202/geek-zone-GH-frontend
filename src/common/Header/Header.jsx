@@ -56,6 +56,11 @@ export const Header = () => {
                     rdxToken
                         ? (
                             <>
+                              <LinkButton
+                                    className={"header-button"}
+                                    path={"/feed"}
+                                    title={"Feed"}
+                                />
                                 <LinkButton
                                     className={"header-button"}
                                     path={"/profile"}
@@ -66,11 +71,7 @@ export const Header = () => {
                                     path={"/users"}
                                     title={"Community"}
                                 />
-                                <LinkButton
-                                    className={"header-button"}
-                                    path={"/feed"}
-                                    title={"Feed"}
-                                />
+                              
                                 <LinkButton
                                     className={"header-button"}
                                     path={"/event"}

@@ -29,12 +29,7 @@ export const Feed = () => {
             dispatch(logout());
         }
     }, []); // aqui si solo sigo al feed entra en bucle infinito
- 
-
-
-    
-     
-
+  
     return (
         <div className="feed-body">
             <div className='feed-background'>
