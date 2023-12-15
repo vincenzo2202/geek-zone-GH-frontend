@@ -143,5 +143,21 @@ export const follow = async (token, body) => {
         }
     });
 }
+
+export const unfollow = async (token, body) => {    
+    return await axios.delete(`http://localhost:8000/api/followers/${body}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+export const getFollowersById = async (token,id) => {
+    return await axios.get(`http://localhost:8000/api/followers/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
  
  

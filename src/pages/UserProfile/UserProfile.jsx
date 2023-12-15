@@ -1,63 +1,60 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css"
-import { follow, getMyFeed, getMyFollowers, getMyFollowings, getProfile, getUserProfile } from "../../services/apiCalls";
+import { follow, getFollowersById, getMyFeed, getMyFollowers, getMyFollowings, getProfile, getUserProfile, unfollow } from "../../services/apiCalls";
 import { LinkButton } from "../../common/LinkButton/LinkButton";
 import { useNavigate, useParams } from "react-router-dom";
 
 //Rdx
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "../userSlice";
-import { FeedCard } from "../../common/FeedCard/FeedCard"; 
+import { FeedCard } from "../../common/FeedCard/FeedCard";
+import { jwtDecode } from "jwt-decode";
+import { selectProfile } from "../profileSlice";
 
 
-export const UserProfile = () => { 
+export const UserProfile = () => {
     const navigate = useNavigate();
-    const rdxToken = useSelector(selectToken); 
-    const { id } = useParams(); 
-    const [user, setUser] = useState({ 
-    }); 
-    const [stop, setStop] = useState(false)
+    const dispatch = useDispatch();
+    const rdxToken = useSelector(selectToken);
+    const userID = useSelector(selectProfile)
+    const decodedtoken = jwtDecode(rdxToken);
+    const { id } = useParams();
 
-    const [myFollowers, setFollowers] = useState([])
-    const [myFollowings, setFollowings] = useState([])
+    const [user, setUser] = useState({
+    });
+    const [stop, setStop] = useState(false)
+    const [followCheck, setFollowCheck] = useState(false)
 
     useEffect(() => {
         if (rdxToken) {
             getUserProfile(rdxToken, id)
-                .then((response) => { 
-               
-                    if (stop == false) { 
-                       
+                .then((response) => {
+                    if (stop == false) {
                         setUser(response.data.data);
                         setStop(true)
+                        getFollowersById(rdxToken, userID)
+                            .then(response => {
+                                const followers = response.data.data;
+                                let isFollowing = false;
+                                for (let i = 0; i < followers.length; i++) {
+                                    if (followers[i].follower_id === parseInt(decodedtoken.sub)) {
+                                        isFollowing = true;
+                                        break;
+                                    }
+                                }
+                                setFollowCheck(isFollowing);
+                            })
+                            .catch(error => console.log(error));
                     }
                 })
                 .catch((error) => {
                     console.log(error);
-                }); 
+                });
         } else {
             navigate("/login");
         }
-    }, [rdxToken, stop, navigate]); 
+    }, []);
 
-    const [feed, setFeed] = useState([])
-
-    useEffect(() => {
-        if (rdxToken) {
-            getUserProfile(rdxToken)
-                .then(
-                    response => {
-                        if (response.data.data.feeds.length > 0) {
-                            setFeed(response.data.data.feeds);
-                        } else {
-                            setFeed([]);
-                        }
-                    })
-                .catch(error => console.log(error));
-        } else {
-            navigate("/");
-        }
-    }, []); 
 
     const FollowersClick = () => {
         navigate('/follow');
@@ -66,21 +63,30 @@ export const UserProfile = () => {
     const handleDeleteFeed = (id) => {
         setFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
     }
- 
 
-    const followTo = () => {  
-        const parseFollowId = parseInt(user.id, 10)
-        console.log(parseFollowId);
-        follow(rdxToken, parseFollowId )
-            .then(response => {
-                console.log(response);
-                setUser(prevUser => ({ ...prevUser, followers: prevUser.followers + 1 }))
-            })
-            .catch(error => console.log(error)); 
+    const followOrNot = () => {
+        if (followCheck == false) {
+            const parseFollowId = parseInt(user.id, 10)
+            follow(rdxToken, parseFollowId)
+                .then(response => {
+                    setUser(prevUser => ({ ...prevUser, followers: prevUser.followers + 1 }))
+                    setFollowCheck(true)
+                    console.log(response);
+                })
+                .catch(error => console.log(error));
+        } else {
+            unfollow(rdxToken, user.id)
+                .then(response => {
+                    setUser(prevUser => ({ ...prevUser, followers: prevUser.followers - 1 }))
+                    setFollowCheck(false)
+                    console.log(response);
+                })
+                .catch(error => console.log(error));
+        }
     }
-  
+
     return (
-        
+
         <div className="profile-body">
             {
                 user
@@ -88,44 +94,46 @@ export const UserProfile = () => {
                         <>
                             <div className="profile">
                                 <div className="left-banner">
-                                    <div className="profile-info"> 
-                                    <div className="div-photo" ><img src={user.photo} alt="User" /></div>
-                                    <div>Name: {user.name}</div>
-                                    <div>Last Name: {user.last_name}</div>
-                                    <div>Email: {user.email}</div>
-                                    <div>Phone: {user.phone_number}</div>
-                                    <div>City: {user.city}</div>  
-                                    <div className="followers-box" >
-                                        <div className="followers-container" onClick={FollowersClick}>followers: {user.followers || 0}</div>
-                                        <div className="followers-container" onClick={FollowersClick}>followings: {user.followings || 0}</div>
-                                        
-                                    </div> 
-                                    <div className="follow.box">
-                                        <button className="follow" onClick={()=>followTo()}>Follow</button>
-                                    </div>
+                                    <div className="profile-info">
+                                        <div className="div-photo" ><img src={user.photo} alt="User" /></div>
+                                        <div>Name: {user.name}</div>
+                                        <div>Last Name: {user.last_name}</div>
+                                        <div>Email: {user.email}</div>
+                                        <div>Phone: {user.phone_number}</div>
+                                        <div>City: {user.city}</div>
+                                        <div className="followers-box" >
+                                            <div className="followers-container" onClick={FollowersClick}>followers: {user.followers || 0}</div>
+                                            <div className="followers-container" onClick={FollowersClick}>followings: {user.followings || 0}</div>
+
+                                        </div>
+
+                                        <div className="follow.box">
+                                            {/* TODO // no se actualiza correctamente el estado del componente en el follow y unfollow */}
+                                            <button className="follow" onClick={() => followOrNot()}>{followCheck == false ? "Follow" : "Unfollow"}</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="my-feed">
                                     <div className="fixed-top-center">
-                                    
-                                    <div className='line-div'>Here are all your the posts </div>
-                                    <div className="feed-container">
-                                        {
-                                          user.feeds &&  user.feeds.reverse().map((feed, index) => (
-                                                <FeedCard
-                                                key={index}
-                                                feedId={feed.id}
-                                                title={feed.title}
-                                                content={feed.content}
-                                                photo={feed.photo}
-                                                userPhoto={user.photo}
-                                                userName={user.name}
-                                                userLast_name={user.last_name}
-                                                user_id={user.id} 
-                                                onDeleteFeed={handleDeleteFeed}
-                                                />
-                                            ))}
-                                    </div>
+
+                                        <div className='line-div'>Here are all your the posts </div>
+                                        <div className="feed-container">
+                                            {
+                                                user.feeds && user.feeds.reverse().map((feed, index) => (
+                                                    <FeedCard
+                                                        key={index}
+                                                        feedId={feed.id}
+                                                        title={feed.title}
+                                                        content={feed.content}
+                                                        photo={feed.photo}
+                                                        userPhoto={user.photo}
+                                                        userName={user.name}
+                                                        userLast_name={user.last_name}
+                                                        user_id={user.id}
+                                                        onDeleteFeed={handleDeleteFeed}
+                                                    />
+                                                ))}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="right-banner">

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch, useSelector  } from "react-redux";
 import { selectToken } from "../../pages/userSlice";
+import { profile } from "../../pages/profileSlice";
 
 export const CardUser = ({name,last_name, photo, phone_number, email, userid, city, role, id}) => {
 
@@ -15,6 +16,7 @@ export const CardUser = ({name,last_name, photo, phone_number, email, userid, ci
 
 
     const goTOUserProfile = (id) => { 
+        dispatch(profile(id));
         navigate(`/userProfile/${id}`);
         console.log(id);
     }
