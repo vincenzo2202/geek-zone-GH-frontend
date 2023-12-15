@@ -11,6 +11,7 @@
     box-sizing: border-box;
     margin: 2em;
     color: black;
+    cursor: pointer;
 }
 
 .worker {

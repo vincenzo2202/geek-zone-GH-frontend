@@ -1,0 +1,128 @@
+body{
+    height: 100%;
+    width: 100vw;
+    background-color: rgb(221, 217, 217);
+  }
+  
+  .profile-body {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(221, 217, 217);
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    color: black;
+  }
+  
+  .profile {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 100px;
+    padding-top: 16px;
+  }
+  
+  .div-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+  }
+  .profile-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin : 2em; 
+    position: fixed;
+    top: 6em; 
+  }
+  
+  .left-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 30em;
+    height: 100vh;
+    padding: 1em;  
+  }
+  
+  .my-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1em; 
+    height: 100vh;
+    padding: 1em;
+  }
+    
+  
+  .right-banner {
+    width: 20em;
+    height: 100vh;
+    padding: 1em;
+  }
+  
+  .div-photo img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+  
+  }
+  
+  
+  .update-profile .class-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    cursor: pointer;
+    width: 100px;
+    height: 25px;
+    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+    border-radius: 30px;
+    border: 1px solid #8F9092;
+    transition: all 0.2s ease;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #606060;
+    text-shadow: 0 1px #fff;
+    margin-top: 2em;
+  }
+  
+  .class-button:hover {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+  }
+  
+  .class-button:active {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+  }
+  
+  .class-button:focus {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+  }
+  
+  .followers-box{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2em; 
+    width: 5em;
+  }
+  
+  .followers-container{
+    padding: 1em;
+    cursor: pointer;
+  }
+   

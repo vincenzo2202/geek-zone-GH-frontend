@@ -128,3 +128,11 @@ export const createEvent = async (token, body) => {
     });
 }
 
+export const getUserProfile = async (token,id) => {
+    return await axios.get(`http://localhost:8000/api/user/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+

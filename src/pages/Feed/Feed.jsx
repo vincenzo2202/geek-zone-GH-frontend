@@ -38,6 +38,7 @@ export const Feed = () => {
 
     const handleDeleteFeed = (id) => {
         setFeed(CreateFeedCard.id !== id);
+        
     }
 
     return (

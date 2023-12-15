@@ -91,10 +91,10 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     const deletedFeed = (id) => {
         deleteFeed(rdxToken, id)
             .then(response => {
-                props.onDeleteFeed(id);
+                props.onDeleteFeed(id); 
             })
             .catch(error => console.log(error));
-    } 
+    }
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>
@@ -105,17 +105,17 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         <div className="user-lastname">{userLast_name}</div>
                     </div>
                     <div className='delete-card'>
-                    { 
-                    parseInt(tokenDecoded.sub, 10) === user_id &&
-                        <DeleteLink
-                            deleted={() => deletedFeed(feedId)}
-                            title={<div className="button-delete-comment" >
-                                <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
-                            </div>}
-                        />
-                    } 
+                        {
+                            parseInt(tokenDecoded.sub, 10) === user_id &&
+                            <DeleteLink
+                                deleted={() => deletedFeed(feedId)}
+                                title={<div className="button-delete-comment" >
+                                    <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
+                                </div>}
+                            />
+                        }
                     </div>
-                   
+
                 </div>
                 <div className='feed-info'>
                     <div className='desc'>Title: </div>
