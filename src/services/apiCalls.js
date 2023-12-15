@@ -135,5 +135,13 @@ export const getUserProfile = async (token,id) => {
         }
     });
 }
+
+export const follow = async (token, body) => {    
+    return await axios.post(`http://localhost:8000/api/followers`,{ following_id: body}, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
  
  

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css"
-import { getMyFeed, getMyFollowers, getMyFollowings, getProfile, getUserProfile } from "../../services/apiCalls";
+import { follow, getMyFeed, getMyFollowers, getMyFollowings, getProfile, getUserProfile } from "../../services/apiCalls";
 import { LinkButton } from "../../common/LinkButton/LinkButton";
 import { useNavigate, useParams } from "react-router-dom";
 
 //Rdx
 import { useSelector } from "react-redux";
 import { selectToken } from "../userSlice";
-import { FeedCard } from "../../common/FeedCard/FeedCard";
-import { Follow } from "../Follow/Follow";
-import { jwtDecode } from "jwt-decode"; 
+import { FeedCard } from "../../common/FeedCard/FeedCard"; 
 
 
 export const UserProfile = () => { 
@@ -17,8 +15,7 @@ export const UserProfile = () => {
     const rdxToken = useSelector(selectToken); 
     const { id } = useParams(); 
     const [user, setUser] = useState({ 
-    });
-console.log(user);
+    }); 
     const [stop, setStop] = useState(false)
 
     const [myFollowers, setFollowers] = useState([])
@@ -69,7 +66,19 @@ console.log(user);
     const handleDeleteFeed = (id) => {
         setFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
     }
- console.log(user.followers);
+ 
+
+    const followTo = () => {  
+        const parseFollowId = parseInt(user.id, 10)
+        console.log(parseFollowId);
+        follow(rdxToken, parseFollowId )
+            .then(response => {
+                console.log(response);
+                setUser(prevUser => ({ ...prevUser, followers: prevUser.followers + 1 }))
+            })
+            .catch(error => console.log(error)); 
+    }
+  
     return (
         
         <div className="profile-body">
@@ -91,6 +100,9 @@ console.log(user);
                                         <div className="followers-container" onClick={FollowersClick}>followings: {user.followings || 0}</div>
                                         
                                     </div> 
+                                    <div className="follow.box">
+                                        <button className="follow" onClick={()=>followTo()}>Follow</button>
+                                    </div>
                                     </div>
                                 </div>
                                 <div className="my-feed">
