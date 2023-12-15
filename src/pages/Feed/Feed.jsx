@@ -33,8 +33,8 @@ export const Feed = () => {
             navigate("/");
             dispatch(logout());
         }
-    }, [ ]); // aqui si solo sigo al feed entra en bucle infinito
-console.log(feed);
+    }, []); // aqui si solo sigo al feed entra en bucle infinito
+    console.log(feed);
 
     const handleDeleteFeed = (id) => {
         setFeed(CreateFeeCard.id !== id);
@@ -42,10 +42,10 @@ console.log(feed);
 
     return (
         <div className="feed-body">
-            <div className='create-feed-card'>
-                <CreateFeeCard />
-            </div>
             <div className='feed-background'>
+                <div className='create-feed-card'>
+                    <CreateFeeCard />
+                </div>
                 {feed.length > 0
                     ? (
                         <div className="feed-container">

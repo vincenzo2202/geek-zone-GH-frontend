@@ -20,4 +20,19 @@
     width: 100vw;
     background-color: beige;
 }
- 
+
+.create-feed-card{
+    padding: 1em; 
+    width: 40em;
+    height: 6em;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+

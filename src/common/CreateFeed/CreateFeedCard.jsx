@@ -62,7 +62,7 @@ export const CreateFeeCard = () => {
             setTimeout(() => {
               setLoading(false);
               setOpen(false);
-            }, 3000); 
+            }, 3000);
             setFeedInput(prevState => ({
               ...prevState,
               title: '',
@@ -88,8 +88,8 @@ export const CreateFeeCard = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal with customized footer
+      <Button className='button-open-modal' type="" onClick={showModal}>
+        What's on your mind?
       </Button>
       <Modal
         open={open}
