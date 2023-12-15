@@ -27,6 +27,7 @@ export const CreateFeeCard = () => {
       setLoading(false);
       setOpen(false);
     }, 3000);
+
   };
   const handleCancel = () => {
     setOpen(false);
@@ -49,39 +50,41 @@ export const CreateFeeCard = () => {
       ...prevState,
       [e.target.name]: e.target.value
     }));
-  }; 
+  };
 
-const SendFeed = () => {
-  if (feedInput.comment !== '') {
+  const SendFeed = () => {
+    if (feedInput.comment !== '') {
       console.log(feedInput);
       createFeed(rdxToken, feedInput)
-          .then(
-              response => {
-                setLoading(true);
-                setTimeout(() => {
-                  setLoading(false);
-                  setOpen(false);
-                }, 3000);
-                setFeedInput(prevState => ({
-                      ...prevState,
-                      title: '',
-                      content: '',
-                      photo: ''
-                  }));
-                  
-              })
-          .catch(error => console.log(error));
-  }
-}
+        .then(
+          response => {
+            setLoading(true);
+            setTimeout(() => {
+              setLoading(false);
+              setOpen(false);
+            }, 3000); 
+            setFeedInput(prevState => ({
+              ...prevState,
+              title: '',
+              content: '',
+              photo: ''
+            }));
+            // TODO // apaño para que se actualice el feed 
+            history.go(0);//TODO
 
-const errorCheck = (e) => {
-  let error = "";
-  error = validator(e.target.name, e.target.value);
-  setFeedInputError((prevState) => ({
+          })
+        .catch(error => console.log(error));
+    }
+  }
+
+  const errorCheck = (e) => {
+    let error = "";
+    error = validator(e.target.name, e.target.value);
+    setFeedInputError((prevState) => ({
       ...prevState,
       [e.target.name + 'Error']: error,
-  }));
-}
+    }));
+  }
 
   return (
     <>
@@ -91,7 +94,7 @@ const errorCheck = (e) => {
       <Modal
         open={open}
         title="What's on your mind?"
-        onOk={handleOk}
+        onOk={SendFeed}
         onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
@@ -119,7 +122,7 @@ const errorCheck = (e) => {
             functionProp={functionHandler}
             functionBlur={errorCheck}
           />
-             <CustomInput
+          <CustomInput
             design={'input-create-feed-photo'}
             type={'photo'}
             name={'photo'}
