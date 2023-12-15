@@ -118,7 +118,7 @@ export const CreateFeedCard = () => {
             design={'input-create-feed-text'}
             type={'content'}
             name={'content'}
-            placeholder={'write your post here'}
+            placeholder={'Write your post here'}
             functionProp={functionHandler}
             functionBlur={errorCheck}
           />

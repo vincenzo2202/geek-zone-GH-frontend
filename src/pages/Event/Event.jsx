@@ -33,9 +33,10 @@ export const Event = () => {
             <div className='create-event-modal'>
                 <CreateEventCard />
             </div>
+            <div className='line-div'>Here are all the events </div>
             <div className='event-background'>
                 {
-                    event.map((event, index) => (
+                    [...event].reverse().map((event, index) => (
                         <EventCard
                             key={index}
                             eventId={event.id}
