@@ -35,14 +35,17 @@ export const CreateEventCard = () => {
 
   const [eventInput, setEventInput] = useState({
     title: '',
-    content: '',
-    photo: ''
+    content: '', 
+    event_date: '',
+    event_time: '',
   });
-
+ 
+   
   const [eventInputError, setEventInputError] = useState({
     titleError: '',
     contentError: '',
-    photoError: ''
+    event_dateError: '',
+    event_timeError: '',
   });
 
   const functionHandler = (e) => {
@@ -66,8 +69,9 @@ export const CreateEventCard = () => {
             setEventInput(prevState => ({
               ...prevState,
               title: '',
-              content: '',
-              photo: ''
+              content: '', 
+              event_date: '',
+              event_time: '',
             }));
             // TODO // apaño para que se actualice el event
             history.go(0);//TODO
@@ -123,10 +127,18 @@ export const CreateEventCard = () => {
             functionBlur={errorCheck}
           />
           <CustomInput
-            design={'input-create-event-photo'}
-            type={'photo'}
-            name={'photo'}
-            placeholder={'photo'}
+            design={'input-create-event-date'}
+            type={'date'}
+            name={'event_date'}
+            placeholder={'Date'}
+            functionProp={functionHandler}
+            functionBlur={errorCheck}
+          />
+          <CustomInput
+            design={'input-create-event-time'}
+            type={'time'}
+            name={'event_time'}
+            placeholder={'Time'}
             functionProp={functionHandler}
             functionBlur={errorCheck}
           />
