@@ -3,7 +3,8 @@ import './Event.css';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAllEvents } from '../../services/apiCalls';
+import { getAllEvents } from '../../services/apiCalls'; 
+import { CreateEventCard } from '../../common/CreateEventCard/CreateEventCard';
 import { EventCard } from '../../common/EventCard/EventCard';
 
 export const Event = () => {
@@ -25,12 +26,13 @@ export const Event = () => {
         } else {
             navigate("/");
         }
-    }, [ rdxToken, navigate]);
-
-    console.log(event);
+    }, [ rdxToken, navigate]); 
 
     return (
         <div className="event-body">
+            <div className='create-event-modal'>
+                <CreateEventCard />
+            </div>
             <div className='event-background'>
                 {
                     event.map((event, index) => (

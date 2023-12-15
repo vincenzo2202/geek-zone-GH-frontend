@@ -1,24 +1,26 @@
-
-.feed-body{
-    height: 100vh;
+body{
+    height: 100%;
     width: 100vw;
+    background-color: rgb(221, 217, 217);
+  }
 
+.feed-body{ 
+    background-color: rgb(221, 217, 217);
     display: flex;
-    flex-direction: column;   
+    justify-content: center;
     align-items: center;  
-    padding-top: 2em;
-    margin: 0;
-    padding: 0;
-    color: black;
-    
+    color: black;  
 }
 
-.feed-background{
+.feed-background{ 
     display: flex;
     flex-direction: column;   
     align-items: center;  
+    justify-content: flex-start;  
     width: 100vw;
     background-color: beige;
+    margin-top: 75px;
+    padding-top: 16px;
 }
 
 .create-feed-card{

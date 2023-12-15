@@ -10,8 +10,9 @@
     align-items: center;
     color: rgb(0, 0, 0);
     font-weight: bold;
-    position: sticky;
+    position: fixed;
     top: 0; 
+    z-index: 1;
 }
 
 .header-button{

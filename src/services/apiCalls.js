@@ -119,3 +119,12 @@ export const createFeed = async (token, body) => {
         }
     });
 }
+
+export const createEvent = async (token, body) => {    
+    return await axios.post(`http://localhost:8000/api/events/create`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+

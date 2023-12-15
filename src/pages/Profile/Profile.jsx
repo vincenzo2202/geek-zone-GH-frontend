@@ -10,6 +10,7 @@ import { selectToken } from "../userSlice";
 import { FeedCard } from "../../common/FeedCard/FeedCard";
 import { Follow } from "../Follow/Follow";
 import { jwtDecode } from "jwt-decode";
+import { CreateFeedCard } from "../../common/CreateFeed/CreateFeedCard";
 
 
 export const Profile = () => {
@@ -88,9 +89,10 @@ export const Profile = () => {
     const handleDeleteFeed = (id) => {
         setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
     }
- 
+
 
     return (
+        
         <div className="profile-body">
             {
                 user
@@ -98,6 +100,8 @@ export const Profile = () => {
                         <>
                             <div className="profile">
                                 <div className="left-banner">
+                                    <div className="profile-info">
+
                                     <div className="div-photo" ><img src={user.photo} alt="User" /></div>
                                     <div>Name: {user.name}</div>
                                     <div>Last Name: {user.last_name}</div>
@@ -115,16 +119,22 @@ export const Profile = () => {
                                             title={"Update"}
                                         />
                                     </div>
+                                    </div>
                                 </div>
                                 <div className="my-feed">
+                                    <div className="fixed-top-center">
                                     <h1>Hi, {user.name}!</h1>
-
+                                    <div className='create-feed-card'>
+                                        <CreateFeedCard />
+                                    </div>
+                                    </div>
+                                    <div className='line-div'>Here are all your the posts </div>
                                     <div className="feed-container">
                                         {
                                             [...feed].reverse().map((feed, index) => (
                                                 <FeedCard
                                                     key={index}
-                                                    feedId={feed.id} 
+                                                    feedId={feed.id}
                                                     title={feed.title}
                                                     content={feed.content}
                                                     photo={feed.photo}

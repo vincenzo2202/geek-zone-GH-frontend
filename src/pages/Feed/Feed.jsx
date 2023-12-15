@@ -7,7 +7,8 @@ import { logout, selectToken } from '../userSlice';
 import { getAllFeeds } from '../../services/apiCalls';
 import { FeedCard } from '../../common/FeedCard/FeedCard';
 import { jwtDecode } from 'jwt-decode';
-import { CreateFeeCard } from '../../common/CreateFeed/CreateFeedCard';
+import { CreateFeedCard } from '../../common/CreateFeed/CreateFeedCard';
+
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
@@ -33,19 +34,19 @@ export const Feed = () => {
             navigate("/");
             dispatch(logout());
         }
-    }, []); // aqui si solo sigo al feed entra en bucle infinito
-    console.log(feed);
+    }, []); // aqui si solo sigo al feed entra en bucle infinito 
 
     const handleDeleteFeed = (id) => {
-        setFeed(CreateFeeCard.id !== id);
+        setFeed(CreateFeedCard.id !== id);
     }
 
     return (
         <div className="feed-body">
             <div className='feed-background'>
                 <div className='create-feed-card'>
-                    <CreateFeeCard />
+                    <CreateFeedCard />
                 </div>
+                <div className='line-div'>Here are all the posts </div>
                 {feed.length > 0
                     ? (
                         <div className="feed-container">

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
 import { CustomInput } from '../CustomInput/CustomInput';
-import './CreateFeedCard.css';
-import { createFeed } from '../../services/apiCalls';
+import './CreateEventCard.css';
+import { createEvent } from '../../services/apiCalls';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../pages/userSlice';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { validator } from '../../services/validations';
 
-export const CreateFeedCard = () => {
+export const CreateEventCard = () => {
 
   const rdxToken = useSelector(selectToken);
   const tokenDecoded = jwtDecode(rdxToken);
@@ -33,29 +33,29 @@ export const CreateFeedCard = () => {
     setOpen(false);
   };
 
-  const [feedInput, setFeedInput] = useState({
+  const [eventInput, setEventInput] = useState({
     title: '',
     content: '',
     photo: ''
   });
 
-  const [feedInputError, setFeedInputError] = useState({
+  const [eventInputError, setEventInputError] = useState({
     titleError: '',
     contentError: '',
     photoError: ''
   });
 
   const functionHandler = (e) => {
-    setFeedInput((prevState) => ({
+    setEventInput((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value
     }));
   };
 
-  const SendFeed = () => {
-    if (feedInput.comment !== '') {
-      console.log(feedInput);
-      createFeed(rdxToken, feedInput)
+  const SendEvent = () => {
+    if (eventInput.comment !== '') {
+      console.log(eventInput);
+      createEvent(rdxToken, eventInput)
         .then(
           response => {
             setLoading(true);
@@ -63,13 +63,13 @@ export const CreateFeedCard = () => {
               setLoading(false);
               setOpen(false);
             }, 3000);
-            setFeedInput(prevState => ({
+            setEventInput(prevState => ({
               ...prevState,
               title: '',
               content: '',
               photo: ''
             }));
-            // TODO // apaño para que se actualice el feed 
+            // TODO // apaño para que se actualice el event
             history.go(0);//TODO
 
           })
@@ -80,7 +80,7 @@ export const CreateFeedCard = () => {
   const errorCheck = (e) => {
     let error = "";
     error = validator(e.target.name, e.target.value);
-    setFeedInputError((prevState) => ({
+    setEventInputError((prevState) => ({
       ...prevState,
       [e.target.name + 'Error']: error,
     }));
@@ -88,26 +88,26 @@ export const CreateFeedCard = () => {
 
   return (
     <>
-      <Button className='button-open-modal' type="" onClick={showModal}>
+      <Button className='button-open-modal-event' type="" onClick={showModal}>
         What's on your mind?
       </Button>
       <Modal
         open={open}
         title="What's on your mind?"
-        onOk={SendFeed}
+        onOk={SendEvent}
         onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
             Cancel
           </Button>,
-          <Button key="submit" type="primary" loading={loading} onClick={SendFeed}>
+          <Button key="submit" type="primary" loading={loading} onClick={SendEvent}>
             Send
           </Button>
         ]}
       >
         <div className='inputs-card-modal'>
           <CustomInput
-            design={'input-create-feed-title'}
+            design={'input-create-event-title'}
             type={'text'}
             name={'title'}
             placeholder={'Title'}
@@ -115,7 +115,7 @@ export const CreateFeedCard = () => {
             functionBlur={errorCheck}
           />
           <CustomInput
-            design={'input-create-feed-text'}
+            design={'input-create-event-text'}
             type={'content'}
             name={'content'}
             placeholder={'write your post here'}
@@ -123,7 +123,7 @@ export const CreateFeedCard = () => {
             functionBlur={errorCheck}
           />
           <CustomInput
-            design={'input-create-feed-photo'}
+            design={'input-create-event-photo'}
             type={'photo'}
             name={'photo'}
             placeholder={'photo'}
