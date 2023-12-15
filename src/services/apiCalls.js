@@ -111,3 +111,11 @@ export const deleteFeed = async (token, id) => {
         }
     });
 }
+
+export const createFeed = async (token, body) => {    
+    return await axios.post(`http://localhost:8000/api/createFeed`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}

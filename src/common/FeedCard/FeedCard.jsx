@@ -94,9 +94,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 props.onDeleteFeed(id);
             })
             .catch(error => console.log(error));
-    }
-    console.log(tokenDecoded.sub);
-    console.log(user_id);
+    } 
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>

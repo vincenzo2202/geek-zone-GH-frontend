@@ -7,6 +7,7 @@ import { logout, selectToken } from '../userSlice';
 import { getAllFeeds } from '../../services/apiCalls';
 import { FeedCard } from '../../common/FeedCard/FeedCard';
 import { jwtDecode } from 'jwt-decode';
+import { CreateFeeCard } from '../../common/CreateFeed/CreateFeedCard';
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
@@ -21,11 +22,11 @@ export const Feed = () => {
             getAllFeeds(rdxToken)
                 .then(
                     response => {
-                        if (response.data.data.length > 0 ) {
+                        if (response.data.data.length > 0) {
                             setFeed(response.data.data);
-                        } else {    
+                        } else {
                             setFeed([]);
-                        } 
+                        }
                     })
                 .catch(error => console.log(error));
         } else {
@@ -35,33 +36,37 @@ export const Feed = () => {
     }, []); // aqui si solo sigo al feed entra en bucle infinito
 
     const handleDeleteFeed = (id) => {
-        setFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
+        setFeed(CreateFeeCard.id !== id);
     }
 
     return (
         <div className="feed-body">
+            <div className='create-feed-card'>
+                <CreateFeeCard />
+
+            </div>
             <div className='feed-background'>
-                {feed.length > 0 
-                ? (
-                    <div className="feed-container"> 
-                        {[...feed].reverse().map(feedItem => (
-                            <FeedCard
-                                key={feedItem.id}
-                                userPhoto={feedItem.user.photo}
-                                user_id={feedItem.user.user_id}
-                                userName={feedItem.user.name}
-                                userLast_name={feedItem.user.last_name}
-                                title={feedItem.title}
-                                content={feedItem.content}
-                                photo={feedItem.photo}
-                                feedId={feedItem.id} 
-                                onDeleteFeed={handleDeleteFeed}
-                            /> 
-                        ))}
-                    </div>
-                ) : (
-                    <div>Loading</div>
-                )}
+                {feed.length > 0
+                    ? (
+                        <div className="feed-container">
+                            {[...feed].reverse().map(feedItem => (
+                                <FeedCard
+                                    key={feedItem.id}
+                                    userPhoto={feedItem.user.photo}
+                                    user_id={feedItem.user.user_id}
+                                    userName={feedItem.user.name}
+                                    userLast_name={feedItem.user.last_name}
+                                    title={feedItem.title}
+                                    content={feedItem.content}
+                                    photo={feedItem.photo}
+                                    feedId={feedItem.id}
+                                    onDeleteFeed={handleDeleteFeed}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <div>Loading</div>
+                    )}
             </div>
         </div>
     );
