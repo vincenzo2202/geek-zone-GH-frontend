@@ -7,11 +7,13 @@ import { createComment, deleteComment, deleteFeed, getCommentsByFeedID } from '.
 import { CustomInput } from '../CustomInput/CustomInput';
 import { validator } from '../../services/validations';
 import { DeleteLink } from '../DeleteLink/DeleteLink';
+import { jwtDecode } from 'jwt-decode';
 
 
-export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo ,onDeleteFeed }) => {
+export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo, onDeleteFeed }) => {
 
     const rdxToken = useSelector(selectToken);
+    const tokenDecoded = jwtDecode(rdxToken);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -46,11 +48,6 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
 
         }
     }, [commentInput])
-
-    console.log(commentInput);
-
-
-    console.log(commentInput);
 
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
@@ -98,7 +95,8 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
             })
             .catch(error => console.log(error));
     }
-
+    console.log(tokenDecoded.sub);
+    console.log(user_id);
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>
@@ -108,12 +106,18 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         <div className="user-name">{userName}</div>
                         <div className="user-lastname">{userLast_name}</div>
                     </div>
-                    <DeleteLink
-                        deleted={() => deletedFeed(feedId)}
-                        title={<div className="button-delete-comment" >
-                            <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
-                        </div>}
-                    />
+                    <div className='delete-card'>
+                    { 
+                    parseInt(tokenDecoded.sub, 10) === user_id &&
+                        <DeleteLink
+                            deleted={() => deletedFeed(feedId)}
+                            title={<div className="button-delete-comment" >
+                                <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
+                            </div>}
+                        />
+                    } 
+                    </div>
+                   
                 </div>
                 <div className='feed-info'>
                     <div className='desc'>Title: </div>
@@ -137,7 +141,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 {!collapsed ? "comments" : "comments"}
             </button>
 
-            {collapsed  
+            {collapsed
                 ? (
 
                     <div className="comments">
@@ -154,7 +158,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                             <button className="button-send" onClick={SendComment}>Send </button>
                         </div>
 
-                        {comment.length >0 && [...comment].reverse().map((comment, index) => (
+                        {comment.length > 0 && [...comment].reverse().map((comment, index) => (
 
                             <div className='comment-card' key={index}>
                                 <div className='comment-info' >

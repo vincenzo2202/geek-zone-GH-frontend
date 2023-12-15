@@ -66,7 +66,7 @@ export const Login = () => {
                     if (message === "User Logged") {
                         dispatch(login(token))
                         setTimeout(() => {
-                            navigate("/profile");
+                            navigate("/feed");
                         }, 300)
                     }
                     console.log(token);

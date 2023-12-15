@@ -41,7 +41,8 @@ export const Feed = () => {
     return (
         <div className="feed-body">
             <div className='feed-background'>
-                {feed.length > 0 ? (
+                {feed.length > 0 
+                ? (
                     <div className="feed-container"> 
                         {[...feed].reverse().map(feedItem => (
                             <FeedCard
@@ -55,8 +56,7 @@ export const Feed = () => {
                                 photo={feedItem.photo}
                                 feedId={feedItem.id} 
                                 onDeleteFeed={handleDeleteFeed}
-                            />
-
+                            /> 
                         ))}
                     </div>
                 ) : (

@@ -9,12 +9,14 @@ import { useSelector } from "react-redux";
 import { selectToken } from "../userSlice";
 import { FeedCard } from "../../common/FeedCard/FeedCard";
 import { Follow } from "../Follow/Follow";
+import { jwtDecode } from "jwt-decode";
 
 
 export const Profile = () => {
 
     const navigate = useNavigate();
     const rdxToken = useSelector(selectToken);
+    const tokenDecoded = jwtDecode(rdxToken);
 
     const [user, setUser] = useState({
         full_name: "",
@@ -69,15 +71,15 @@ export const Profile = () => {
                         if (response.data.data.length > 0) {
                             setMyFeed(response.data.data);
                         } else {
-                            setMyFeed([]); 
+                            setMyFeed([]);
                         }
                     })
-                .catch(error => console.log(error)); 
+                .catch(error => console.log(error));
         } else {
-            navigate("/"); 
+            navigate("/");
         }
     }, []);
- 
+
 
     const FollowersClick = () => {
         navigate('/follow');
@@ -86,6 +88,7 @@ export const Profile = () => {
     const handleDeleteFeed = (id) => {
         setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
     }
+ 
 
     return (
         <div className="profile-body">
@@ -94,18 +97,17 @@ export const Profile = () => {
                     ? (
                         <>
                             <div className="profile">
-
                                 <div className="left-banner">
                                     <div className="div-photo" ><img src={user.photo} alt="User" /></div>
                                     <div>Name: {user.name}</div>
                                     <div>Last Name: {user.last_name}</div>
                                     <div>Email: {user.email}</div>
                                     <div>Phone: {user.phone_number}</div>
-                                    <div>City: {user.city}</div> 
+                                    <div>City: {user.city}</div>
                                     <div className="followers-box" >
                                         <div className="followers-container" onClick={FollowersClick}>followers: {myFollowers}</div>
                                         <div className="followers-container" onClick={FollowersClick}>followings: {myFollowings}</div>
-                                    </div> 
+                                    </div>
                                     <div className="update-profile">
                                         <LinkButton
                                             className={"class-button"}
@@ -116,21 +118,24 @@ export const Profile = () => {
                                 </div>
                                 <div className="my-feed">
                                     <h1>Hi, {user.name}!</h1>
-                                    {
-                                      feed.map((feed, index) => (
-                                            <FeedCard
-                                                key={index}
-                                                feedId={feed.id}
-                                                title={feed.title}
-                                                content={feed.content}
-                                                photo={feed.photo}
-                                                userPhoto={feed.user.photo}
-                                                userName={feed.user.name}
-                                                userLast_name={feed.user.last_name}
-                                                user_id={feed.user.id}
-                                                onDeleteFeed={handleDeleteFeed}
-                                            />
-                                        ))}
+
+                                    <div className="feed-container">
+                                        {
+                                            [...feed].reverse().map((feed, index) => (
+                                                <FeedCard
+                                                    key={index}
+                                                    feedId={feed.id} 
+                                                    title={feed.title}
+                                                    content={feed.content}
+                                                    photo={feed.photo}
+                                                    userPhoto={feed.user.photo}
+                                                    userName={feed.user.name}
+                                                    userLast_name={feed.user.last_name}
+                                                    user_id={feed.user.id}
+                                                    onDeleteFeed={handleDeleteFeed}
+                                                />
+                                            ))}
+                                    </div>
                                 </div>
                                 <div className="right-banner">
                                     Hola
