@@ -109,8 +109,8 @@ export const Profile = () => {
                                     <div>Phone: {user.phone_number}</div>
                                     <div>City: {user.city}</div>
                                     <div className="followers-box" >
-                                        <div className="followers-container" onClick={FollowersClick}>followers: {myFollowers}</div>
-                                        <div className="followers-container" onClick={FollowersClick}>followings: {myFollowings}</div>
+                                        <div className="followers-container" onClick={FollowersClick}>followers: {myFollowers || 0}</div>
+                                        <div className="followers-container" onClick={FollowersClick}>followings: {myFollowings|| 0 }</div>
                                     </div>
                                     <div className="update-profile">
                                         <LinkButton
