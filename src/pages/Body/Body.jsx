@@ -24,7 +24,7 @@ export const Body = () => {
                 <Route path="/users" element={<Users />} />
                 <Route path="/follow" element={<Follow />} />
                 <Route path="/updateProfile" element={<UpdateProfile />} />
-                <Route path="/userProfile" element={<UserProfile />} />
+                <Route path="/userProfile/:id" element={<UserProfile />} />
             </Routes>
         </>
     )

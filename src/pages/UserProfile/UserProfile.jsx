@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css"
-import { getMyFeed, getMyFollowers, getMyFollowings, getProfile } from "../../services/apiCalls";
+import { getMyFeed, getMyFollowers, getMyFollowings, getProfile, getUserProfile } from "../../services/apiCalls";
 import { LinkButton } from "../../common/LinkButton/LinkButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 //Rdx
 import { useSelector } from "react-redux";
 import { selectToken } from "../userSlice";
 import { FeedCard } from "../../common/FeedCard/FeedCard";
 import { Follow } from "../Follow/Follow";
-import { jwtDecode } from "jwt-decode";
-import { CreateFeedCard } from "../../common/CreateFeed/CreateFeedCard";
+import { jwtDecode } from "jwt-decode"; 
 
 
 export const UserProfile = () => {
 
     const navigate = useNavigate();
-    const rdxToken = useSelector(selectToken);
-    const tokenDecoded = jwtDecode(rdxToken);
+    const rdxToken = useSelector(selectToken); 
+    const { id } = useParams();
 
     const [user, setUser] = useState({
         full_name: "",
@@ -28,51 +27,37 @@ export const UserProfile = () => {
 
     const [stop, setStop] = useState(false)
 
-    const [myFollowers, setMyFollowers] = useState([])
-    const [myFollowings, setMyFollowings] = useState([])
+    const [myFollowers, setFollowers] = useState([])
+    const [myFollowings, setFollowings] = useState([])
 
     useEffect(() => {
         if (rdxToken) {
-            getProfile(rdxToken)
+            getUserProfile(rdxToken, id)
                 .then((response) => {
-                    if (stop == false) {
-
+                    if (stop == false) { 
                         setUser(response.data.data);
                         setStop(true)
                     }
                 })
                 .catch((error) => {
                     console.log(error);
-                });
-            getMyFollowers(rdxToken)
-                .then(
-                    response => {
-                        setMyFollowers(response.data.dataSize);
-                    })
-                .catch(error => console.log(error));
-
-            getMyFollowings(rdxToken)
-                .then(
-                    response => {
-                        setMyFollowings(response.data.dataSize);
-                    })
-                .catch(error => console.log(error));
+                }); 
         } else {
             navigate("/login");
         }
-    }, [rdxToken, myFollowers, myFollowings, stop, navigate]);
+    }, [rdxToken, stop, navigate]);
 
-    const [feed, setMyFeed] = useState([])
+    const [feed, setFeed] = useState([])
 
     useEffect(() => {
         if (rdxToken) {
-            getMyFeed(rdxToken)
+            getUserProfile(rdxToken)
                 .then(
                     response => {
-                        if (response.data.data.length > 0) {
-                            setMyFeed(response.data.data);
+                        if (response.data.data.feeds.length > 0) {
+                            setFeed(response.data.data.feeds);
                         } else {
-                            setMyFeed([]);
+                            setFeed([]);
                         }
                     })
                 .catch(error => console.log(error));
@@ -87,7 +72,7 @@ export const UserProfile = () => {
     }
 
     const handleDeleteFeed = (id) => {
-        setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
+        setFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
     }
 
 
@@ -123,11 +108,7 @@ export const UserProfile = () => {
                                 </div>
                                 <div className="my-feed">
                                     <div className="fixed-top-center">
-                                    <h1>Hi, {user.name}!</h1>
-                                    <div className='create-feed-card'>
-                                        <CreateFeedCard />
-                                    </div>
-                                    </div>
+                                    
                                     <div className='line-div'>Here are all your the posts </div>
                                     <div className="feed-container">
                                         {
@@ -145,6 +126,7 @@ export const UserProfile = () => {
                                                     onDeleteFeed={handleDeleteFeed}
                                                 />
                                             ))}
+                                    </div>
                                     </div>
                                 </div>
                                 <div className="right-banner">

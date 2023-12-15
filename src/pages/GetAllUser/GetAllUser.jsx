@@ -70,6 +70,7 @@ export const Users = () => {
                                             phone_number={users.phone_number}
                                             role={users.role}
                                             city={users.city}
+                                            id={users.id}
                                         />
                                     )
                                 }
