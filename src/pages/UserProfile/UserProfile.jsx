@@ -55,7 +55,6 @@ export const UserProfile = () => {
         }
     }, []);
 
-
     const FollowersClick = () => {
         navigate('/follow');
     }
@@ -85,8 +84,7 @@ export const UserProfile = () => {
         }
     }
 
-    return (
-
+    return ( 
         <div className="profile-body">
             {
                 user
@@ -107,8 +105,7 @@ export const UserProfile = () => {
 
                                         </div>
 
-                                        <div className="follow.box">
-                                            {/* TODO // no se actualiza correctamente el estado del componente en el follow y unfollow */}
+                                        <div className="follow.box"> 
                                             <button className="follow" onClick={() => followOrNot()}>{followCheck == false ? "Follow" : "Unfollow"}</button>
                                         </div>
                                     </div>
