@@ -159,5 +159,22 @@ export const getFollowersById = async (token,id) => {
         }
     });
 }
+
+export const likeFeed = async (token, body) => {    
+    return await axios.post(`http://localhost:8000/api/like`,{feed_id: body}, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+export const unlikedFeed = async (token, body) => {    
+    return await axios.delete(`http://localhost:8000/api/like/${body}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+ 
  
  

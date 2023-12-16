@@ -38,9 +38,9 @@ export const Feed = () => {
 
     const handleDeleteFeed = (id) => {
         setFeed(CreateFeedCard.id !== id);
-        
-    }
 
+    } 
+  
     return (
         <div className="feed-body">
             <div className='feed-background'>
@@ -63,7 +63,9 @@ export const Feed = () => {
                                     photo={feedItem.photo}
                                     feedId={feedItem.id}
                                     onDeleteFeed={handleDeleteFeed}
+                                    likes={feedItem.likes}
                                 />
+
                             ))}
                         </div>
                     ) : (

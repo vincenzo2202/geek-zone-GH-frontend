@@ -8,10 +8,10 @@ import { CustomInput } from '../CustomInput/CustomInput';
 import { validator } from '../../services/validations';
 import { DeleteLink } from '../DeleteLink/DeleteLink';
 import { jwtDecode } from 'jwt-decode';
+import { LikeCard } from '../LikeCard/LikeCard';
 
 
-export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo, onDeleteFeed }) => {
-
+export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo, onDeleteFeed ,likes}) => {
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken);
     const navigate = useNavigate();
@@ -91,10 +91,12 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     const deletedFeed = (id) => {
         deleteFeed(rdxToken, id)
             .then(response => {
-                props.onDeleteFeed(id); 
+                props.onDeleteFeed(id);
             })
             .catch(error => console.log(error));
     }
+ 
+
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>
@@ -104,7 +106,9 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         <div className="user-name">{userName}</div>
                         <div className="user-lastname">{userLast_name}</div>
                     </div>
+
                     <div className='delete-card'>
+
                         {
                             parseInt(tokenDecoded.sub, 10) === user_id &&
                             <DeleteLink
@@ -133,8 +137,13 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         )
                         : (<div ></div>)
                 }
-            </div>
-
+            </div> 
+            <div className='like-card'>
+                <LikeCard
+                idfeed={feedId} 
+                likes={likes}
+                />
+            </div> 
             <button className="button-spoiler" onClick={toggleCollapse}>
                 {!collapsed ? "comments" : "comments"}
             </button>
