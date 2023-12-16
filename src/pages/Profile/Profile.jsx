@@ -18,8 +18,8 @@ export const Profile = () => {
     const rdxToken = useSelector(selectToken); 
 
     const [user, setUser] = useState({});
-
     const [stop, setStop] = useState(false)
+    const [feed, setMyFeed] = useState([])
 
     useEffect(() => {
         if (rdxToken) {
@@ -39,8 +39,6 @@ export const Profile = () => {
             navigate("/login");
         }
     }, [rdxToken, stop, navigate]);
-
-    const [feed, setMyFeed] = useState([])
 
     useEffect(() => {
         if (rdxToken) {
@@ -81,7 +79,7 @@ export const Profile = () => {
     const handleDeleteFeed = (id) => {
         setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
     } 
-    
+
     return (
 
         <div className="profile-body">

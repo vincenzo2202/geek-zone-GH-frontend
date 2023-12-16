@@ -155,3 +155,11 @@
     margin-bottom: 1em;
 }
 
+.like-card{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+}
+.count-likes{
+    margin-left: 0.3em;
+}

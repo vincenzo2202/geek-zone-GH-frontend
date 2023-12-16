@@ -25,8 +25,6 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     });
     const [commentInputError, setCommentInputError] = useState({});
 
-    
-
     const toggleCollapse = () => {
         if (collapsed) {
             getCommentsByFeedID(rdxToken, feedId)
@@ -98,7 +96,6 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
             .catch(error => console.log(error));
     }
  
-
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>
@@ -131,28 +128,24 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 </div>
                 {
                     photo
-                        ? (
-                            <>
+                        ? (<>
                                 <div className='desc'>Photo:  </div>
                                 <img className="pic-feed" src={photo} alt={photo} />
-                            </>
-                        )
+                            </>)
                         : (<div ></div>)
                 }
             </div> 
             <div className='like-card'>
                 <LikeCard
                 idfeed={feedId} 
-                likes={likes}
-                />
+                likes={likes} 
+                /> 
             </div> 
             <button className="button-spoiler" onClick={toggleCollapse}>
                 {!collapsed ? "comments" : "comments"}
             </button>
-
             {collapsed
                 ? (
-
                     <div className="comments">
                         <div className='input-comment'>
                             <CustomInput
@@ -186,12 +179,10 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                                 />
                             </div>
                         ))}
-
                     </div>
                 )
                 : (<div></div>)
             }
-
         </div >
     )
 }; 

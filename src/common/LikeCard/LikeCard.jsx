@@ -5,12 +5,14 @@ import { selectToken } from '../../pages/userSlice';
 import { jwtDecode } from 'jwt-decode';
 import { likeFeed, unlikedFeed } from '../../services/apiCalls';
 
-export const LikeCard = ({ idfeed, likes }) => {
+export const LikeCard = ({ idfeed, likes}) => {
     
     const rdxToken = useSelector(selectToken);
-    const tokenDecoded = jwtDecode(rdxToken);
-    console.log(likes);
-    const [isChecked, setChecked] = useState(false);
+    const tokenDecoded = jwtDecode(rdxToken); 
+    
+    const [isChecked, setChecked] = useState(false); 
+    const [likeCountState, setLikeCountState] = useState(likes.length);
+
 
     const handleCheckboxChange = () => {
         setChecked(!isChecked);
@@ -30,8 +32,7 @@ export const LikeCard = ({ idfeed, likes }) => {
         } else {
             setChecked(false);
         }
-    }, []);
-// console.log(likes);
+    }, []); 
 
     const like = () => {
         if (isChecked === false) {
@@ -41,6 +42,7 @@ export const LikeCard = ({ idfeed, likes }) => {
                 })
                 .catch(error => console.log(error));
             setChecked(true);
+            setLikeCountState(likeCountState + 1);
         } else if (isChecked === true) {
             unlikedFeed(rdxToken, idfeed)
                 .then(response => {
@@ -48,8 +50,9 @@ export const LikeCard = ({ idfeed, likes }) => {
                 })
                 .catch(error => console.log(error));
             setChecked(false);
-        }
-    }
+            setLikeCountState(likeCountState - 1);
+        } 
+    } 
 
     return (
         <>
@@ -78,7 +81,7 @@ export const LikeCard = ({ idfeed, likes }) => {
                     </svg>
                 </div>
             </div>
-            <div className='count-likes'></div>
+            <div className='count-likes'>{likeCountState} Likes</div>
         </>
     );
 };

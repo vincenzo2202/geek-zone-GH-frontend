@@ -50,7 +50,6 @@ export const UserProfile = () => {
                                 setFeed(response.data.data);
                             })
                             .catch(error => console.log(error));
-
                     }
                 })
                 .catch((error) => {
