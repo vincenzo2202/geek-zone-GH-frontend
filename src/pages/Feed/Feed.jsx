@@ -40,7 +40,7 @@ export const Feed = () => {
         setFeed(CreateFeedCard.id !== id);
 
     } 
-  
+   
     return (
         <div className="feed-body">
             <div className='feed-background'>

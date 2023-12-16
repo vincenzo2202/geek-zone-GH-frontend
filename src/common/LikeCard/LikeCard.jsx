@@ -9,7 +9,7 @@ export const LikeCard = ({ idfeed, likes }) => {
     
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken);
-
+    console.log(likes);
     const [isChecked, setChecked] = useState(false);
 
     const handleCheckboxChange = () => {
@@ -31,7 +31,7 @@ export const LikeCard = ({ idfeed, likes }) => {
             setChecked(false);
         }
     }, []);
-
+// console.log(likes);
 
     const like = () => {
         if (isChecked === false) {

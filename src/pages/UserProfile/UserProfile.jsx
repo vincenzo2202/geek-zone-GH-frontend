@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css"
-import { follow, getFollowersById, getMyFeed, getMyFollowers, getMyFollowings, getProfile, getUserProfile, unfollow } from "../../services/apiCalls";
+import { follow, getFeedsByUserId, getFollowersById, getMyFeed, getMyFollowers, getMyFollowings, getProfile, getUserProfile, unfollow } from "../../services/apiCalls";
 import { LinkButton } from "../../common/LinkButton/LinkButton";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -18,13 +18,13 @@ export const UserProfile = () => {
     const rdxToken = useSelector(selectToken);
     const userID = useSelector(selectProfile)
     const decodedtoken = jwtDecode(rdxToken);
-    const { id } = useParams();
 
-    const [user, setUser] = useState({
-    });
+    const { id } = useParams();
+    const [user, setUser] = useState({});
     const [stop, setStop] = useState(false)
     const [followCheck, setFollowCheck] = useState(false)
-    console.log(user);
+    const [feed, setFeed] = useState([]) 
+
     useEffect(() => {
         if (rdxToken) {
             getUserProfile(rdxToken, id)
@@ -45,6 +45,12 @@ export const UserProfile = () => {
                                 setFollowCheck(isFollowing);
                             })
                             .catch(error => console.log(error));
+                        getFeedsByUserId(rdxToken, userID)
+                            .then(response => {
+                                setFeed(response.data.data);
+                            })
+                            .catch(error => console.log(error));
+
                     }
                 })
                 .catch((error) => {
@@ -97,8 +103,6 @@ export const UserProfile = () => {
         }
     }
 
-    console.log(likesGetted);
-
     let followers = [];
     let followings = [];
     if (user.followers) {
@@ -131,9 +135,7 @@ export const UserProfile = () => {
                                         <div className="followers-box" >
                                             <div className="followers-container" onClick={FollowersClick}>followings: {followers.length || 0}</div>
                                             <div className="followers-container" onClick={FollowersClick}>followers: {followings.length || 0}</div>
-
                                         </div>
-
                                         <div className="follow.box">
                                             <button className="follow" onClick={() => followOrNot()}>{followCheck == false ? "Follow" : "Unfollow"}</button>
                                         </div>
@@ -157,9 +159,8 @@ export const UserProfile = () => {
                                                         userLast_name={user.last_name}
                                                         user_id={user.id}
                                                         onDeleteFeed={handleDeleteFeed}
-                                                        likes={likesGetted}
+                                                        likes={feed.likes}
                                                     />
-
                                                 ))}
                                         </div>
                                     </div>

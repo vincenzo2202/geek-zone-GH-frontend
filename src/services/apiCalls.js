@@ -175,6 +175,14 @@ export const unlikedFeed = async (token, body) => {
         }
     });
 }
+
+export const getFeedsByUserId = async (token,id) => {
+    return await axios.get(`http://localhost:8000/api/feeds/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
  
  
  
