@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 //Rdx
 import { useSelector } from "react-redux";
 import { selectToken } from "../userSlice";
-import { FeedCard } from "../../common/FeedCard/FeedCard";
-import { Follow } from "../Follow/Follow";
+import { FeedCard } from "../../common/FeedCard/FeedCard"; 
 import { jwtDecode } from "jwt-decode";
 import { CreateFeedCard } from "../../common/CreateFeed/CreateFeedCard";
 
@@ -16,20 +15,11 @@ import { CreateFeedCard } from "../../common/CreateFeed/CreateFeedCard";
 export const Profile = () => {
 
     const navigate = useNavigate();
-    const rdxToken = useSelector(selectToken);
-    const tokenDecoded = jwtDecode(rdxToken);
+    const rdxToken = useSelector(selectToken); 
 
-    const [user, setUser] = useState({
-        full_name: "",
-        email: "",
-        phone_number: "",
-        photo: ""
-    });
+    const [user, setUser] = useState({});
 
     const [stop, setStop] = useState(false)
-
-    const [myFollowers, setMyFollowers] = useState([])
-    const [myFollowings, setMyFollowings] = useState([])
 
     useEffect(() => {
         if (rdxToken) {
@@ -44,23 +34,11 @@ export const Profile = () => {
                 .catch((error) => {
                     console.log(error);
                 });
-            getMyFollowers(rdxToken)
-                .then(
-                    response => {
-                        setMyFollowers(response.data.dataSize);
-                    })
-                .catch(error => console.log(error));
 
-            getMyFollowings(rdxToken)
-                .then(
-                    response => {
-                        setMyFollowings(response.data.dataSize);
-                    })
-                .catch(error => console.log(error));
         } else {
             navigate("/login");
         }
-    }, [rdxToken, myFollowers, myFollowings, stop, navigate]);
+    }, [rdxToken, stop, navigate]);
 
     const [feed, setMyFeed] = useState([])
 
@@ -81,6 +59,20 @@ export const Profile = () => {
         }
     }, []);
 
+    let followers = [];
+    let followings = [];
+
+    if (user.followers) {
+        for (let i = 0; i < user.followers.length; i++) {
+            followers.push(user.followers[i]);
+        }
+    }
+
+    if (user.followings) {
+        for (let i = 0; i < user.followings.length; i++) {
+            followings.push(user.followings[i]);
+        }
+    }
 
     const FollowersClick = () => {
         navigate('/follow');
@@ -88,10 +80,10 @@ export const Profile = () => {
 
     const handleDeleteFeed = (id) => {
         setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
-    }
- 
+    } 
+    
     return (
-        
+
         <div className="profile-body">
             {
                 user
@@ -101,31 +93,31 @@ export const Profile = () => {
                                 <div className="left-banner">
                                     <div className="profile-info">
 
-                                    <div className="div-photo" ><img src={user.photo} alt="User" /></div>
-                                    <div>Name: {user.name}</div>
-                                    <div>Last Name: {user.last_name}</div>
-                                    <div>Email: {user.email}</div>
-                                    <div>Phone: {user.phone_number}</div>
-                                    <div>City: {user.city}</div>
-                                    <div className="followers-box" >
-                                        <div className="followers-container" onClick={FollowersClick}>followers: {myFollowers || 0}</div>
-                                        <div className="followers-container" onClick={FollowersClick}>followings: {myFollowings|| 0 }</div>
-                                    </div>
-                                    <div className="update-profile">
-                                        <LinkButton
-                                            className={"class-button"}
-                                            path={"/UpdateProfile"}
-                                            title={"Update"}
-                                        />
-                                    </div>
+                                        <div className="div-photo" ><img src={user.photo} alt="User" /></div>
+                                        <div>Name: {user.name}</div>
+                                        <div>Last Name: {user.last_name}</div>
+                                        <div>Email: {user.email}</div>
+                                        <div>Phone: {user.phone_number}</div>
+                                        <div>City: {user.city}</div>
+                                        <div className="followers-box" >
+                                            <div className="followers-container" onClick={FollowersClick}>followers: { followers.length || 0}</div>
+                                            <div className="followers-container" onClick={FollowersClick}>followings: {followings.length || 0}</div>
+                                        </div>
+                                        <div className="update-profile">
+                                            <LinkButton
+                                                className={"class-button"}
+                                                path={"/UpdateProfile"}
+                                                title={"Update"}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="my-feed">
                                     <div className="fixed-top-center">
-                                    <h1>Hi, {user.name}!</h1>
-                                    <div className='create-feed-card'>
-                                        <CreateFeedCard />
-                                    </div>
+                                        <h1>Hi, {user.name}!</h1>
+                                        <div className='create-feed-card'>
+                                            <CreateFeedCard />
+                                        </div>
                                     </div>
                                     <div className='line-div'>Here are all your the posts </div>
                                     <div className="feed-container">
@@ -142,7 +134,7 @@ export const Profile = () => {
                                                     userLast_name={feed.user.last_name}
                                                     user_id={feed.user.id}
                                                     onDeleteFeed={handleDeleteFeed}
-                                                    likes={feedItem.likes}
+                                                    likes={feed.likes}
                                                 />
                                             ))}
                                     </div>
