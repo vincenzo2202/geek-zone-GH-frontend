@@ -13,8 +13,7 @@ export const Event = () => {
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    console.log(tokenDecoded);
+    const dispatch = useDispatch(); 
     const [event, setEvent] = useState([])
     const [role, setRole] = useState('');
 
@@ -27,8 +26,7 @@ export const Event = () => {
                     })
                 .catch(error => console.log(error));
             validataRole(rdxToken)
-                .then(response => {
-                    console.log(response);
+                .then(response => { 
                     setRole(response.data.data);
                 })
                 .catch(error => console.log(error));
