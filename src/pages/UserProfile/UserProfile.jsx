@@ -115,7 +115,7 @@ export const UserProfile = () => {
             followings.push(user.followings[i]);
         }
     }
-
+ 
     return (
         <div className="profile-body">
             {
@@ -136,7 +136,9 @@ export const UserProfile = () => {
                                             <div className="followers-container" onClick={FollowersClick}>followers: {followings.length || 0}</div>
                                         </div>
                                         <div className="follow.box">
+                                            { user.id != decodedtoken.sub &&
                                             <button className="follow" onClick={() => followOrNot()}>{followCheck == false ? "Follow" : "Unfollow"}</button>
+                                            }
                                         </div>
                                     </div>
                                 </div>

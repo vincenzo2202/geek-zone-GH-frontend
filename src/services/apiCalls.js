@@ -183,6 +183,20 @@ export const getFeedsByUserId = async (token,id) => {
         }
     });
 }
+
+export const deleteEvent = async (token, id) => {    
+    return await axios.delete(`http://localhost:8000/api/events/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
  
  
- 
+export const validataRole = async (token) => {  
+    return await axios.get(`http://localhost:8000/api/validateRole`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}

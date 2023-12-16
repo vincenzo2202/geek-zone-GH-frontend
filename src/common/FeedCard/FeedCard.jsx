@@ -107,7 +107,6 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                     </div>
 
                     <div className='delete-card'>
-
                         {
                             parseInt(tokenDecoded.sub, 10) === user_id &&
                             <DeleteLink

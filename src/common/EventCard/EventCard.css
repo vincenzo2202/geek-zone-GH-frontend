@@ -43,3 +43,10 @@
     color: #666;
     margin-bottom: 10px;
 }
+
+.delete-card-event {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 1em;
+}
