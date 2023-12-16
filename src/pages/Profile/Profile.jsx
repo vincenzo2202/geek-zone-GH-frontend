@@ -142,6 +142,7 @@ export const Profile = () => {
                                                     userLast_name={feed.user.last_name}
                                                     user_id={feed.user.id}
                                                     onDeleteFeed={handleDeleteFeed}
+                                                    likes={feedItem.likes}
                                                 />
                                             ))}
                                     </div>

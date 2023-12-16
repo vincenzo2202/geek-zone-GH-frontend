@@ -21,7 +21,6 @@ export const CardUser = ({name,last_name, photo, phone_number, email, userid, ci
         console.log(id);
     }
 
-
     return (
         <div className="card-worker" userid={userid}  dragable="false" onClick={()=>goTOUserProfile(id)}> 
             <img className="worker" src={photo} alt={photo} /> 

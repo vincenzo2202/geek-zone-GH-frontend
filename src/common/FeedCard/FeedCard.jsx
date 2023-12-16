@@ -25,6 +25,8 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     });
     const [commentInputError, setCommentInputError] = useState({});
 
+    
+
     const toggleCollapse = () => {
         if (collapsed) {
             getCommentsByFeedID(rdxToken, feedId)

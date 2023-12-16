@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { likeFeed, unlikedFeed } from '../../services/apiCalls';
 
 export const LikeCard = ({ idfeed, likes }) => {
-
+    
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken);
 
@@ -18,32 +18,36 @@ export const LikeCard = ({ idfeed, likes }) => {
 
     useEffect(() => {
         const tokenId = parseInt(tokenDecoded.sub);
+        
+        let isTokenIdInArray = false;
 
-        const isTokenIdInArray = likes.some(like => like.user_id === tokenId);
+        if (likes && likes.length > 0) {
+            isTokenIdInArray = likes.some(like => like.user_id === tokenId);
+        }
 
-        if (isTokenIdInArray) { 
+        if (isTokenIdInArray) {
             setChecked(true);
-        } else { 
+        } else {
             setChecked(false);
         }
-    }, [ ]); 
- 
- 
+    }, []);
+
+
     const like = () => {
         if (isChecked === false) {
             likeFeed(rdxToken, idfeed)
                 .then(response => {
-                    console.log(response); 
+                    console.log(response);
                 })
                 .catch(error => console.log(error));
             setChecked(true);
         } else if (isChecked === true) {
             unlikedFeed(rdxToken, idfeed)
                 .then(response => {
-                    console.log(response); 
+                    console.log(response);
                 })
                 .catch(error => console.log(error));
-            setChecked(false); 
+            setChecked(false);
         }
     }
 

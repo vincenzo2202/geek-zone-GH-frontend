@@ -24,7 +24,7 @@ export const UserProfile = () => {
     });
     const [stop, setStop] = useState(false)
     const [followCheck, setFollowCheck] = useState(false)
-
+    console.log(user);
     useEffect(() => {
         if (rdxToken) {
             getUserProfile(rdxToken, id)
@@ -68,7 +68,7 @@ export const UserProfile = () => {
             const parseFollowId = parseInt(user.id, 10)
             follow(rdxToken, parseFollowId)
                 .then(response => {
-                    setUser(prevUser => ({ ...prevUser, followers: prevUser.followers + 1 }))
+                    setUser(prevUser => ({ ...prevUser, followers: [...prevUser.followers, response.data] }))
                     setFollowCheck(true)
                     console.log(response);
                 })
@@ -76,7 +76,7 @@ export const UserProfile = () => {
         } else {
             unfollow(rdxToken, user.id)
                 .then(response => {
-                    setUser(prevUser => ({ ...prevUser, followers: prevUser.followers - 1 }))
+                    setUser(prevUser => ({ ...prevUser, followers: prevUser.followers.filter(follower => follower.id !== response.data.id) }))
                     setFollowCheck(false)
                     console.log(response);
                 })
@@ -84,7 +84,17 @@ export const UserProfile = () => {
         }
     }
 
-    return ( 
+    let likesGetted = [];
+
+    if (user.feeds) {
+        for (let i = 0; i < user.feeds.length; i++) {
+            for (let j = 0; j < user.feeds[i].likes.length; j++) {
+                likesGetted.push(user.feeds[i].likes[j]);
+            }
+        }
+    }
+
+    return (
         <div className="profile-body">
             {
                 user
@@ -100,12 +110,12 @@ export const UserProfile = () => {
                                         <div>Phone: {user.phone_number}</div>
                                         <div>City: {user.city}</div>
                                         <div className="followers-box" >
-                                            <div className="followers-container" onClick={FollowersClick}>followers: {user.followers || 0}</div>
-                                            <div className="followers-container" onClick={FollowersClick}>followings: {user.followings || 0}</div>
+                                            <div className="followers-container" onClick={FollowersClick}>followers: {user.followers?.length || 0}</div>
+                                            <div className="followers-container" onClick={FollowersClick}>followings: {user.followings?.length || 0}</div>
 
                                         </div>
 
-                                        <div className="follow.box"> 
+                                        <div className="follow.box">
                                             <button className="follow" onClick={() => followOrNot()}>{followCheck == false ? "Follow" : "Unfollow"}</button>
                                         </div>
                                     </div>
@@ -128,7 +138,9 @@ export const UserProfile = () => {
                                                         userLast_name={user.last_name}
                                                         user_id={user.id}
                                                         onDeleteFeed={handleDeleteFeed}
+                                                        likes={likesGetted}
                                                     />
+
                                                 ))}
                                         </div>
                                     </div>
