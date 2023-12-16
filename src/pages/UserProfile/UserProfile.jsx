@@ -68,7 +68,7 @@ export const UserProfile = () => {
             const parseFollowId = parseInt(user.id, 10)
             follow(rdxToken, parseFollowId)
                 .then(response => {
-                    setUser(prevUser => ({ ...prevUser, followers: [...prevUser.followers, response.data] }))
+                    setUser(prevUser => ({ ...prevUser, followings: [...prevUser.followings, response.data] }))
                     setFollowCheck(true)
                     console.log(response);
                 })
@@ -76,7 +76,10 @@ export const UserProfile = () => {
         } else {
             unfollow(rdxToken, user.id)
                 .then(response => {
-                    setUser(prevUser => ({ ...prevUser, followers: prevUser.followers.filter(follower => follower.id !== response.data.id) }))
+                    setUser(prevUser => ({
+                        ...prevUser,
+                        followings: prevUser.followings.filter(following => following.id !== response.data.id)
+                    }));
                     setFollowCheck(false)
                     console.log(response);
                 })
@@ -91,6 +94,22 @@ export const UserProfile = () => {
             for (let j = 0; j < user.feeds[i].likes.length; j++) {
                 likesGetted.push(user.feeds[i].likes[j]);
             }
+        }
+    }
+
+    console.log(likesGetted);
+
+    let followers = [];
+    let followings = [];
+    if (user.followers) {
+        for (let i = 0; i < user.followers.length; i++) {
+            followers.push(user.followers[i]);
+        }
+    }
+
+    if (user.followings) {
+        for (let i = 0; i < user.followings.length; i++) {
+            followings.push(user.followings[i]);
         }
     }
 
@@ -110,8 +129,8 @@ export const UserProfile = () => {
                                         <div>Phone: {user.phone_number}</div>
                                         <div>City: {user.city}</div>
                                         <div className="followers-box" >
-                                            <div className="followers-container" onClick={FollowersClick}>followers: {user.followers?.length || 0}</div>
-                                            <div className="followers-container" onClick={FollowersClick}>followings: {user.followings?.length || 0}</div>
+                                            <div className="followers-container" onClick={FollowersClick}>followings: {followers.length || 0}</div>
+                                            <div className="followers-container" onClick={FollowersClick}>followers: {followings.length || 0}</div>
 
                                         </div>
 
