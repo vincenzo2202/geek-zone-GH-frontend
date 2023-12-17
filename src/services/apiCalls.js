@@ -210,7 +210,23 @@ export const changeRoleCall = async (token, body) => {
 }
 
 export const joinEvent = async (token, body) => {
-    return await axios.post(`http://localhost:8000/api/event_user`,body, {
+    return await axios.post(`http://localhost:8000/api/event_user`,{event_id: body}, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+export const unjoinEvent = async (token, id) => {    
+    return await axios.delete(`http://localhost:8000/api/event_user/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+export const getAllJoinedEvents = async (token,id) => {
+    return await axios.get(`http://localhost:8000/api/event_user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
