@@ -12,12 +12,12 @@ export const Header = () => {
     const dispatch = useDispatch();
     const rdxToken = useSelector(selectToken);
     const [decodedToken, setDecodedToken] = useState(null);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
 
     useEffect(() => {
 
-        if (rdxToken !== null ) {
+        if (rdxToken !== null) {
             try {
                 const decoded = jwtDecode(rdxToken);
                 setDecodedToken(decoded);
@@ -46,47 +46,39 @@ export const Header = () => {
     return (
         <>
             <div className='button-container'>
-                <LinkButton
-                    className={"header-button"}
-                    path={"/"}
-                    title={"Home"}
-                />
 
                 {
                     rdxToken
                         ? (
                             <>
-                              <LinkButton
+                                <LinkButton
                                     className={"header-button"}
                                     path={"/feed"}
-                                    title={"Feed"}
+                                    title={"Feeds"}
                                 />
                                 <LinkButton
                                     className={"header-button"}
                                     path={"/profile"}
                                     title={"Profile"}
                                 />
-                                 <LinkButton
+                                <LinkButton
                                     className={"header-button"}
                                     path={"/users"}
                                     title={"Community"}
                                 />
-                              
+
                                 <LinkButton
                                     className={"header-button"}
                                     path={"/event"}
-                                    title={"Event"}
+                                    title={"Events"}
                                 />
                                 <div className='header-button' onClick={logOutMe}>
                                     <LinkButton
                                         classButton={"linkButtonDesign"}
                                         path={"/login"}
-                                        title={"log out"}
+                                        title={"Log Out"}
                                     />
                                 </div>
-
-
-
                             </>
                         )
                         : (
@@ -100,6 +92,11 @@ export const Header = () => {
                                     className={"header-button"}
                                     path={"/login"}
                                     title={"Login"}
+                                />
+                                <LinkButton
+                                    className={"header-button"}
+                                    path={"/"}
+                                    title={"Home"}
                                 />
                             </>
                         )}

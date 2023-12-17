@@ -18,7 +18,7 @@ export const EventCard = ({ eventId, title, content, date, time, creator, role }
         console.log(rdxToken);
         deleteEvent(rdxToken, eventId)
             .then(response => {
-                console.log(response.data.data);
+                console.log('deleted');
             })
             .catch(error => console.log(error));
     }
@@ -93,8 +93,8 @@ export const EventCard = ({ eventId, title, content, date, time, creator, role }
     };
     const handleCancel = () => {
         setIsModalOpen(false);
-    };
-
+    }; 
+    
     return (
         <div className='card-event'> 
             <div className='delete-card-event'>
@@ -136,7 +136,6 @@ export const EventCard = ({ eventId, title, content, date, time, creator, role }
                         ))}
                     </ul>
                 </Modal>
-
             </div>
             <div className='join-event'>
                 <button className='join-event-button' onClick={() => handleJoin()}> {!isJoined ? 'Join' : 'Withdraw'}
