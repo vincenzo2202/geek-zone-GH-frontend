@@ -168,11 +168,14 @@ export const UserProfile = () => {
                                     </div>
                                 </div>
                                 <div className="right-banner">
+                                    {
+                                        decodedtoken.role === "super_admin" &&
                                     <ChangeRoleCard 
                                         role={user.role}
                                         onClick={() => console.log("Change role")}
                                         userId = {user.id}
                                     />
+                                    }
                                 </div>
                             </div>
 

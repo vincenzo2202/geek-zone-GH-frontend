@@ -191,15 +191,7 @@ export const deleteEvent = async (token, id) => {
         }
     });
 }
- 
- 
-export const validataRole = async (token) => {  
-    return await axios.get(`http://localhost:8000/api/validateRole`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
-}
+  
 
 export const changeRoleCall = async (token, body) => {    
     return await axios.put(`http://localhost:8000/api/changeRole`,body, {
