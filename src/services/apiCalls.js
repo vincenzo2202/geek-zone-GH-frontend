@@ -208,3 +208,11 @@ export const changeRoleCall = async (token, body) => {
         }
     });
 }
+
+export const joinEvent = async (token, body) => {
+    return await axios.post(`http://localhost:8000/api/event_user`,body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
