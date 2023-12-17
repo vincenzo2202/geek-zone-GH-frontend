@@ -200,3 +200,11 @@ export const validataRole = async (token) => {
         }
     });
 }
+
+export const changeRoleCall = async (token, body) => {    
+    return await axios.put(`http://localhost:8000/api/changeRole`,body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}

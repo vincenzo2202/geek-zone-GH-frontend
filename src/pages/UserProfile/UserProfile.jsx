@@ -10,6 +10,7 @@ import { selectToken } from "../userSlice";
 import { FeedCard } from "../../common/FeedCard/FeedCard";
 import { jwtDecode } from "jwt-decode";
 import { selectProfile } from "../profileSlice";
+import { ChangeRoleCard } from "../../common/ChangeRoleCard/ChangeRoleCard";
 
 
 export const UserProfile = () => {
@@ -167,7 +168,11 @@ export const UserProfile = () => {
                                     </div>
                                 </div>
                                 <div className="right-banner">
-                                    Hola
+                                    <ChangeRoleCard 
+                                        role={user.role}
+                                        onClick={() => console.log("Change role")}
+                                        userId = {user.id}
+                                    />
                                 </div>
                             </div>
 
