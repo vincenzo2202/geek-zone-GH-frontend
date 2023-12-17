@@ -78,3 +78,27 @@
     box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
     transform: translateY(0em);
   }
+
+.button-participants{
+    background-color: transparent;
+    color: black;
+    display: flex;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    box-shadow: none;
+    user-select: none;
+}
+
+.button-participants:hover{
+    color: black;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.button-participants:focus{ 
+    outline: none;
+}
+
+ 
