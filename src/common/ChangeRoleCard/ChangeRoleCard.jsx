@@ -5,12 +5,14 @@ import './ChangeRoleCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
 import { selectToken } from '../../pages/userSlice';
-import { changeRoleCall } from '../../services/apiCalls';
+import { changeRoleCall, deleteProfileBySuperAdmin } from '../../services/apiCalls';
+import { useNavigate } from 'react-router-dom';
 
 export const ChangeRoleCard = ({ role, onClick, userId }) => {
 
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken);
+    const navigate = useNavigate();
 
     const [changeRole, setChangeRole] = useState({
         id: role,
@@ -43,6 +45,21 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             });
     }
 
+    const deletePofile = () => {
+        console.log('delete profile');
+        deleteProfileBySuperAdmin(rdxToken, userId)
+            .then((response) => {
+                console.log(response);
+                openMessage();
+                setTimeout(() => {
+                    navigate('/users');
+                }, 1650);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     const [messageApi, contextHolder] = message.useMessage();
     const key = 'updatable';
 
@@ -56,7 +73,7 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             messageApi.open({
                 key,
                 type: 'success',
-                content: 'Loaded!',
+                content: 'Role changed!',
                 duration: 2,
             });
         }, 1000);
@@ -88,12 +105,16 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
                 </div>
             </div>
             <div className='change-button'>
-                <button className='button-change-role' onClick={() => changeRoleOnClick()}> Change
+                <button className='button-change-role' onClick={() => changeRoleOnClick()}> Change Role
+                    {contextHolder}
+                </button>
+            </div>
+
+            <div className='delete-user-profile'>
+                <button className='button-delete-profile' onClick={() => deletePofile()}> Delete Profile  
                 {contextHolder}
                 </button>
             </div>
-            
-
         </div>
     );
 };

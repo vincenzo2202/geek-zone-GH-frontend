@@ -224,3 +224,12 @@ export const getAllJoinedEvents = async (token,id) => {
         }
     });
 }
+
+export const deleteProfileBySuperAdmin = async (token,id) => { 
+    return await axios.delete(`http://localhost:8000/api/deleteOneBySuper/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });  
+
+}
