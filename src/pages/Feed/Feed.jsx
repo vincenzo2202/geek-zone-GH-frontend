@@ -15,7 +15,6 @@ export const Feed = () => {
     const dispatch = useDispatch();
     const tokenDecoded = jwtDecode(rdxToken);
 
-
     const [feed, setFeed] = useState([])
 
     useEffect(() => {

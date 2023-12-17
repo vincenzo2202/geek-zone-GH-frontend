@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 import { LikeCard } from '../LikeCard/LikeCard';
 
 
-export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo, onDeleteFeed ,likes}) => {
+export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, title, content, photo, onDeleteFeed, likes }) => {
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken);
     const navigate = useNavigate();
@@ -91,11 +91,11 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     const deletedFeed = (feedId) => {
         deleteFeed(rdxToken, feedId)
             .then(response => {
-               console.log(response);
+                console.log(response);
             })
             .catch(error => console.log(error));
     }
- 
+
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>
@@ -128,18 +128,18 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                 {
                     photo
                         ? (<>
-                                <div className='desc'>Photo:  </div>
-                                <img className="pic-feed" src={photo} alt={photo} />
-                            </>)
+                            <div className='desc'>Photo:  </div>
+                            <img className="pic-feed" src={photo} alt={photo} />
+                        </>)
                         : (<div ></div>)
                 }
-            </div> 
+            </div>
             <div className='like-card'>
                 <LikeCard
-                idfeed={feedId} 
-                likes={likes} 
-                /> 
-            </div> 
+                    idfeed={feedId}
+                    likes={likes}
+                />
+            </div>
             <button className="button-spoiler" onClick={toggleCollapse}>
                 {!collapsed ? "comments" : "comments"}
             </button>
@@ -170,12 +170,15 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                                     <div className="comment-content">{comment.comment}</div>
 
                                 </div>
-                                <DeleteLink
-                                    deleted={() => deleted(comment.id)}
-                                    title={<div className="button-delete-comment" >
-                                        <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
-                                    </div>}
-                                />
+                                {
+                                    parseInt(tokenDecoded.sub, 10) == comment.user.id &&
+                                    <DeleteLink
+                                        deleted={() => deleted(comment.id)}
+                                        title={<div className="button-delete-comment" >
+                                            <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
+                                        </div>}
+                                    />
+                                }
                             </div>
                         ))}
                     </div>
