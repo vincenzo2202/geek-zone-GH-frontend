@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import React from 'react';
+import { Button, message } from 'antd';
 import './ChangeRoleCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
-import { selectToken } from '../../pages/userSlice'; 
+import { selectToken } from '../../pages/userSlice';
 import { changeRoleCall } from '../../services/apiCalls';
 
 export const ChangeRoleCard = ({ role, onClick, userId }) => {
@@ -20,7 +22,7 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             id: userId,
             role: role
         });
-    }, [role]);  
+    }, [role]);
 
     const handleClick = (role) => {
         onClick(role);
@@ -28,31 +30,51 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             id: userId,
             role: role
         });
-    }; 
+    };
 
     const changeRoleOnClick = () => {
         changeRoleCall(rdxToken, changeRole)
             .then((response) => {
                 console.log(response);
+                openMessage();
             })
             .catch((error) => {
                 console.log(error);
             });
     }
 
+    const [messageApi, contextHolder] = message.useMessage();
+    const key = 'updatable';
+
+    const openMessage = () => {
+        messageApi.open({
+            key,
+            type: 'loading',
+            content: 'Loading...',
+        });
+        setTimeout(() => {
+            messageApi.open({
+                key,
+                type: 'success',
+                content: 'Loaded!',
+                duration: 2,
+            });
+        }, 1000);
+    };
+
     return (
         <div className="change-role-box">
             <div>
                 <div className="change-role-container" onClick={() => handleClick('user')}>
                     <label className="custom-container">
-                        <input checked={changeRole.role === 'user'} type="checkbox" className="custom-input"  />
+                        <input checked={changeRole.role === 'user'} type="checkbox" className="custom-input" />
                         <div className="custom-checkmark"></div>
                     </label>
                     <div className='role-name'>User</div>
                 </div>
                 <div className="change-role-container" onClick={() => handleClick('admin')}>
                     <label className="custom-container">
-                        <input checked={changeRole.role === 'admin'} type="checkbox" className="custom-input"   />
+                        <input checked={changeRole.role === 'admin'} type="checkbox" className="custom-input" />
                         <div className="custom-checkmark"></div>
                     </label>
                     <div className='role-name'>Admin</div>
@@ -67,8 +89,10 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             </div>
             <div className='change-button'>
                 <button className='button-change-role' onClick={() => changeRoleOnClick()}> Change
+                {contextHolder}
                 </button>
             </div>
+            
 
         </div>
     );
