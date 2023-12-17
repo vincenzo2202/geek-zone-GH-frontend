@@ -3,7 +3,7 @@ import './Event.css';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAllEvents, validataRole } from '../../services/apiCalls';
+import { getAllEvents  } from '../../services/apiCalls';
 import { CreateEventCard } from '../../common/CreateEventCard/CreateEventCard';
 import { EventCard } from '../../common/EventCard/EventCard';
 import { jwtDecode } from 'jwt-decode';
@@ -24,12 +24,7 @@ export const Event = () => {
                     response => {
                         setEvent(response.data.data);
                     })
-                .catch(error => console.log(error));
-            validataRole(rdxToken)
-                .then(response => { 
-                    setRole(response.data.data);
-                })
-                .catch(error => console.log(error));
+                .catch(error => console.log(error)); 
         } else {
             navigate("/");
         }
@@ -39,7 +34,7 @@ export const Event = () => {
         <div className="event-body">
             <div className='create-event-modal'>
                 {
-                    role === "admin" &&
+                    tokenDecoded.role === "admin" || tokenDecoded.role === "super_admin" &&
                     <CreateEventCard />
                 }
             </div>
@@ -55,6 +50,7 @@ export const Event = () => {
                             date={event.event_date}
                             time={event.event_time}
                             creator={event.user_id}
+                            role={role}
                         />
                     ))}
             </div>

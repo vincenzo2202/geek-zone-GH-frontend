@@ -8,15 +8,17 @@ import { LinkButton } from '../LinkButton/LinkButton';
 import { useEffect, useState } from 'react';
 import { Button, Modal } from 'antd';
 
-export const EventCard = ({ eventId, title, content, date, time, creator }) => {
+export const EventCard = ({ eventId, title, content, date, time, creator, role }) => {
 
     const rdxToken = useSelector(selectToken);
-    const tokenDecoded = jwtDecode(rdxToken);
+    const tokenDecoded = jwtDecode(rdxToken); 
 
-    const deletedEvent = (id) => {
-        deleteEvent(rdxToken, id)
+    const deletedEvent = (eventId) => {
+        console.log(eventId);
+        console.log(rdxToken);
+        deleteEvent(rdxToken, eventId)
             .then(response => {
-                props.onDeleteFeed(id);
+                console.log(response.data.data);
             })
             .catch(error => console.log(error));
     }
@@ -38,8 +40,7 @@ export const EventCard = ({ eventId, title, content, date, time, creator }) => {
 
     // compruebo si estoy unido a un evento
     const [isJoined, setIsJoined] = useState(false);
-
-    console.log(joinUsers.length);
+ 
     useEffect(() => {
         for (let i = 0; i < joinUsers.length; i++) {
             if (joinUsers[i].user_id == parseInt(tokenDecoded.sub)) {
@@ -95,18 +96,20 @@ export const EventCard = ({ eventId, title, content, date, time, creator }) => {
     };
 
     return (
-        <div className='card-event'>
+        <div className='card-event'> 
             <div className='delete-card-event'>
                 {
-                    parseInt(tokenDecoded.sub, 10) === creator &&
-                    <DeleteLink
-                        deleted={() => deletedEvent(eventId)}
-                        title={<div className="button-delete-comment" >
-                            <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
-                        </div>}
-                    />
+                    tokenDecoded.role === "admin" || tokenDecoded.role === "super_admin"  &&
+                    <div>
+                        <DeleteLink
+                            deleted={() => deletedEvent(eventId)}
+                            title={<div className="button-delete-comment" >
+                                <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
+                            </div>}
+                        />
+                    </div>
                 }
-            </div>
+            </div> 
             <div className="event-card" >
                 <div className='event-info' key={eventId}>
                     <div className='desc'>Title: </div>
@@ -119,9 +122,8 @@ export const EventCard = ({ eventId, title, content, date, time, creator }) => {
                     <div className="event-time">{time}</div>
 
                 </div>
-
             </div>
-            <div className='modal-event-all-joining'> 
+            <div className='modal-event-all-joining'>
                 <Button className='button-participants' type="" onClick={showModal}>
                     {joinUsers.length} {joinUsers.length === 1 ? 'Participant' : 'Participants'}
                 </Button>
