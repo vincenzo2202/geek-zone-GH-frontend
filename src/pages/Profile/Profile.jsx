@@ -79,7 +79,7 @@ export const Profile = () => {
     const handleDeleteFeed = (id) => {
         setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
     } 
-
+console.log(feed);
     return (
 
         <div className="profile-body">
@@ -130,7 +130,7 @@ export const Profile = () => {
                                                     userPhoto={feed.user.photo}
                                                     userName={feed.user.name}
                                                     userLast_name={feed.user.last_name}
-                                                    user_id={feed.user.id}
+                                                    user_id={feed.user.user_id}
                                                     onDeleteFeed={handleDeleteFeed}
                                                     likes={feed.likes}
                                                 />

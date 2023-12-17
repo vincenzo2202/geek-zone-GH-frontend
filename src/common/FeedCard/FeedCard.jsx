@@ -24,7 +24,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
         comment: '',
     });
     const [commentInputError, setCommentInputError] = useState({});
-
+    // console.log(user_id);
     const toggleCollapse = () => {
         if (collapsed) {
             getCommentsByFeedID(rdxToken, feedId)
@@ -88,10 +88,10 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
             .catch(error => console.log(error));
     }
 
-    const deletedFeed = (id) => {
-        deleteFeed(rdxToken, id)
+    const deletedFeed = (feedId) => {
+        deleteFeed(rdxToken, feedId)
             .then(response => {
-                props.onDeleteFeed(id);
+               console.log(response);
             })
             .catch(error => console.log(error));
     }
@@ -108,7 +108,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
 
                     <div className='delete-card'>
                         {
-                            parseInt(tokenDecoded.sub, 10) === user_id &&
+                            parseInt(tokenDecoded.sub, 10) == user_id &&
                             <DeleteLink
                                 deleted={() => deletedFeed(feedId)}
                                 title={<div className="button-delete-comment" >

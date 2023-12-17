@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import './ChangeRoleCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
-import { selectToken } from '../../pages/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { selectToken } from '../../pages/userSlice'; 
 import { changeRoleCall } from '../../services/apiCalls';
 
 export const ChangeRoleCard = ({ role, onClick, userId }) => {
@@ -29,11 +28,9 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             id: userId,
             role: role
         });
-    };
-    console.log(changeRole);
+    }; 
 
     const changeRoleOnClick = () => {
-
         changeRoleCall(rdxToken, changeRole)
             .then((response) => {
                 console.log(response);
@@ -48,21 +45,21 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             <div>
                 <div className="change-role-container" onClick={() => handleClick('user')}>
                     <label className="custom-container">
-                        <input checked={changeRole.role === 'user'} type="checkbox" className="custom-input" />
+                        <input checked={changeRole.role === 'user'} type="checkbox" className="custom-input"  />
                         <div className="custom-checkmark"></div>
                     </label>
                     <div className='role-name'>User</div>
                 </div>
                 <div className="change-role-container" onClick={() => handleClick('admin')}>
                     <label className="custom-container">
-                        <input checked={changeRole.role === 'admin'} type="checkbox" className="custom-input" />
+                        <input checked={changeRole.role === 'admin'} type="checkbox" className="custom-input"   />
                         <div className="custom-checkmark"></div>
                     </label>
                     <div className='role-name'>Admin</div>
                 </div>
-                <div className="change-role-container" onClick={() => handleClick('super-admin')}>
+                <div className="change-role-container" onClick={() => handleClick('super_admin')}>
                     <label className="custom-container">
-                        <input checked={changeRole.role === 'super-admin'} type="checkbox" className="custom-input" />
+                        <input checked={changeRole.role === 'super_admin'} type="checkbox" className="custom-input" />
                         <div className="custom-checkmark"></div>
                     </label>
                     <div className='role-name'>Super Admin</div>

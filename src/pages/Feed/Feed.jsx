@@ -39,8 +39,7 @@ export const Feed = () => {
     const handleDeleteFeed = (id) => {
         setFeed(CreateFeedCard.id !== id);
 
-    } 
-   
+    }  
     return (
         <div className="feed-body">
             <div className='feed-background'>
@@ -55,7 +54,7 @@ export const Feed = () => {
                                 <FeedCard
                                     key={feedItem.id}
                                     userPhoto={feedItem.user.photo}
-                                    user_id={feedItem.user.user_id}
+                                    user_id={feedItem.user_id}
                                     userName={feedItem.user.name}
                                     userLast_name={feedItem.user.last_name}
                                     title={feedItem.title}
