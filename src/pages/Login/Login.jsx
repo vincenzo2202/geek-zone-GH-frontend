@@ -62,7 +62,7 @@ export const Login = () => {
             logUser(credentials)
             .then((response) => { 
                     const { message, token } = response.data;
-                    setMessage(message);
+                    setMessage(message); 
                     if (message === "User Logged") {
                         dispatch(login(token))
                         setTimeout(() => {

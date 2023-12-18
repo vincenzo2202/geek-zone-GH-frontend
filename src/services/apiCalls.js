@@ -233,3 +233,11 @@ export const deleteProfileBySuperAdmin = async (token,id) => {
     });  
 
 }
+
+export const getMyChats = async (token) => {    
+    return await axios.get(`http://localhost:8000/api/mychats`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
