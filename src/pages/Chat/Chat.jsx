@@ -4,7 +4,7 @@ import { Button, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
-import { getAllUsers, getMyChats } from '../../services/apiCalls';
+import { createChat, getAllUsers, getMyChats } from '../../services/apiCalls';
 
 export const Chat = () => {
 
@@ -39,13 +39,33 @@ export const Chat = () => {
             .catch(error => console.log(error));
         getAllUsers(rdxToken)
             .then(
-                response => { 
+                response => {
                     setAllUsers(response.data.data);
                 })
             .catch(error => console.log(error));
-        
-    }, []); 
-    
+    }, []);
+
+
+    const newChat = (id) => {
+        let chatData = {
+            "name": `Chat with ${id}`,
+            "user_id": [id]
+        }
+        createChat(rdxToken, chatData)
+            .then(
+                response => {
+                    console.log('chat created');
+                    setIsModalOpen(false);
+                    getMyChats(rdxToken)
+                        .then(
+                            response => {
+                                setMyChats(response.data.data);
+                            })
+                        .catch(error => console.log(error));
+                })
+            .catch(error => console.log(error));
+    }
+
     return (
         <div className='chat-body'>
             <div className='chat-container'>
@@ -54,20 +74,22 @@ export const Chat = () => {
                         <Button className='toggle-select-user' type="" onClick={showModal}>
                             New Chat
                         </Button>
-                        <Modal title="Select a user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                        <Modal title="Select a user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} className='modal-container'>
+                            <div className='modal-box'>
                             {
-                                allUsers.length > 0 
-                                ?
+                                allUsers.length > 0
+                                    ?
                                     allUsers.map(user => {
                                         return (
-                                            <div className='user-list' key={user.id}>
-                                                <div className='user-list-name'>{user.name} {user.last_name}</div> 
+                                            <div className='user-list' key={user.id} onClick={() => newChat(user.id)} onOk={() => newChat(user.id)}>
+                                                <div className='user-list-name'>{user.name} {user.last_name}</div>
                                             </div>
                                         )
                                     })
-                                : <div>There are any user</div>
- 
+                                    : <div>There are any user</div>
+
                             }
+                            </div>
                         </Modal>
                     </div>
                     <div className='chat-list-rooms'  >

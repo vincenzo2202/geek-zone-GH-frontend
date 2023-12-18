@@ -241,3 +241,11 @@ export const getMyChats = async (token) => {
         }
     });
 }
+
+export const createChat = async (token, body) => {
+    return await axios.post(`http://localhost:8000/api/newchat`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
