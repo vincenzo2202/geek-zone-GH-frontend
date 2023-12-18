@@ -42,24 +42,24 @@ body{
   top: 6em; 
 }
 
-.left-banner {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 30em;
+.left-banner-profile {
+  width: 20em;
   height: 100vh;
-  padding: 1em;  
+  padding-right: 3em;
 }
 
-.my-feed {
+.profile-info-profile {
+  width: 20em; 
+  height: 100vh;
+  padding: 20px;
+  background-color: #f5f5f5; 
+  border-right: 1px solid #ddd; 
+  top: 2.5em;
+  left: 0em; 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  margin-top: 1em; 
-  height: 100vh;
-  padding: 1em;
+  top: 0;
 }
   
 

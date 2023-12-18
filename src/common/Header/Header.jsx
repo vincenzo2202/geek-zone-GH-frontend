@@ -66,11 +66,15 @@ export const Header = () => {
                                     path={"/users"}
                                     title={"Community"}
                                 />
-
                                 <LinkButton
                                     className={"header-button"}
                                     path={"/event"}
                                     title={"Events"}
+                                />
+                                <LinkButton
+                                    className={"header-button"}
+                                    path={"/chat"}
+                                    title={"Chat"}
                                 />
                                 <div className='header-button' onClick={logOutMe}>
                                     <LinkButton

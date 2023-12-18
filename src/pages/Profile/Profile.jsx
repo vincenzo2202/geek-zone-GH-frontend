@@ -88,9 +88,8 @@ console.log(feed);
                     ? (
                         <>
                             <div className="profile">
-                                <div className="left-banner">
-                                    <div className="profile-info">
-
+                                <div className="left-banner-profile">
+                                    <div className="profile-info-profile"> 
                                         <div className="div-photo" ><img src={user.photo} alt="User" /></div>
                                         <div>Name: {user.name}</div>
                                         <div>Last Name: {user.last_name}</div>

@@ -9,6 +9,7 @@ import { Users } from "../GetAllUser/GetAllUser"
 import { Follow } from "../Follow/Follow"
 import { UpdateProfile } from "../UpdateProfile/UpdateProfile"
 import { UserProfile } from "../UserProfile/UserProfile"
+import { Chat } from "../Chat/Chat"
 
 export const Body = () => {
     return (
@@ -25,6 +26,7 @@ export const Body = () => {
                 <Route path="/follow" element={<Follow />} />
                 <Route path="/updateProfile" element={<UpdateProfile />} />
                 <Route path="/userProfile/:id" element={<UserProfile />} />
+                <Route path="/chat" element={<Chat />} />
             </Routes>
         </>
     )
