@@ -31,32 +31,32 @@ export const Chat = () => {
     useEffect(() => {
         getMyChats(rdxToken)
             .then(
-                response => { 
-                    setMyChats(response.data.data); 
-                    
-            })
+                response => {
+                    setMyChats(response.data.data);
+
+                })
             .catch(error => console.log(error));
     }, []);
 
-console.log(myChats);
+    console.log(myChats);
     return (
         <div className='chat-body'>
             <div className='chat-container'>
                 <div className='chat-list-container'>
-                    <div className='chat-list-users'> 
-                            <Button className='toggle-select-user' type="" onClick={showModal}>
-                                New Chat
-                            </Button>
-                            <Modal title="Select a user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                                <div>Aqui va el usuario</div>
-                            </Modal> 
-                    </div> 
+                    <div className='chat-list-users'>
+                        <Button className='toggle-select-user' type="" onClick={showModal}>
+                            New Chat
+                        </Button>
+                        <Modal title="Select a user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                            <div>Aqui va el usuario</div>
+                        </Modal>
+                    </div>
                     <div className='chat-list-rooms'  >
                         {
                             myChats.map(chat => {
                                 return (
-                                    <div className='chat-list-room'key={chat.id} >
-                                        <div className='chat-list-room-name' key={chat.id}> {chat.members_info[1].name} {chat.members_info[1].last_name}</div>  
+                                    <div className='chat-list-room' key={chat.id} >
+                                        <div className='chat-list-room-name' key={chat.id}> {chat.members_info[1].name} {chat.members_info[1].last_name}</div>
                                     </div>
                                 )
                             })
@@ -65,6 +65,17 @@ console.log(myChats);
                 </div>
                 <div className='chat-conversation-container'>
                     <div className='messages-container'>
+                        <div className='chat-with-name'>Pepe</div>
+                        <div className='message-second-container'>
+                            <div className='message-container'>
+                                {
+                                    <>
+                                        <div className='message-text-gray'>Recibidos</div>
+                                        <div className='message-text-green'>Enviados </div>
+                                    </>
+                                }
+                            </div>
+                        </div>
                     </div>
                     <div className='message-input-container'>
                         <input className='input-text-chat' type="text" placeholder="Enter text here..." />
