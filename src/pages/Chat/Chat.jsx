@@ -56,7 +56,7 @@ console.log(myChats);
                             myChats.map(chat => {
                                 return (
                                     <div className='chat-list-room'key={chat.id} >
-                                        <div className='chat-list-room-name' key={chat.id}>{chat.members_info[1].name} {chat.members_info[1].last_name}</div>  
+                                        <div className='chat-list-room-name' key={chat.id}> {chat.members_info[1].name} {chat.members_info[1].last_name}</div>  
                                     </div>
                                 )
                             })
