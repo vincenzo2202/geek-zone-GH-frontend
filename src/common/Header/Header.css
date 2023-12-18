@@ -2,7 +2,7 @@
 .button-container {
     height: 10vh;
     width: 100vw;
-    background-color: rgb(22, 143, 143);
+    background-color: rgb(233, 47, 47);
 
     display: flex;
     flex-direction: row;
@@ -19,4 +19,7 @@
     padding: 1em;
     font-size: 1.5em;
     cursor: pointer;
-}
+}  
+ 
+
+ 

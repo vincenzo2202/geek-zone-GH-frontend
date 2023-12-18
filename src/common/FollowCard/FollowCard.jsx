@@ -5,7 +5,7 @@ export const FollowCard = ({name,last_name, photo, phone_number, email, userid, 
 
     return (
         <div className="card-follow" userid={userid} dragable="false"> 
-            <img className="follow" src={photo} alt={photo} /> 
+            <img className="follow-image" src={photo} alt={photo} /> 
             <div className="desc-follow">
                 <div className="name-follow">{name}</div>
                 <div className="last_name-follow">{last_name}</div>
