@@ -1,7 +1,5 @@
  
-import './Chat.css'
- 
- 
+import './Chat.css';
 
 export const Chat = () => {
  
@@ -9,6 +7,11 @@ export const Chat = () => {
         <div className='chat-body'>
         <div className='chat-container'>
             <div className='chat-list-container'> 
+                <div className='chat-list-users'>  
+                <button className='toggle-select-user'>New Chat</button> 
+                </div>
+                <div className='chat-list-rooms'>
+                </div>
             </div>
             <div className='chat-conversation-container'>
                 <div className='messages-container'> 
