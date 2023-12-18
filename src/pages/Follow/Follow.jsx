@@ -55,9 +55,9 @@ export const Follow = () => {
         <div className="follow-body">
             <div className='follow-background'>
                 <div className="follow-header"> <h1>Follows</h1> </div>
-                <div>
-                    <button onClick={() => setbuttonFollows(true)}>Show Followings</button>
-                    <button onClick={() => setbuttonFollows(false)}>Show Followers</button>
+                <div className='button-followers'>
+                    <button className='button-followers-user' onClick={() => setbuttonFollows(true)}>Show Followings</button>
+                    <button className='button-followers-user' onClick={() => setbuttonFollows(false)}>Show Followers</button>
                 </div>
 
                 {listToShow.length > 0  

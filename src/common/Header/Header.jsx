@@ -45,7 +45,7 @@ export const Header = () => {
 
     return (
         <>
-            <div className='button-container'>
+            <div className='button-container' >
 
                 {
                     rdxToken

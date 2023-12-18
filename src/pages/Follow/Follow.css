@@ -1,4 +1,9 @@
-
+body{
+    height: 100%;
+    width: 100vw;
+    background-color: rgb(221, 217, 217);
+  }
+  
 .follow-body{
     height: 100vh;
     width: 100vw;
@@ -22,3 +27,26 @@
     background-color: beige;
 }
  
+
+.button-followers {
+    display: flex; 
+    justify-content:space-evenly;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 50px;
+    max-width: 500px;
+}
+
+.button-followers-user {
+    padding: 10px 20px;  
+    font-size: 16px;  
+    color: white;  
+    background-color: #0073b1;  
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;  
+}
+
+.button-followers-user:hover {
+    background-color: #005582; 
+}

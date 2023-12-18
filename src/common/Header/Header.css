@@ -1,4 +1,10 @@
-
+body{ 
+    /* esto es para que no se marque la selección */
+    user-select: none;  
+    -webkit-user-select: none; 
+    -moz-user-select: none;  
+    -ms-user-select: none;
+}
 .button-container {
     height: 10vh;
     width: 100vw;
