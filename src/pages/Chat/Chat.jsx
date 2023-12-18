@@ -4,7 +4,7 @@ import { Button, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
-import { getMyChats } from '../../services/apiCalls';
+import { getAllUsers, getMyChats } from '../../services/apiCalls';
 
 export const Chat = () => {
 
@@ -27,6 +27,7 @@ export const Chat = () => {
     };
 
     const [myChats, setMyChats] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
         getMyChats(rdxToken)
@@ -36,9 +37,15 @@ export const Chat = () => {
 
                 })
             .catch(error => console.log(error));
-    }, []);
-
-    console.log(myChats);
+        getAllUsers(rdxToken)
+            .then(
+                response => { 
+                    setAllUsers(response.data.data);
+                })
+            .catch(error => console.log(error));
+        
+    }, []); 
+    
     return (
         <div className='chat-body'>
             <div className='chat-container'>
@@ -48,7 +55,19 @@ export const Chat = () => {
                             New Chat
                         </Button>
                         <Modal title="Select a user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                            <div>Aqui va el usuario</div>
+                            {
+                                allUsers.length > 0 
+                                ?
+                                    allUsers.map(user => {
+                                        return (
+                                            <div className='user-list' key={user.id}>
+                                                <div className='user-list-name'>{user.name} {user.last_name}</div> 
+                                            </div>
+                                        )
+                                    })
+                                : <div>There are any user</div>
+ 
+                            }
                         </Modal>
                     </div>
                     <div className='chat-list-rooms'  >
