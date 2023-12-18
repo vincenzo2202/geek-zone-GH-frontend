@@ -44,12 +44,11 @@ export const Users = () => {
     const filteredUsers = filtered ? users.filter(user => user.role === (filtered ?filtered : '' )) : users;
 
     return (
-        <div className="users-body">
-
-            <div>
-                <button onClick={() => setFilteredUsers('')}>Show All</button>
-                <button onClick={() => setFilteredUsers('Student')}>Show Students</button>
-                <button onClick={() => setFilteredUsers('Teacher')}>Show Teachers</button>
+        <div className="users-body"> 
+            <div className='button-filter'>
+                <button className='button-filter-users' onClick={() => setFilteredUsers('')}>Show All</button>
+                <button className='button-filter-users' onClick={() => setFilteredUsers('Student')}>Show Students</button>
+                <button className='button-filter-users' onClick={() => setFilteredUsers('Teacher')}>Show Teachers</button>
             </div>
 
             <div className="container-all-users">

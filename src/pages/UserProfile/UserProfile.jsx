@@ -59,11 +59,7 @@ export const UserProfile = () => {
         } else {
             navigate("/login");
         }
-    }, []);
-
-    const FollowersClick = () => {
-        navigate('/follow');
-    }
+    }, []); 
 
     const handleDeleteFeed = (id) => {
         setFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
@@ -133,8 +129,8 @@ export const UserProfile = () => {
                                         <div>Phone: {user.phone_number}</div>
                                         <div>City: {user.city}</div>
                                         <div className="followers-box" >
-                                            <div className="followers-container" onClick={FollowersClick}>followings: {followers.length || 0}</div>
-                                            <div className="followers-container" onClick={FollowersClick}>followers: {followings.length || 0}</div>
+                                            <div className="followers-container"  >followings: {followers.length || 0}</div>
+                                            <div className="followers-container"  >followers: {followings.length || 0}</div>
                                         </div>
                                         <div className="follow.box">
                                             { user.id != decodedtoken.sub &&
