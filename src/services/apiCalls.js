@@ -249,3 +249,11 @@ export const createChat = async (token, body) => {
         }
     });
 }
+
+export const getChatById = async (token,id) => {
+    return await axios.get(`http://localhost:8000/api/chats/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
