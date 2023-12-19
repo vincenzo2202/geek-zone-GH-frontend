@@ -5,10 +5,12 @@ import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist' 
 import { thunk } from 'redux-thunk'
 import profileSlice from '../pages/profileSlice'
+import chatSlice from '../pages/chatSlice'
 
 const reducers = combineReducers({
     user: userSlice, 
-    profile: profileSlice
+    profile: profileSlice,
+    chat: chatSlice
 })
 
 const persistConfig = {

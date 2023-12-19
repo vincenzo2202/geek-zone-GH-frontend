@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { createChat, getAllUsers, getChatById, getMyChats, sendMessage } from '../../services/apiCalls';
 import { jwtDecode } from 'jwt-decode';
 import { CustomInput } from '../../common/CustomInput/CustomInput';
+import { chat, selectChat } from '../chatSlice';
 
 export const Chat = () => {
 
     const rdxToken = useSelector(selectToken);
     const decodedtoken = jwtDecode(rdxToken);
+    const rdxchatId = useSelector(selectChat);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -73,19 +75,25 @@ export const Chat = () => {
 
     const [chatIdInfo, setChatIdInfo] = useState([]);
 
-    const getChatId = (id) => {
-        getChatById(rdxToken, id)
+    const getChatId = (id) => { 
+        const chatId = id || rdxchatId;
+        getChatById(rdxToken, chatId)
             .then(
                 response => {
                     setChatIdInfo(response.data.data);
                     scrollToBottom();
                 })
             .catch(error => console.log(error));
-        setCommentInput({ chat_id: id });
+        setCommentInput({ chat_id: chatId });
+        dispatch(chat(id))
     }
+    useEffect(() => {
+        getChatId();
+    }, []);
+    console.log();
 
     const [commentInput, setCommentInput] = useState({
-        chat_id: chatIdInfo.id,
+        chat_id: rdxchatId,
         message: '',
     });
 
@@ -102,11 +110,15 @@ export const Chat = () => {
         sendMessage(rdxToken, commentInput)
             .then(
                 response => {
-                    setCommentInput(commentInput);
+                    setCommentInput(prevState => ({
+                        ...prevState,
+                        message: ''
+                    }));;
                     getChatById(rdxToken, chatIdInfo.id)
                         .then(
                             response => {
                                 setChatIdInfo(response.data.data);
+                                
                             })
                         .catch(error => console.log(error));
                 })
@@ -204,7 +216,7 @@ export const Chat = () => {
                             placeholder={'Enter text here...'}
                             functionProp={functionHandler}
                             functionBlur={functionHandler}
-                            value={commentInput.text}
+                            value={commentInput.message}
                         />
                         <button className='button-chat-send' onClick={send}>Send</button>
                     </div>
