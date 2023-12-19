@@ -43,6 +43,7 @@
     flex-grow: 1;
     overflow-y: auto; 
     background-color: #f5f5f5; 
+    border-radius: 0.625em;
 }
 
 .chat-list-room-name{
@@ -50,7 +51,7 @@
     height: 2.5em;  
     display: flex; 
     align-items: center;
-    background-color: #888888;
+    background-color: #b2aeae;
     color: black;
     font-size: 1.1em;   
     padding: 0.625em;

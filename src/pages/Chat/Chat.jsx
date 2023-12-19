@@ -71,7 +71,7 @@ export const Chat = () => {
     }
 
     const [chatIdInfo, setChatIdInfo] = useState([]);
-
+ 
     const getChatId = (id) => {
         getChatById(rdxToken, id)
             .then(
@@ -80,9 +80,6 @@ export const Chat = () => {
                 })
             .catch(error => console.log(error));
     }
-
-    console.log(chatIdInfo);
-    // console.log(chatIdInfo.messages.map(message => message.messages));
 
     return (
         <div className='chat-body'>
@@ -112,9 +109,12 @@ export const Chat = () => {
                     <div className='chat-list-rooms'  >
                         {
                             myChats.map(chat => {
+                                const otherUser = chat.members_info.filter(member => member.id != decodedtoken.sub)[0];
                                 return (
                                     <div className='chat-list-room' key={chat.id} >
-                                        <div className='chat-list-room-name' key={chat.id} chat={chat.id} onClick={() => getChatId(chat.id)}> {chat.members_info[1].name} {chat.members_info[1].last_name}</div>
+                                        <div className='chat-list-room-name' key={chat.id} chat={chat.id} onClick={() => getChatId(chat.id)}>
+                                            {otherUser ? `${otherUser.name} ${otherUser.last_name}` : 'Loading...'}
+                                        </div>
                                     </div>
                                 )
                             })
@@ -123,13 +123,16 @@ export const Chat = () => {
                 </div>
                 <div className='chat-conversation-container'>
                     <div className='messages-container'>
-                        {
-                            chatIdInfo && chatIdInfo.users_many_to_manythrough_chat_user && chatIdInfo.users_many_to_manythrough_chat_user[1] && (
-                                <div className='chat-with-name' key={chatIdInfo.users_many_to_manythrough_chat_user[1].id}>
-                                    {chatIdInfo.users_many_to_manythrough_chat_user[1].name} {chatIdInfo.users_many_to_manythrough_chat_user[1].last_name}
-                                </div>
-                            )
-                        }
+                        {chatIdInfo?.users_many_to_manythrough_chat_user?.map(user => {
+                            if (user.id != decodedtoken.sub) {
+                                return (
+                                    <div className='chat-with-name' key={user.id}>
+                                        {`${user.name} ${user.last_name}`}
+                                    </div>
+                                );
+                            }
+                            ;
+                        })}
                         <div className='message-second-container'>
                             <div className='message-container-exterior'>
 
@@ -145,7 +148,7 @@ export const Chat = () => {
                                             </div>
                                         )
                                     })
-                                } 
+                                }
                             </div>
                         </div>
                     </div>
