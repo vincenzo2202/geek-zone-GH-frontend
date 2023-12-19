@@ -257,3 +257,11 @@ export const getChatById = async (token,id) => {
         }
     });
 }
+
+export const sendMessage = async (token, body) => {
+    return await axios.post(`http://localhost:8000/api/messages`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}

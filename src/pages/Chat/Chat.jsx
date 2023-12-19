@@ -1,11 +1,12 @@
 import './Chat.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
-import { createChat, getAllUsers, getChatById, getMyChats } from '../../services/apiCalls';
+import { createChat, getAllUsers, getChatById, getMyChats, sendMessage } from '../../services/apiCalls';
 import { jwtDecode } from 'jwt-decode';
+import { CustomInput } from '../../common/CustomInput/CustomInput';
 
 export const Chat = () => {
 
@@ -71,15 +72,60 @@ export const Chat = () => {
     }
 
     const [chatIdInfo, setChatIdInfo] = useState([]);
- 
+
     const getChatId = (id) => {
         getChatById(rdxToken, id)
             .then(
                 response => {
                     setChatIdInfo(response.data.data);
+                    scrollToBottom();
                 })
             .catch(error => console.log(error));
+        setCommentInput({ chat_id: id });
     }
+
+    const [commentInput, setCommentInput] = useState({
+        chat_id: chatIdInfo.id,
+        message: '',
+    });
+
+    const functionHandler = (e) => {
+        setCommentInput((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+
+    };
+
+    const send = () => {
+
+        sendMessage(rdxToken, commentInput)
+            .then(
+                response => {
+                    setCommentInput(commentInput);
+                    getChatById(rdxToken, chatIdInfo.id)
+                        .then(
+                            response => {
+                                setChatIdInfo(response.data.data);
+                            })
+                        .catch(error => console.log(error));
+                })
+            .catch(error => console.log(error));
+    };
+    console.log(commentInput);
+
+    // fuction scrollToBottom  
+    function scrollToBottom(dep) {
+        const ref = useRef(null);
+        useEffect(() => {
+            if (ref.current) {
+                ref.current.scrollTop = ref.current.scrollHeight;
+            }
+        }, [dep]);
+        return ref;
+    }
+    
+    const messagesContainerRef = scrollToBottom(chatIdInfo);
 
     return (
         <div className='chat-body'>
@@ -93,8 +139,7 @@ export const Chat = () => {
                             <div className='modal-box'>
                                 {
                                     allUsers.length > 0
-                                        ?
-                                        allUsers.map(user => {
+                                        ? allUsers.map(user => {
                                             return (
                                                 <div className='user-list' key={user.id} onClick={() => newChat(user.id)} onOk={() => newChat(user.id)}>
                                                     <div className='user-list-name'>{user.name} {user.last_name}</div>
@@ -130,12 +175,10 @@ export const Chat = () => {
                                         {`${user.name} ${user.last_name}`}
                                     </div>
                                 );
-                            }
-                            ;
+                            };
                         })}
                         <div className='message-second-container'>
-                            <div className='message-container-exterior'>
-
+                            <div className='message-container-exterior'  ref={messagesContainerRef}>
                                 {
                                     chatIdInfo && chatIdInfo.messages && chatIdInfo.messages.map(message => {
                                         return (
@@ -153,11 +196,21 @@ export const Chat = () => {
                         </div>
                     </div>
                     <div className='message-input-container'>
-                        <input className='input-text-chat' type="text" placeholder="Enter text here..." />
-                        <button className='button-chat-send'>Send</button>
+
+                        <CustomInput
+                            design={'input-create-comment'}
+                            type={'text'}
+                            name={'message'}
+                            placeholder={'Enter text here...'}
+                            functionProp={functionHandler}
+                            functionBlur={functionHandler}
+                            value={commentInput.text}
+                        />
+                        <button className='button-chat-send' onClick={send}>Send</button>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+
