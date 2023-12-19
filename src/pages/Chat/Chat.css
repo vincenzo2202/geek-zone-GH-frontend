@@ -9,6 +9,19 @@
     width: 100vw;  
     color: black;
     overflow-y: hidden;
+    flex-direction: column;
+}
+
+.chat-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5em;   
+    width: 100vw;  
+    color: black;
+    overflow-y: hidden;
+    flex-direction: column;
+    margin-top: 60px;
 }
 .chat-container {
     display: flex;
@@ -18,8 +31,7 @@
     border: 0.0625em solid #ccc;  
     border-radius: 0.625em; 
     background-color: #fff;
-    overflow: hidden;
-    margin-top: 5em;
+    overflow: hidden; 
 }
 
 .chat-list-container {

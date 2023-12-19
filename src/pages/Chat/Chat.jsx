@@ -141,6 +141,7 @@ export const Chat = () => {
 
     return (
         <div className='chat-body'>
+            <div className='chat-header'><h1>Geek Zone Chat</h1>  </div>
             <div className='chat-container'>
                 <div className='chat-list-container'>
                     <div className='chat-list-users'>
@@ -217,6 +218,11 @@ export const Chat = () => {
                             functionProp={functionHandler}
                             functionBlur={functionHandler}
                             value={commentInput.message}
+                            onKeyPress={event => {
+                                if (event.key === 'Enter') {
+                                    send();
+                                }
+                            }}
                         />
                         <button className='button-chat-send' onClick={send}>Send</button>
                     </div>
