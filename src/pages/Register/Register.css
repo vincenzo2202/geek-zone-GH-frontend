@@ -34,6 +34,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column; 
+    margin-top: 50px;
     font-size: 1em; 
     width: 350px;
     height: auto; 
@@ -44,6 +45,21 @@
                 -15px -15px 30px rgb(60, 60, 60);
 }
 
+
+
+@media screen and (max-width: 700px) {
+  .register-body{
+    font-size: 2em;
+  }
+  .input-card-register{ 
+   display: flex;
+   justify-content: center;
+    align-items: center; 
+  
+
+  }
+ 
+}
 .inputs-register-container{ 
 display: flex;
 flex-direction: column;
@@ -103,10 +119,19 @@ flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: 2.5em;
-    margin-top: 0;
+    margin-top: -15px;
     font-size: 0.6em;
-    color: rgb(255, 136, 0);
+    color: rgb(255, 107, 21);
+    font-weight: bold;
   }
+
+  
+
+.inputDesign::-webkit-inner-spin-button,
+.inputDesign::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
   
   @media (prefers-reduced-motion: reduce) {
     .animated-button {

@@ -208,12 +208,12 @@ export const Chat = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='message-input-container'>
+                    <div className='message-input-container' >
 
                         <CustomInput
                             design={'input-create-comment'}
                             type={'text'}
-                            name={'message'}
+                            name={'message' }
                             placeholder={'Enter text here...'}
                             functionProp={functionHandler}
                             functionBlur={functionHandler}
@@ -223,6 +223,8 @@ export const Chat = () => {
                                     send();
                                 }
                             }}
+                            autoComplete={'off'}
+                            
                         />
                         <button className='button-chat-send' onClick={send}>Send</button>
                     </div>

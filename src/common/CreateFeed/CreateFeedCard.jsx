@@ -87,7 +87,7 @@ export const CreateFeedCard = () => {
   }
 
   return (
-    <>
+    <div className='create-feed-box'>
       <Button className='button-open-modal' type="" onClick={showModal}>
         What's on your mind?
       </Button>
@@ -133,6 +133,6 @@ export const CreateFeedCard = () => {
         </div>
 
       </Modal>
-    </>
+    </div>
   );
 }; 

@@ -1,67 +1,64 @@
-body{
+body {
   height: 100%;
   width: 100vw;
-  background-color: rgb(221, 217, 217);
-}
-
-.profile-body {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(221, 217, 217);
   display: flex;
   justify-content: center;
-  align-items: center;  
-  color: black;
-}
+  align-items: center;
+} 
 
-.profile {
+.profile-body-main {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  flex-direction: row;
+}
+ 
+.profile-main {
   width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  margin-top: 100px;
+  /* margin-top: 100px; */
   padding-top: 16px;
+  background-color: beige; 
 }
 
-.div-photo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-}
-.profile-info{
+.profile-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin : 2em; 
+  margin: 2em;
   position: fixed;
-  top: 6em; 
+  /* top: 6em; */
+  height: 100vh;
+  overflow: auto;
 }
 
-.left-banner-profile {
+.left-banner-profile,
+.right-banner {
   width: 20em;
   height: 100vh;
   padding-right: 3em;
+  display: flex;
 }
 
-.profile-info-profile {
-  width: 20em; 
-  height: 100vh;
+.profile-info-profile-main {
+  width: 20em;
+  height: auto;
   padding: 20px;
-  background-color: #f5f5f5; 
-  border-right: 1px solid #ddd; 
-  top: 2.5em;
-  left: 0em; 
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 0;
+  position: sticky;
+  margin-top: 2em;
 }
-  
 
 .right-banner {
   width: 20em;
@@ -69,16 +66,11 @@ body{
   padding: 1em;
 }
 
-.div-photo img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10em;
-  height: 10em;
+.div-photo-profile img {
+  width: 14em;
+  height: 14em;
   border-radius: 50%;
-
 }
-
 
 .update-profile .class-button {
   display: flex;
@@ -112,17 +104,120 @@ body{
   box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
 }
 
-.followers-box{
+.followers-box {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  align-items: center;
+  align-items: center; 
   margin-top: 2em; 
-  width: 5em;
 }
 
-.followers-container{
+.followers-container {
   padding: 1em;
   cursor: pointer;
+  width: 5em;  
 }
- 
+
+@media screen and (max-width: 700px) {
+  .profile-body-main,
+  .profile-main,
+  .left-banner-profile {
+    flex-direction: column;
+  }
+
+  .profile-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+  }
+
+  .profile-info-profile-main {
+    position: relative;
+    height: auto;
+    width: 100%;
+    top: 0;
+    margin-top: 3em;
+    border-radius: 1em;
+  }
+
+
+  .left-banner-profile,
+  .right-banner {
+    width: 100%;
+    height: 100vh;
+    padding-right: 0;
+  }
+
+  .left-banner-profile {
+    width: 40em;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .div-photo-profile img {
+    width: 12em;
+    height: 12em;
+  }
+
+  .fixed-top-center,
+  .create-feed-card {
+    width: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.profile-info-profile-main {
+  height: auto;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 3em;
+}
+
+@media screen and (max-width: 700px) {
+  .profile-info-profile {
+    position: relative;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+
+  }
+}
+
+.my-profile-info-text {
+  font-size: 1.2em;
+  color: #333;
+  font-weight: bold;
+
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.my-profile-info-text,
+.class-button {
+  font-size: 1.5em;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    font-size: 0.8em;
+  }
+
+}

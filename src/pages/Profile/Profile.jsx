@@ -82,23 +82,28 @@ export const Profile = () => {
 console.log(feed);
     return (
 
-        <div className="profile-body">
+        <div className="profile-body-main">
             {
                 user
                     ? (
                         <>
-                            <div className="profile">
+                            <div className="profile-main">
                                 <div className="left-banner-profile">
-                                    <div className="profile-info-profile"> 
-                                        <div className="div-photo" ><img src={user.photo} alt="User" /></div>
-                                        <div>Name: {user.name}</div>
-                                        <div>Last Name: {user.last_name}</div>
-                                        <div>Email: {user.email}</div>
-                                        <div>Phone: {user.phone_number}</div>
-                                        <div>City: {user.city}</div>
+                                    <div className="profile-info-profile-main"> 
+                                        <div className="div-photo-profile" ><img src={user.photo} alt="User" /></div>
+                                        <div className="text-box">
+                                        <div className="my-profile-info-text name">{user.name} {user.last_name}</div> 
+                                        <div className="my-profile-info-text">Email: {user.email}</div>
+                                        <div className="my-profile-info-text">Phone: {user.phone_number}</div>
+                                        <div className="my-profile-info-text">City: {user.city}</div>
+                                        </div>
                                         <div className="followers-box" >
-                                            <div className="followers-container" onClick={FollowersClick}>followers: { followers.length || 0}</div>
-                                            <div className="followers-container" onClick={FollowersClick}>followings: {followings.length || 0}</div>
+                                            <div className="followers-container" onClick={FollowersClick}> { followers.length || 0}
+                                            <div>followers</div>
+                                            </div>
+                                            <div className="followers-container" onClick={FollowersClick}>{followings.length || 0}
+                                            <div>followings</div>
+                                            </div>
                                         </div>
                                         <div className="update-profile">
                                             <LinkButton
@@ -136,8 +141,7 @@ console.log(feed);
                                             ))}
                                     </div>
                                 </div>
-                                <div className="right-banner">
-                                    Hola
+                                <div className="right-banner"> 
                                 </div>
                             </div>
 

@@ -25,12 +25,11 @@
     width: 100vw;
 
     background-color: rgba(206, 42, 42, 0.782);
-    z-index: 0;
-   
+    z-index: 0; 
 }
 
 .title-home{
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center;
     color: rgb(0, 0, 0);
