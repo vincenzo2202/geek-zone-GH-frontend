@@ -21,9 +21,10 @@ body{
     justify-content: flex-start;  
     width: 100vw;
     background-color: beige;
-    margin-top: 75px;
+    margin-top: 2em;
     padding-top: 16px;
 }
+
 
 .create-feed-card{
     padding: 1em; 
@@ -43,5 +44,11 @@ body{
 @media screen and (max-width: 700px) {
     body{
        font-size: 2.5em;
+    }
+
+    .feed-background{
+        width: 100vw;
+        margin-top: 0;
+        padding-top: 5px;
     }
 }

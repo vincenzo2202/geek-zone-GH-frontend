@@ -11,6 +11,8 @@ export const LinkButton = ({ path, title, className, emit }) => {
             emit()
         }
     }
+ 
+
     return (
         <div className={className} onClick={() => superEmit(path)} >
             {title}

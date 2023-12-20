@@ -49,6 +49,10 @@ export const Header = () => {
         setIsChecked(!isNavVisible);
     };
 
+    const closeNav = () => {
+        setNavVisible(false);
+    }
+
     return (
         <>
 
@@ -136,32 +140,38 @@ export const Header = () => {
                                         className={"header-button"}
                                         path={"/feed"}
                                         title={"Feeds"}
+                                        emit={closeNav}
                                     />
                                     <LinkButton
                                         className={"header-button"}
                                         path={"/profile"}
                                         title={"Profile"}
+                                        emit={closeNav}
                                     />
                                     <LinkButton
                                         className={"header-button"}
                                         path={"/users"}
                                         title={"Community"}
+                                        emit={closeNav}
                                     />
                                     <LinkButton
                                         className={"header-button"}
                                         path={"/event"}
                                         title={"Events"}
+                                        emit={closeNav}
                                     />
                                     <LinkButton
                                         className={"header-button"}
                                         path={"/chat"}
                                         title={"Chat"}
+                                        emit={closeNav}
                                     />
                                     <div className='header-button' onClick={logOutMe}>
                                         <LinkButton
                                             classButton={"linkButtonDesign"}
                                             path={"/login"}
                                             title={"Log Out"}
+                                            emit={closeNav}
                                         />
                                     </div>
                                 </>
@@ -172,16 +182,19 @@ export const Header = () => {
                                         className={"header-button"}
                                         path={"/register"}
                                         title={"Register"}
+                                        emit={closeNav}
                                     />
                                     <LinkButton
                                         className={"header-button"}
                                         path={"/login"}
                                         title={"Login"}
+                                        emit={closeNav}
                                     />
                                     <LinkButton
                                         className={"header-button"}
                                         path={"/"}
                                         title={"Home"}
+                                        emit={closeNav}
                                     />
                                 </>
                             )}

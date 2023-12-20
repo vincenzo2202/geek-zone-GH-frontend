@@ -2,11 +2,11 @@ body {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; 
 }
 
 .button-container {
-    height: 10vh;
+    height: 10vh; 
     width: 100vw;
     background-color: rgb(233, 47, 47);
     display: flex;
@@ -20,6 +20,7 @@ body {
     z-index: 1;
     box-shadow: 5px 5px 20px rgb(25, 25, 25),
         15px -10px 20px rgb(60, 60, 60);
+       
 }
 
 .header-button {
@@ -38,6 +39,7 @@ body {
 @media screen and (max-width: 699px) {
     .button-container {
         display: none;
+        z-index: 105;
     }
 
     .nav-button {
@@ -53,6 +55,7 @@ body {
         align-items: center;
         color: rgb(0, 0, 0);
         justify-content: flex-end;
+        z-index: 105;
     }
 
     .button-container-toggle {
@@ -64,81 +67,81 @@ body {
         right: 0;
         background-color: rgb(247, 87, 87);
         width: 100vw;
-        border-radius: 0px 0px 35px 35px;
+        border-radius: 0px 0px 35px 35px; 
     }
 
-    .navbar-bar{
+    .navbar-bar {
         width: 100vw;
         height: 5em;
         background-color: rgb(233, 47, 47);
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: center;
+        align-items: center; 
     }
 
     /* menu hamburguesa */
 
-.menuButton {
-    position: fixed;
-    z-index: 100;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 13%;
-    color: #090909;
-    width: 3.5em;
-    height: 3.5em;
-    border-radius: 0.5em;
-    background: #171717;
-    border: 1px solid #171717;
-    transition: all .3s;
-    box-shadow: inset 4px 4px 12px #3a3a3a,
-        inset -4px -4px 12px #000000;
-    
-}
+    .menuButton {
+        position: fixed;
+        z-index: 100;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 13%;
+        color: #090909;
+        width: 3.5em;
+        height: 3.5em;
+        border-radius: 0.5em;
+        background: #171717;
+        border: 1px solid #171717;
+        transition: all .3s;
+        box-shadow: inset 4px 4px 12px #3a3a3a,
+            inset -4px -4px 12px #000000;
 
-.menuButton:hover {
-    border: 1px solid black;
-}
+    }
 
-.menuButton:active {
-    color: #666;
-    box-shadow: 6px 6px 12px #3a3a3a,
-        -6px -6px 12px #000000;
-}
+    .menuButton:hover {
+        border: 1px solid black;
+    }
 
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    display: none;
-    visibility: hidden;
-}
+    .menuButton:active {
+        color: #666;
+        box-shadow: 6px 6px 12px #3a3a3a,
+            -6px -6px 12px #000000;
+    }
 
-.menuButton span {
-    width: 30px;
-    height: 4px;
-    background: rgb(200, 200, 200);
-    border-radius: 100px;
-    transition: 0.3s ease;
-}
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        display: none;
+        visibility: hidden;
+    }
 
-input[type]:checked~span.top {
-    transform: translateY(290%)rotate(45deg);
-    width: 40px;
-}
+    .menuButton span {
+        width: 30px;
+        height: 4px;
+        background: rgb(200, 200, 200);
+        border-radius: 100px;
+        transition: 0.3s ease;
+    }
 
-input[type]:checked~span.bot {
-    transform: translateY(-270%) rotate(-45deg);
-    width: 40px;
-    box-shadow: 0 0 10px #495057;
-}
+    input[type]:checked~span.top {
+        transform: translateY(290%)rotate(45deg);
+        width: 40px;
+    }
 
-input[type]:checked~span.mid {
-    transform: translateX(-20px);
-    opacity: 0;
-}
+    input[type]:checked~span.bot {
+        transform: translateY(-270%) rotate(-45deg);
+        width: 40px;
+        box-shadow: 0 0 10px #495057;
+    }
+
+    input[type]:checked~span.mid {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
 }
 
 @media screen and (min-width: 700px) {
@@ -147,10 +150,9 @@ input[type]:checked~span.mid {
     .button-container-toggle {
         display: none;
     }
- 
+
     .button-container {
         display: flex;
-        position: fixed;
+        position: fixed; 
     }
 }
-

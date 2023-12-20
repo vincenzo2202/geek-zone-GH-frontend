@@ -116,7 +116,7 @@ console.log(feed);
                                 </div>
                                 <div className="my-feed">
                                     <div className="fixed-top-center">
-                                        <h1>Hi, {user.name}!</h1>
+                                        <h1 className="hi-text">Hi, {user.name}!</h1>
                                         <div className='create-feed-card'>
                                             <CreateFeedCard />
                                         </div>

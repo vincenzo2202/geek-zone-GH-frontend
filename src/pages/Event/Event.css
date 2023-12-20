@@ -16,10 +16,9 @@ body{
     padding: 0;
     color: black;
     background-color: beige;
-    margin-top: 90px;
+    margin-top: 1.5em;
     padding-top: 16px;
-    font-size: 1.2em;
-    
+    font-size: 1.2em;     
 }
 
 .event-background{
@@ -48,6 +47,12 @@ body{
     .create-event-modal{
         width: 100vw;
         font-size: 1.3em;
-
     }
+
+    .event-body{
+        margin-top:0.2em; 
+    ;
+    }
+
+
 }
