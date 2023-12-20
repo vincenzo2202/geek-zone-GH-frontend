@@ -93,7 +93,7 @@ export const CreateEventCard = () => {
   return (
     <>
       <Button className='button-open-modal-event' type="" onClick={showModal}>
-        What's on your mind?
+        Create Event 
       </Button>
       <Modal
         open={open}
