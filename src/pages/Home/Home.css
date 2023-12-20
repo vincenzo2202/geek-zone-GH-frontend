@@ -7,8 +7,7 @@
     justify-content: center;
     align-items: center;
 
-    color: rgb(0, 0, 0);
-    position: relative;
+    color: rgb(0, 0, 0); 
 
     background-image: url('https://geekshubsacademy.com/wp-content/uploads/2021/06/full-stack-developer-geekshubs-academy-alumnos.jpg');
     background-size: cover;
@@ -30,9 +29,27 @@
 
 .title-home{
     font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
+    font-weight: bold; 
     color: rgb(0, 0, 0);
-    z-index: 1;
-    position: relative;
+    z-index: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+
 }
+
+.title-geek-zone {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+    padding-top: 20px;
+    margin-top: -4em;
+  }
+
+  @media screen and (max-width: 768px) {
+    .title-geek-zone {
+      font-size: 4.5rem;
+    }
+  }
