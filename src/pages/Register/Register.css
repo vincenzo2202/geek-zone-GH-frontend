@@ -4,15 +4,29 @@
 .register-body{
   height: 100vh;
   width: 100vw;
-  background-color: rgb(63, 95, 95);
+  background-color:  rgb(221, 217, 217);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image:url(../../assets/background.jpg);
+  background-image: url('https://geekshubsacademy.com/wp-content/uploads/2021/06/full-stack-developer-geekshubs-academy-alumnos.jpg');
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;  
-  z-index: -100;  
+  background-repeat: no-repeat; 
+
+
+
+}
+
+.register-body::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  background-color: rgba(206, 42, 42, 0.782); 
+ 
 }
 
 .input-card-register{ 
@@ -23,35 +37,31 @@
     font-size: 1em; 
     width: 350px;
     height: auto; 
-    border-radius: 30px;
-    background: #212121; 
+    z-index: 100;
+    border-radius: 2em;
+    background:rgb(150, 150, 150); 
     box-shadow: 15px 15px 30px rgb(25, 25, 25),
                 -15px -15px 30px rgb(60, 60, 60);
 }
 
-.inputs-register-container{
-margin-top: 2em; 
+.inputs-register-container{ 
 display: flex;
 flex-direction: column;
 }
 
-.title-login{
-  font-size: 1em;
-  color: white;
-  z-index: 100;
-  position: relative;
-  top: 1em;
-  font-family: 'Cinzel', serif;
-}
-
+.title-register{
+  font-size: 2em;
+  color: rgb(0, 0, 0);
+  z-index: 100; 
+  font-family: 'Cinzel', serif; 
+  padding: 1em;
+} 
  
 .errorMsg {
     color: red;
     margin-top: -1em;
 }
-
-
-
+ 
 .animated-button {
   display: flex;
   justify-content: center;

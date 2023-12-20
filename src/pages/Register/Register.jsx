@@ -109,7 +109,7 @@ export const Register = () => {
     return (
         <div className="register-body">
         <div className="input-card-register">
-            <div className="title-login">Register</div>
+            <div className="title-register">Register</div>
             <div className="inputs-register-container">
             <div className='errorMsg'>{credentialsError.nameError}</div>
                 <CustomInput
