@@ -11,9 +11,10 @@ export const Header = () => {
 
     const dispatch = useDispatch();
     const rdxToken = useSelector(selectToken);
-    const [decodedToken, setDecodedToken] = useState(null);
     const navigate = useNavigate();
 
+    const [decodedToken, setDecodedToken] = useState(null);
+   
 
     useEffect(() => {
 
@@ -35,16 +36,22 @@ export const Header = () => {
         }
     }, [rdxToken]);
 
-
-
-
     const logOutMe = () => {
         dispatch(logout())
         navigate("/")
     }
 
+    const [isNavVisible, setNavVisible] = useState(false);
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleCheckboxChange = () => {
+        setIsChecked(!isNavVisible);
+    };
+
     return (
         <>
+
             <div className='button-container' >
 
                 {
@@ -108,7 +115,83 @@ export const Header = () => {
 
 
 
+            </div> 
+            <div className='navbar-bar'>
+                <label className={`menuButton ${isNavVisible ? 'checked' : ''}`} htmlFor="check" >
+                    <input type="checkbox" id="check" onChange={handleCheckboxChange} checked={isNavVisible} onClick={() => setNavVisible(!isNavVisible)}/>
+                    <span className="top"></span>
+                    <span className="mid"></span>
+                    <span className="bot"></span>
+                </label>
             </div>
+            {isNavVisible && (
+
+                <div className='button-container-toggle' >
+
+                    {
+                        rdxToken
+                            ? (
+                                <>
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/feed"}
+                                        title={"Feeds"}
+                                    />
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/profile"}
+                                        title={"Profile"}
+                                    />
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/users"}
+                                        title={"Community"}
+                                    />
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/event"}
+                                        title={"Events"}
+                                    />
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/chat"}
+                                        title={"Chat"}
+                                    />
+                                    <div className='header-button' onClick={logOutMe}>
+                                        <LinkButton
+                                            classButton={"linkButtonDesign"}
+                                            path={"/login"}
+                                            title={"Log Out"}
+                                        />
+                                    </div>
+                                </>
+                            )
+                            : (
+                                <>
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/register"}
+                                        title={"Register"}
+                                    />
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/login"}
+                                        title={"Login"}
+                                    />
+                                    <LinkButton
+                                        className={"header-button"}
+                                        path={"/"}
+                                        title={"Home"}
+                                    />
+                                </>
+                            )}
+
+
+
+
+                </div>
+
+            )}
         </>
     )
 }

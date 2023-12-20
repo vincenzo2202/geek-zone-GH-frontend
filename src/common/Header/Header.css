@@ -1,10 +1,10 @@
-body{ 
-    /* esto es para que no se marque la selección */
-    user-select: none;  
-    -webkit-user-select: none; 
-    -moz-user-select: none;  
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
 }
+
 .button-container {
     height: 10vh;
     width: 100vw;
@@ -15,18 +15,142 @@ body{
     align-items: center;
     color: rgb(0, 0, 0);
     font-weight: bold;
-    position: fixed;
-    top: 0; 
+    position: static;
+    top: 0;
     z-index: 1;
     box-shadow: 5px 5px 20px rgb(25, 25, 25),
-    15px -10px 20px rgb(60, 60, 60);
+        15px -10px 20px rgb(60, 60, 60);
 }
 
-.header-button{
+.header-button {
     padding: 1em;
     font-size: 1.5em;
     cursor: pointer;
-}  
- 
+}
 
+.nav-button,
+.button-container-toggle {
+    display: none;
+
+}
+
+
+@media screen and (max-width: 699px) {
+    .button-container {
+        display: none;
+    }
+
+    .nav-button {
+        display: flex;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: rgba(233, 47, 47, 0.423);
+        height: 10vh;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+        color: rgb(0, 0, 0);
+        justify-content: flex-end;
+    }
+
+    .button-container-toggle {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        z-index: 101;
+        top: 4em;
+        right: 0;
+        background-color: rgb(247, 87, 87);
+        width: 100vw;
+        border-radius: 0px 0px 35px 35px;
+    }
+
+    .navbar-bar{
+        width: 100vw;
+        height: 5em;
+        background-color: rgb(233, 47, 47);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* menu hamburguesa */
+
+.menuButton {
+    position: fixed;
+    z-index: 100;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 13%;
+    color: #090909;
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 0.5em;
+    background: #171717;
+    border: 1px solid #171717;
+    transition: all .3s;
+    box-shadow: inset 4px 4px 12px #3a3a3a,
+        inset -4px -4px 12px #000000;
+    
+}
+
+.menuButton:hover {
+    border: 1px solid black;
+}
+
+.menuButton:active {
+    color: #666;
+    box-shadow: 6px 6px 12px #3a3a3a,
+        -6px -6px 12px #000000;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    display: none;
+    visibility: hidden;
+}
+
+.menuButton span {
+    width: 30px;
+    height: 4px;
+    background: rgb(200, 200, 200);
+    border-radius: 100px;
+    transition: 0.3s ease;
+}
+
+input[type]:checked~span.top {
+    transform: translateY(290%)rotate(45deg);
+    width: 40px;
+}
+
+input[type]:checked~span.bot {
+    transform: translateY(-270%) rotate(-45deg);
+    width: 40px;
+    box-shadow: 0 0 10px #495057;
+}
+
+input[type]:checked~span.mid {
+    transform: translateX(-20px);
+    opacity: 0;
+}
+}
+
+@media screen and (min-width: 700px) {
+
+    .nav-button,
+    .button-container-toggle {
+        display: none;
+    }
  
+    .button-container {
+        display: flex;
+        position: fixed;
+    }
+}
+
