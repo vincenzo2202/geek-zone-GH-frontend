@@ -92,7 +92,7 @@ console.log(feed);
                                     <div className="profile-info-profile-main"> 
                                         <div className="div-photo-profile" ><img src={user.photo} alt="User" /></div>
                                         <div className="text-box">
-                                        <div className="my-profile-info-text name">{user.name} {user.last_name}</div> 
+                                        <div className="user-name-title">{user.name} {user.last_name}</div> 
                                         <div className="my-profile-info-text">Email: {user.email}</div>
                                         <div className="my-profile-info-text">Phone: {user.phone_number}</div>
                                         <div className="my-profile-info-text">City: {user.city}</div>

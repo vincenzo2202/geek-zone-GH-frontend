@@ -69,9 +69,16 @@ body {
 .div-photo-profile img {
   width: 14em;
   height: 14em;
-  border-radius: 50%;
+  border-radius: 50%;  
+  object-fit: cover;
+  
 }
 
+img{
+  object-fit: cover;
+  
+}
+ 
 .update-profile .class-button {
   display: flex;
   align-items: center;
@@ -170,6 +177,8 @@ body {
     align-items: center;
     flex-direction: column;
   }
+
+   
 }
 
 .profile-info-profile-main {
@@ -179,25 +188,38 @@ body {
   border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  top: 3em;
+  align-items: center; 
 }
 
 @media screen and (max-width: 700px) {
   .profile-info-profile {
     position: relative;
     width: 100%;
-    height: auto;
-    bottom: 0;
-
+    height: auto; 
   }
 }
 
 .my-profile-info-text {
-  font-size: 1.2em;
+  font-size: 1em; 
+
+}
+
+.user-name-title{
+  font-size: 1.5em;
+  font-weight: bold; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+
+.my-profile-info-text,
+.class-button {
+  font-size: 1em;
   color: #333;
   font-weight: bold;
-
+  margin-bottom: 0.5em;
 }
 
 .text-box {
@@ -207,17 +229,15 @@ body {
   align-items: flex-start;
 }
 
-.my-profile-info-text,
-.class-button {
-  font-size: 1.5em;
-  color: #333;
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
+
 
 @media screen and (max-width: 700px) {
   body {
     font-size: 0.8em;
+  }
+
+  .my-profile-info-text{
+    font-size: 1em;
   }
 
 }
