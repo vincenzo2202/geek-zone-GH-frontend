@@ -152,3 +152,5 @@ console.log(feed);
         </div>
     );
 };
+
+// adjustments to user profile page and home, login an register page

@@ -27,7 +27,7 @@ body {
   background-color: beige;
 }
 
-.div-photo-user{
+.div-photo-user {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,9 +41,9 @@ body {
   width: 20em;
   height: 100vh;
   padding-right: 1em;
-  display: flex; 
+  display: flex;
 }
- 
+
 .user-feed {
   margin-left: 2em;
   display: flex;
@@ -54,7 +54,7 @@ body {
   height: 100vh;
   padding: 1em;
   margin-left: 4em;
-} 
+}
 
 .right-banner {
   width: 20em;
@@ -68,7 +68,7 @@ body {
   align-items: center;
   width: 10em;
   height: 10em;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 .update-profile .class-button {
@@ -129,7 +129,7 @@ body {
   font-size: 2em;
   height: 2em;
 
-} 
+}
 
 .left-banner-user {
   width: 20em;
@@ -137,22 +137,23 @@ body {
   padding-right: 1em;
 }
 
+
 .profile-info-user {
-  width: 20em; 
+  width: 20em;
   height: 100vh;
   padding: 20px;
-  background-color: #f5f5f5; 
-  border-right: 1px solid #ddd;  
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed; 
-  margin: 2em; 
+  position: fixed;
+  margin: 2em;
 }
 
-.div-photo-user{
-  width: 200px; 
-  height: 200px; 
+.div-photo-user {
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -164,8 +165,8 @@ body {
 
 .profile-info-user>div {
   margin-bottom: 10px;
-  font-size: 16px; 
-  color: #333; 
+  font-size: 16px;
+  color: #333;
 }
 
 .followers-box {
@@ -178,7 +179,62 @@ body {
 }
 
 .followers-container {
-  background-color: #ddd; 
+  background-color: #ddd;
   border-radius: 5px;
   margin: 0 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .profile-body {
+    flex-direction: column;
+    display: flex;
+  }
+
+  .profile {
+    flex-direction: column;
+    margin-top: 0;
+    display: flex;
+  }
+
+  .left-banner-user {
+    width: 100vw;
+    height: 20em;
+    padding-right: 0;
+  }
+
+  .user-feed {
+    margin-left: 0;
+    margin-top: 0;
+    height: auto;
+    padding: 0;
+  }
+
+  .changer-role,
+  .right-banner-user {
+    width: 100vw;
+    height: 20em;
+    padding: 0;
+
+  }
+
+  .fixed-top-center,
+  .user-feed {
+    margin-top: 13em;
+
+
+  }
+
+  .profile-info-user {
+    width: 100vw;
+    border-right: none;
+    position: relative;
+    margin-top: 3em;
+    margin-left: 0;
+    margin-right: 0;
+    height: 38em;
+  }
+
+
+
+
 }
