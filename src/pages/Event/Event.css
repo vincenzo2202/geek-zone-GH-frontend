@@ -9,8 +9,8 @@ body{
     width: 100vw;
 
     display: flex;
-    flex-direction: column;   
-    align-items: center;  
+    flex-direction: row;    
+    justify-content: center;
     padding-top: 2em;
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ body{
     background-color: beige;
     margin-top: 1.5em;
     padding-top: 16px;
-    font-size: 1.2em;     
+    font-size: 1.2em;      
 }
 
 .event-background{
@@ -39,9 +39,43 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;  
+}
+
+.center-event{
+    display: flex;
+    flex-direction: column;   
+    align-items: center;  
+    width: 100vw;
+    background-color: beige;
+}
+
+.left-banner-event{
+    height: 100vh; 
+    position: sticky;  
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transform: scale(0.5); 
+    width: 100%;
+    margin-right: -28em;
+    margin-top: -2.5em;
 
 }
+
+.right-banner-event{
+    height: 100vh; 
+    position: sticky;  
+    left: 0;
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center; 
+    transform: scale(0.5);
+    width: 100%;
+    margin-left: -28em;
+    margin-top: -2.5em;
+}
+
 
 @media screen and (max-width: 600px) {
     .create-event-modal{
