@@ -158,10 +158,7 @@ body {
   overflow: hidden;
 }
 
-.div-photo-userimg {
-  width: 100%;
-  height: auto;
-}
+ 
 
 .profile-info-user>div {
   margin-bottom: 10px;
@@ -213,15 +210,12 @@ body {
   .right-banner-user {
     width: 100vw;
     height: 20em;
-    padding: 0;
-
+    padding: 0; 
   }
 
   .fixed-top-center,
   .user-feed {
-    margin-top: 13em;
-
-
+    margin-top: 16em; 
   }
 
   .profile-info-user {
@@ -231,7 +225,20 @@ body {
     margin-top: 3em;
     margin-left: 0;
     margin-right: 0;
-    height: 38em;
+    height: 45em;
+  }
+
+  .div-photo-user {
+    width: 15em;
+    height: 15em;
+    border-radius: 50%;
+    overflow: hidden; 
+  }
+  
+  .div-photo-user img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
 
