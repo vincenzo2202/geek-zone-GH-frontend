@@ -8,7 +8,7 @@ body{
 
 .feed-body{ 
     background-color: rgb(221, 217, 217);
-    display: flex;
+    display: flex; 
     justify-content: center;
     align-items: center;  
     color: black;  
@@ -17,15 +17,14 @@ body{
 
 .feed-background{ 
     display: flex;
-    flex-direction: column;   
-    align-items: center;  
-    justify-content: flex-start;  
+    flex-direction: row;    
+    justify-content: center;  
+
     width: 100vw;
     background-color: beige;
     margin-top: 2em;
     padding-top: 16px;
 }
-
 
 .create-feed-card{
     padding: 1em; 
@@ -41,6 +40,32 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.left-feed-banner { 
+    height: 100vh; 
+    position: sticky;  
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transform: scale(0.5); 
+    width: 100%;
+    margin-right: -10em;
+    margin-top: -2.5em;
+}
+ 
+.right-feed-banner { 
+    height: 100vh; 
+    position: sticky;  
+    left: 0;
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center; 
+    transform: scale(0.5);
+    width: 100%;
+    margin-left: -10em;
+    margin-top: -2.5em;
+}
+ 
 
 @media screen and (max-width: 700px) {
     body{

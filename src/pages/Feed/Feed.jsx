@@ -38,37 +38,49 @@ export const Feed = () => {
     const handleDeleteFeed = (id) => {
         setFeed(CreateFeedCard.id !== id);
 
-    }  
+    }
     return (
         <div className="feed-body">
             <div className='feed-background'>
-                <div className='create-feed-card'>
-                    <CreateFeedCard />
-                </div>
-                <div className='line-div'>Here are all the posts </div>
-                {feed.length > 0
-                    ? (
-                        <div className="feed-container">
-                            {[...feed].reverse().map(feedItem => (
-                                <FeedCard
-                                    key={feedItem.id}
-                                    userPhoto={feedItem.user.photo}
-                                    user_id={feedItem.user_id}
-                                    userName={feedItem.user.name}
-                                    userLast_name={feedItem.user.last_name}
-                                    title={feedItem.title}
-                                    content={feedItem.content}
-                                    photo={feedItem.photo}
-                                    feedId={feedItem.id}
-                                    onDeleteFeed={handleDeleteFeed}
-                                    likes={feedItem.likes}
-                                />
+                <div className='left-feed-banner'>
 
-                            ))}
-                        </div>
-                    ) : (
-                        <div>Loading</div>
-                    )}
+                    <img className='content-left-banner' src='../../src/assets/banner_english.gif' alt='banner_english' />
+
+                </div>
+                <div className='center-feed'>
+                    <div className='create-feed-card'>
+                        <CreateFeedCard />
+                    </div>
+                    <div className='line-div'>Here are all the posts </div>
+                    {feed.length > 0
+                        ? (
+                            <div className="feed-container">
+                                {[...feed].reverse().map(feedItem => (
+                                    <FeedCard
+                                        key={feedItem.id}
+                                        userPhoto={feedItem.user.photo}
+                                        user_id={feedItem.user_id}
+                                        userName={feedItem.user.name}
+                                        userLast_name={feedItem.user.last_name}
+                                        title={feedItem.title}
+                                        content={feedItem.content}
+                                        photo={feedItem.photo}
+                                        feedId={feedItem.id}
+                                        onDeleteFeed={handleDeleteFeed}
+                                        likes={feedItem.likes}
+                                    />
+
+                                ))}
+                            </div>
+                        ) : (
+                            <div>Loading</div>
+                        )}
+                </div>
+                <div className='right-feed-banner'>
+
+                    <img className='content-right-banner' src='../../src/assets/banner_english.gif' alt='banner_english' />
+
+                </div>
             </div>
         </div>
     );
