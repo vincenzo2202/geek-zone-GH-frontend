@@ -71,10 +71,27 @@ body{
     body{
        font-size: 2.5em;
        z-index: 1;
-    }
 
+    }
+    .create-feed-card{
+        display: flex;
+
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+         margin-left: -1em;
+    }
+    
     .feed-background{
         width: 100vw; 
         margin-top: 2em;
+        flex-direction: column;
+    }
+
+    .left-feed-banner{
+        display: none;
+    }
+    .right-feed-banner{
+        display: none;
     }
 }
