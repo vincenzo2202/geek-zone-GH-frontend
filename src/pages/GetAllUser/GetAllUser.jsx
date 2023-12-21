@@ -56,9 +56,7 @@ export const Users = () => {
                     filteredUsers.length > 0
                         ? (<div className='users-Roster'>
                             {
-                                filteredUsers.map(users => {
-
-
+                                filteredUsers.map(users => { 
                                     return (
                                         <CardUser
                                             key={users.id}
