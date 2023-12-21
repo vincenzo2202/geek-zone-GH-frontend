@@ -1,5 +1,5 @@
 .login-body {
-  height: 100vh;
+  height: 95.7vh;
   width: 100vw;
   background-color: var(--e-global-color-4e221a7);
   display: flex;
@@ -42,13 +42,28 @@
 }
 
 @media screen and (max-width: 700px) {
-  .login-body{
+   .title-login{
+   transform: scale(0.8);
+ 
+   }
+  .login-body {
     font-size: 2em;
   }
-  .input-card-login{
-    margin-top: -20px; 
+
+  .input-card-login {
+    margin-top: -10px; 
   }
- 
+
+  .animated-button-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(3);
+    margin-top: 6em;
+    margin-bottom: 0.5em;
+  }
+
+
 }
 
 .title-login {
@@ -61,7 +76,7 @@
   padding: 0.5em;
 }
 
-.animated-button {
+.animated-button-login {
   --clr-font-main: hsla(0 0% 20% / 100);
   --btn-bg-1: hsla(194 100% 69% / 1);
   --btn-bg-2: hsla(217 100% 56% / 1);
@@ -81,19 +96,20 @@
   border-radius: var(--radii);
   color: var(--btn-bg-color);
   box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+
 }
 
-.animated-button:hover {
+.animated-button-login:hover {
   background-position: right top;
 }
 
-.animated-button:is(:focus, :focus-visible, :active) {
+.animated-button-login:is(:focus, :focus-visible, :active) {
   outline: none;
   box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animated-button {
+  .animated-button-login {
     transition: linear;
   }
 }

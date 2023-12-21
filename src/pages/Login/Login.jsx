@@ -102,7 +102,7 @@ export const Login = () => {
                     />
                     <div className='errorMsg'>{credentialsError.passwordError}</div>
                 </div>
-                <div className='animated-button ' onClick={logMe}>Log in</div>
+                <div className='animated-button-login ' onClick={logMe}>Log in</div>
                 <div > {message}</div>
             </div>
         </div>

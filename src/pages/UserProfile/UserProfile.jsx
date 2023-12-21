@@ -120,9 +120,9 @@ export const UserProfile = () => {
                     ? (
                         <>
                             <div className="profile">
-                                <div className="left-banner">
-                                    <div className="profile-info">
-                                        <div className="div-photo" ><img src={user.photo} alt="User" /></div>
+                                <div className="left-banner-user">
+                                    <div className="profile-info-user">
+                                        <div className="div-photo-user" ><img className="div-photo-user" src={user.photo} alt="User" /></div>
                                         <div>Name: {user.name}</div>
                                         <div>Last Name: {user.last_name}</div>
                                         <div>Email: {user.email}</div>
@@ -139,7 +139,7 @@ export const UserProfile = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="my-feed">
+                                <div className="user-feed">
                                     <div className="fixed-top-center">
 
                                         <div className='line-div'>Here are all your the posts </div>
@@ -163,7 +163,7 @@ export const UserProfile = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="right-banner">
+                                <div className="right-banner-user">
                                     {
                                         decodedtoken.role === "super_admin" &&
                                     <ChangeRoleCard 

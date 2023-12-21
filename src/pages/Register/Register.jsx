@@ -109,7 +109,7 @@ export const Register = () => {
     return (
         <div className="register-body">
         <div className="input-card-register">
-            <div className="title-register">Register</div>
+            <div className="title-register-top">Register</div>
             <div className="inputs-register-container">
             <div className='errorMsg'>{credentialsError.nameError}</div>
                 <CustomInput
@@ -176,7 +176,7 @@ export const Register = () => {
                     functionBlur={errorCheck}
                 /> 
             </div>
-            <div className='animated-button' onClick={SignUp}>Sign up</div>
+            <div className='animated-button-register' onClick={SignUp}>Sign up</div>
             <p>{message}</p>
         </div>
     </div>

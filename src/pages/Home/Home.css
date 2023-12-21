@@ -1,60 +1,114 @@
-body{
-    overflow-y: hidden;
-    overflow-x: hidden; 
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
-.home-body{
+.home-body {
+  height: 95.6vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: rgb(0, 0, 0);
+
+  background-image: url('https://geekshubsacademy.com/wp-content/uploads/2021/06/full-stack-developer-geekshubs-academy-alumnos.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow-y: hidden;
+
+}
+
+.home-body::after {
+  content: '';
+  position: absolute;
+  height: 95.8vh;
+  width: 100vw;
+
+  background-color: rgba(206, 42, 42, 0.782);
+  z-index: 0;
+}
+
+.title-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+
+.logo-geek-zone-home {
+  height: 15em;
+  z-index: 100;
+  display: flex;
+}
+
+.title-geek-zone {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .home-body {
     height: 100vh;
     width: 100vw;
-
+  
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    color: rgb(0, 0, 0); 
-
+  
+    color: rgb(0, 0, 0);
+  
     background-image: url('https://geekshubsacademy.com/wp-content/uploads/2021/06/full-stack-developer-geekshubs-academy-alumnos.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;  
-    
-}
-
-.home-body::after{
+    background-repeat: no-repeat;
+    overflow-y: hidden;
+  
+  }
+  
+  .home-body::after {
     content: '';
-    position: absolute; 
+    position: absolute;
     height: 100vh;
     width: 100vw;
-
+  
     background-color: rgba(206, 42, 42, 0.782);
-    z-index: 0;    
-}
+    z-index: 0;
+  }
+  .title-geek-zone {
+    font-size: 4.5rem;
+  }
 
-.title-home{
-    font-size: 2rem;
-    font-weight: bold; 
-    color: rgb(0, 0, 0);
-    z-index: 1; 
-    display: flex;  
-    flex-direction: column; 
-    top: 0;
-    margin-top: 0;
-
-}
+  .title-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+  }
 
 
-.title-geek-zone {
+  .logo-geek-zone-home {
+    height: 15em;
+    z-index: 100;
+    display: flex;
+  }
+
+  .title-geek-zone {
     position: relative;
     z-index: 1;
     color: #fff;
-    text-align: center;
-    padding-top: 20px;
-    margin-top: -5em;
+    text-align: center; 
+    font-size: 2em;
+    font-weight: bold; 
+  
   }
-
-  @media screen and (max-width: 768px) {
-    .title-geek-zone {
-      font-size: 4.5rem;
-    }
-  }
+}
