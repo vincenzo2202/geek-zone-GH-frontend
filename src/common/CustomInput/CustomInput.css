@@ -10,4 +10,10 @@
     color: black;
 }
 
+@media screen and (max-width: 700px) {
+    .inputDesign {
+         transform: scale(1.3);
+         margin-bottom: 4em;
+    }
+}
  

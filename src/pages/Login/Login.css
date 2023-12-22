@@ -43,15 +43,17 @@
 
 @media screen and (max-width: 700px) {
    .title-login{
-   transform: scale(0.8);
+   transform: scale(0.6);
+    margin-top: -0.5em;
+    margin-bottom: -0.5em;
  
    }
   .login-body {
     font-size: 2em;
   }
 
-  .input-card-login {
-    margin-top: -10px; 
+  .input-card-login { 
+    height: 30vh;
   }
 
   .animated-button-login {
@@ -59,7 +61,7 @@
     justify-content: center;
     align-items: center;
     transform: scale(3);
-    margin-top: 6em;
+    margin-top: 3em;
     margin-bottom: 0.5em;
   }
 
