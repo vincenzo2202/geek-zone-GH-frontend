@@ -141,9 +141,35 @@
     .event-box {  
         flex-direction: column;
         justify-content: center;
-        align-items: center;  
-        
+        align-items: center;    
+         
+    } 
+
+    .event-content {
+        width: 94%; 
+        overflow: hidden;
+        white-space: pre-wrap;
+        word-wrap: break-word;  
     }
 
- 
+    .desc{
+        word-wrap: break-word;
+        resize: vertical;
+        overflow: auto;
+        white-space: pre-wrap;
+    }
+
+    .event-title {
+        width: 94%;
+        overflow: hidden;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .event-content{
+        width: 94%;  
+        overflow: hidden;
+        white-space: pre-wrap;
+        word-wrap: break-word;  
+    } 
 }

@@ -7,6 +7,7 @@ import { getAllEvents } from '../../services/apiCalls';
 import { CreateEventCard } from '../../common/CreateEventCard/CreateEventCard';
 import { EventCard } from '../../common/EventCard/EventCard';
 import { jwtDecode } from 'jwt-decode';
+import banner2 from '../../assets/banner2.gif';
 
 export const Event = () => {
 
@@ -39,7 +40,7 @@ export const Event = () => {
     return (
         <div className="event-body">
             <div className='left-banner-event'>
-                <img src="../../src/assets/banner2.gif" alt="event" />
+                <img src={banner2} alt="event" />
             </div>
             <div className='center-event'>
                 <div className='create-event-modal'>
@@ -67,7 +68,7 @@ export const Event = () => {
                 </div>
             </div>
             <div className='right-banner-event'>
-                <img src="../../src/assets/banner2.gif" alt="event" />
+                <img src={banner2} alt="event" />
             </div>
         </div>
     )

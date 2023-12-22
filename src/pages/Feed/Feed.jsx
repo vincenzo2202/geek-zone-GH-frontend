@@ -8,6 +8,7 @@ import { getAllFeeds } from '../../services/apiCalls';
 import { FeedCard } from '../../common/FeedCard/FeedCard';
 import { jwtDecode } from 'jwt-decode';
 import { CreateFeedCard } from '../../common/CreateFeed/CreateFeedCard';
+import banner_english from '../../assets/banner_english.gif';
 
 export const Feed = () => {
     const rdxToken = useSelector(selectToken);
@@ -45,7 +46,7 @@ export const Feed = () => {
             <div className='feed-background'>
                 <div className='left-feed-banner'>
 
-                    <img className='content-left-banner' src='../../src/assets/banner_english.gif' alt='banner_english' />
+                    <img className='content-left-banner' src={banner_english}  alt='banner_english' />
 
                 </div>
                 <div className='center-feed'>
@@ -79,7 +80,7 @@ export const Feed = () => {
                 </div>
                 <div className='right-feed-banner'>
 
-                    <img className='content-right-banner' src='../../src/assets/banner_english.gif' alt='banner_english' />
+                    <img className='content-right-banner' src={banner_english} alt='banner_english' />
 
                 </div>
             </div>

@@ -55,13 +55,14 @@ body {
     align-items: center;
     transform: scale(0.5); 
     margin-top: -2.5em;
+    margin-right: -8em;
 
 }
 
 .right-banner-event {
     height: 100vh;
-    position: static;
-    left: 0;
+    position: static; 
+    margin-left: -8em;
     display: flex;
     justify-content: flex-start;
     align-items: center;
