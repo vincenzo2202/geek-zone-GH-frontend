@@ -55,6 +55,9 @@ export const Header = () => {
 
     return (
         <>
+        <div className='logo-header'>
+            <img className='logo-header' src='../../src/assets/logo5.png' alt='logo' />
+        </div>
 
             <div className='button-container' >
 
@@ -115,10 +118,7 @@ export const Header = () => {
                                 />
                             </>
                         )}
-
-
-
-
+ 
             </div> 
             <div className='navbar-bar'>
                 <label className={`menuButton ${isNavVisible ? 'checked' : ''}`} htmlFor="check" >

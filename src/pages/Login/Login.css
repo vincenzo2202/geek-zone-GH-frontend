@@ -76,7 +76,7 @@
   padding: 0.5em;
 }
 
-/* .animated-button-login {
+.animated-button-login {
   --clr-font-main: hsla(0 0% 20% / 100);
   --btn-bg-1: hsla(194 100% 69% / 1);
   --btn-bg-2: hsla(217 100% 56% / 1);
@@ -100,13 +100,13 @@
 }
 
 .animated-button-login:hover {
-  background-position: right top;
+  background-position: right top; 
 }
 
-.animated-button-login:is(:focus, :focus-visible, :active) {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
-} */
+.animated-button-login:active {
+ transform: scale(0.9);
+}
+ 
 
 @media (prefers-reduced-motion: reduce) {
   .animated-button-login {
