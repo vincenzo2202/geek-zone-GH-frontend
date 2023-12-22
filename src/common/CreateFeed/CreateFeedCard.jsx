@@ -116,11 +116,11 @@ export const CreateFeedCard = () => {
           />
           <CustomInput
             design={'input-create-feed-text'}
-            type={'content'}
-            name={'content'}
+            type={'textarea'}
+            name={'textarea'}
             placeholder={'Write your post here'}
             functionProp={functionHandler}
-            functionBlur={errorCheck}
+            functionBlur={errorCheck} 
           />
           <CustomInput
             design={'input-create-feed-photo'}

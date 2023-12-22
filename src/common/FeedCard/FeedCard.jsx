@@ -96,11 +96,15 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
             .catch(error => console.log(error));
     }
 
+    const goTO = () => {
+        navigate(`/userProfile/${user_id}`);
+    }
+
     return (
         <div className='card'>
             <div className="feed-card" key={feedId}>
                 <div className='top-banner'>
-                    <div className='user-info'>
+                    <div className='user-info' onClick={goTO}>
                         <img className="pic-avatar" src={userPhoto} alt={userPhoto} />
                         <div className="user-name">{userName}</div>
                         <div className="user-lastname">{userLast_name}</div>

@@ -11,7 +11,7 @@
 
 @media screen and (max-width: 700px) {
     .card {
-        width: 85vw; 
+        width: 85vw;
     }
 }
 
@@ -23,6 +23,7 @@
 .user-info {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .pic-avatar {
@@ -43,12 +44,24 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
+    text-align: left;
+    margin-left: 1em;
 }
 
 .feed-title,
 .feed-content {
     color: #666;
     margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border-radius: 0.5em;
+    text-align: left;
+    padding-left: 0.5em;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    white-space:  pre-wrap;
+    word-wrap: break-word;
+
 }
 
 .pic-feed {
@@ -66,7 +79,6 @@
     border-radius: 5px;
     cursor: pointer;
     width: 10em;
-
 }
 
 .comments {
@@ -76,10 +88,11 @@
     flex-direction: column;
     width: 100%;
     overflow: auto;
-    max-height: 30em;   
+    max-height: 30em;
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
-} 
+}
+
 .comment-card {
     margin-top: 0.5em;
     border-top: 1px solid #ccc;
@@ -92,7 +105,6 @@
     margin-bottom: 1em;
     border-radius: 10px;
     padding: 0.8em;
-    
 }
 
 .comment-content {
@@ -105,18 +117,17 @@
 .coment-owner-info {
     display: flex;
     align-items: center;
-
 }
 
 .input-comment {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;  
+    justify-content: space-between;
     position: sticky;
     top: 0;
     background-color: white;
-    padding-bottom: 0.5em; 
+    padding-bottom: 0.5em;
 }
 
 .input-create-comment {
@@ -141,31 +152,32 @@
     align-items: center;
 }
 
-.del { 
+.del {
     width: 1em;
     cursor: pointer;
     margin-right: 2em;
 }
 
-.top-banner{
+.top-banner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1em;
 }
 
-.delete-card{
+.delete-card {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 1em;
 }
 
-.like-card{
+.like-card {
     display: flex;
     justify-content: flex-start;
-    align-items: center; 
+    align-items: center;
 }
-.count-likes{
+
+.count-likes {
     margin-left: 0.3em;
 }

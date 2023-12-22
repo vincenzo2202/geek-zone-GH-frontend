@@ -1,9 +1,9 @@
- /* .inputs-card-modal {
+ .inputs-card-modal {
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
- } */
+ }
 
 
  .input-create-feed-title {
@@ -17,27 +17,27 @@
  }
 
  @media screen and (max-width: 700px) {
-    
-    .create-feed-box{
+
+     .create-feed-box {
          width: 85vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;  
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         
      }
  }
-
+ 
  .input-create-feed-text {
-     width: 100%;
-     height: 6em;
-     border-radius: 5px;
-     border: 1px solid #ccc;
-     padding: 5px;
-     margin-bottom: 10px;
-     font-size: 16px;
-     word-wrap: break-word;
-     resize: vertical;
-     overflow: auto;
-     white-space: pre-wrap;
+    width: 100%; 
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    resize: vertical;
+    height: auto;
+    overflow: auto;
+    white-space: pre-wrap; 
  }
 
  .button-open-modal {
@@ -61,7 +61,7 @@
 
  .input-create-feed-text,
  .input-create-feed-title,
- .input-create-feed-photo{
+ .input-create-feed-photo {
      width: 100%;
      height: 1em;
      border-radius: 5px;

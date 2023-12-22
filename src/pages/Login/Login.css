@@ -53,7 +53,8 @@
   }
 
   .input-card-login { 
-    height: 28vh;
+    height: 7em;
+    padding-bottom: 3em;
   }
 
   .animated-button-login {
@@ -63,6 +64,7 @@
     transform: scale(3);
     margin-top: 3em;
     margin-bottom: 0.5em;
+    position: relative;
   }
 
 
