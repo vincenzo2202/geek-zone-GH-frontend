@@ -121,7 +121,7 @@ console.log(feed);
                                             <CreateFeedCard />
                                         </div>
                                     </div>
-                                    <div className='line-div'>Here are all your the posts </div>
+                                    <div className='line-div'>View All Posts </div>
                                     <div className="feed-container">
                                         {
                                             [...feed].reverse().map((feed, index) => (

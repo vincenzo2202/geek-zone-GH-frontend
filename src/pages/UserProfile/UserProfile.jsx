@@ -142,7 +142,7 @@ export const UserProfile = () => {
                                 <div className="user-feed">
                                     <div className="fixed-top-center">
 
-                                        <div className='line-div'>Here are all your the posts </div>
+                                        <div className='line-div'>View All Posts</div>
                                         <div className="feed-container">
                                             {
                                                 user.feeds && user.feeds.reverse().map((feed, index) => (
