@@ -38,12 +38,13 @@ body {
 }
 
 .logo-header {
-    width: 5em;
-    margin-left: 1em;
-    top: 0.1em;
-    position: fixed;
-    z-index: 110;
-    cursor: pointer;
+    width:  10vh;
+    height: auto;
+    margin-left: 1em;   
+    z-index: 115;
+    cursor: pointer;  
+    position: absolute;  
+    top: 0.2em;
 }
 
 @media screen and (max-width: 699px) {
