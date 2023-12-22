@@ -44,9 +44,9 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         setComment(response.data.data[0].comment);
                     })
                 .catch(error => console.log(error));
-
         }
     }, [commentInput])
+ 
 
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
@@ -100,6 +100,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     const goTO = () => {
         navigate(`/userProfile/${user_id}`);
     }
+ 
 
     return (
         <div className='card'>
@@ -111,7 +112,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
                         <div className="user-lastname">{userLast_name}</div>
                     </div>
 
-                    <div className='delete-card'>
+                    <div className='delete-card'  >
                         {
                             parseInt(tokenDecoded.sub, 10) == user_id &&
                             <DeleteLink

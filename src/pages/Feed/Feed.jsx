@@ -36,6 +36,7 @@ export const Feed = () => {
     const handleDeleteFeed = (id) => {
         setFeed(prevFeed => prevFeed.filter(feedItem => feedItem.id !== id));
         setStop(!stop)
+        console.log('actualizado');
     }
 
     return (
@@ -53,7 +54,8 @@ export const Feed = () => {
                     <div className='line-div'>Here are all the posts </div>
                     {feed.length > 0
                         ? (
-                            <div className="feed-container" onClick={handleDeleteFeed}>
+                            // esto no sive el onclick
+                            <div className="feed-container"  > 
                                 {[...feed].reverse().map(feedItem => (
                                     <FeedCard
                                         key={feedItem.id}
