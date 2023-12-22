@@ -55,11 +55,12 @@ body {
 
 @media screen and (max-width: 699px) {
     .users-body {
-        margin-top: 4em;
+        margin-top: 4em; 
     }
 
     .container-all-users {
         margin-top: 6em;
+        height: 100vh;
     }
 
     .button-filter {

@@ -116,8 +116,8 @@ export const CreateFeedCard = () => {
           />
           <CustomInput
             design={'input-create-feed-text'}
-            type={'textarea'}
-            name={'textarea'}
+            type={'content'}
+            name={'content'}
             placeholder={'Write your post here'}
             functionProp={functionHandler}
             functionBlur={errorCheck} 

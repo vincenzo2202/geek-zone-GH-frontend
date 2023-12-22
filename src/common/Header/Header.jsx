@@ -14,7 +14,7 @@ export const Header = () => {
     const navigate = useNavigate();
 
     const [decodedToken, setDecodedToken] = useState(null);
-   
+
 
     useEffect(() => {
 
@@ -53,11 +53,19 @@ export const Header = () => {
         setNavVisible(false);
     }
 
+    const goTo = () => {
+        if (rdxToken) {
+            navigate("/feed")
+        } else {
+            navigate("/")
+        }
+    }
+
     return (
         <>
-        <div className='logo-header'>
-            <img className='logo-header' src='../../src/assets/logo5.png' alt='logo' />
-        </div>
+            <div className='logo-header' >
+                <img className='logo-header' src='../../src/assets/logo5.png' alt='logo' onClick={goTo} />
+            </div>
 
             <div className='button-container' >
 
@@ -118,11 +126,11 @@ export const Header = () => {
                                 />
                             </>
                         )}
- 
-            </div> 
+
+            </div>
             <div className='navbar-bar'>
                 <label className={`menuButton ${isNavVisible ? 'checked' : ''}`} htmlFor="check" >
-                    <input type="checkbox" id="check" onChange={handleCheckboxChange} checked={isNavVisible} onClick={() => setNavVisible(!isNavVisible)}/>
+                    <input type="checkbox" id="check" onChange={handleCheckboxChange} checked={isNavVisible} onClick={() => setNavVisible(!isNavVisible)} />
                     <span className="top"></span>
                     <span className="mid"></span>
                     <span className="bot"></span>
