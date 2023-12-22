@@ -36,7 +36,6 @@ export const Event = () => {
         setStop(!stop)
     }
 
-
     return (
         <div className="event-body">
             <div className='left-banner-event'>

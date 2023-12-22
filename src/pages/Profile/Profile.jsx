@@ -38,7 +38,7 @@ export const Profile = () => {
         } else {
             navigate("/login");
         }
-    }, [rdxToken, stop, navigate]);
+    }, [ stop]);
 
     useEffect(() => {
         if (rdxToken) {
@@ -55,7 +55,7 @@ export const Profile = () => {
         } else {
             navigate("/");
         }
-    }, []);
+    }, [stop]);
 
     let followers = [];
     let followings = [];
@@ -78,6 +78,7 @@ export const Profile = () => {
 
     const handleDeleteFeed = (id) => {
         setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
+        setStop(!stop)
     } 
 console.log(feed);
     return (
