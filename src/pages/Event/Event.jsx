@@ -16,7 +16,8 @@ export const Event = () => {
     const dispatch = useDispatch();
     const [event, setEvent] = useState([])
     const [role, setRole] = useState('');
-
+    const [stop , setStop] = useState(false)
+    
     useEffect(() => {
         if (rdxToken) {
             getAllEvents(rdxToken)
@@ -28,7 +29,13 @@ export const Event = () => {
         } else {
             navigate("/");
         }
-    }, [rdxToken, navigate]);
+    }, [stop]);
+ 
+
+    const refreshDelete = () => {
+        setStop(!stop)
+    }
+
 
     return (
         <div className="event-body">
@@ -55,6 +62,7 @@ export const Event = () => {
                                 time={event.event_time}
                                 creator={event.user_id}
                                 role={role}
+                                onDeleteEvent={refreshDelete}
                             />
                         ))}
                 </div>

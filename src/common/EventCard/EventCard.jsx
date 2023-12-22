@@ -8,7 +8,7 @@ import { LinkButton } from '../LinkButton/LinkButton';
 import { useEffect, useState } from 'react';
 import { Button, Modal } from 'antd';
 
-export const EventCard = ({ eventId, title, content, date, time, creator, role }) => {
+export const EventCard = ({ eventId, title, content, date, time, creator, role, onDeleteEvent }) => {
 
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken); 
@@ -97,7 +97,7 @@ export const EventCard = ({ eventId, title, content, date, time, creator, role }
     
     return (
         <div className='card-event'> 
-            <div className='delete-card-event'>
+            <div className='delete-card-event' onClick={onDeleteEvent}>
                 {
                     tokenDecoded.role === "admin" || tokenDecoded.role === "super_admin"  &&
                     <div>
@@ -106,6 +106,7 @@ export const EventCard = ({ eventId, title, content, date, time, creator, role }
                             title={<div className="button-delete-comment" >
                                 <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
                             </div>}
+                           
                         />
                     </div>
                 }
