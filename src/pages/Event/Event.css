@@ -15,7 +15,7 @@ body{
     margin: 0;
     padding: 0;
     color: black;
-    background-color: beige;
+    background-color: #F5F5F5;
     margin-top: 1.5em;
     padding-top: 16px;
     font-size: 1.2em;      
@@ -26,7 +26,7 @@ body{
     flex-direction: column;   
     align-items: center;  
     width: 100vw;
-    background-color: beige;
+    background-color: #F5F5F5;
 }
  
 .create-event-modal{
@@ -47,7 +47,7 @@ body{
     flex-direction: column;   
     align-items: center;  
     width: 100vw;
-    background-color: beige;
+    background-color: #F5F5F5;
 }
 
 .left-banner-event{

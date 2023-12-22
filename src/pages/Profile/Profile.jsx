@@ -116,13 +116,12 @@ console.log(feed);
                                     </div>
                                 </div>
                                 <div className="my-feed">
-                                    <div className="fixed-top-center">
-                                        <h1 className="hi-text">Hi, {user.name}!</h1>
+                                    <div className="fixed-top-center"> 
                                         <div className='create-feed-card'>
                                             <CreateFeedCard />
                                         </div>
                                     </div>
-                                    <div className='line-div'>View All Posts </div>
+                                    <div className='line-div'> </div>
                                     <div className="feed-container">
                                         {
                                             [...feed].reverse().map((feed, index) => (

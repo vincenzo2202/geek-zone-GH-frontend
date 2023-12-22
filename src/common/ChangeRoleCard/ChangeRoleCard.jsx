@@ -111,7 +111,7 @@ export const ChangeRoleCard = ({ role, onClick, userId }) => {
             </div>
 
             <div className='delete-user-profile'>
-                <button className='button-delete-profile' onClick={() => deletePofile()}> Delete Profile  
+                <button className='button-delete-profile' onClick={() => deletePofile()}> Delete User  
                 {contextHolder}
                 </button>
             </div>

@@ -13,8 +13,6 @@ export const CardUser = ({name,last_name, photo, phone_number, email, userid, ci
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-
-
     const goTOUserProfile = (id) => { 
         dispatch(profile(id));
         navigate(`/userProfile/${id}`);

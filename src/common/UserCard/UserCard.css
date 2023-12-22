@@ -6,7 +6,7 @@
     height: 330px;
     margin: 0 auto;
     border-radius: 8px;
-    background-color: #f3f3f4;
+    background-color: #c9c7c7;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     margin-top: 3em;
@@ -43,7 +43,7 @@
 
 .name,
 .last_name{
-    color: rgb(24, 121, 255);
+    color:#E92F2F;
     text-shadow:        1px 1px 1px #000000;
 }
 

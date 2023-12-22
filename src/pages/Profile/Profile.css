@@ -23,7 +23,7 @@ body {
   border-radius: 10px;
   /* margin-top: 100px; */
   padding-top: 16px;
-  background-color: beige; 
+  background-color: #F5F5F5
 }
  
 .left-banner-profile{ 
@@ -85,7 +85,12 @@ img{
   
 }
 
-
+.line-div{
+  border-bottom: 0.05em solid #949292;
+  width: 100%;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
  
  .class-button {
   display: flex;
@@ -156,7 +161,7 @@ img{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: -13em;
+    margin-top: -18em;
     height: 100vh;
     padding: 1em;
   }
@@ -209,15 +214,11 @@ img{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
-
-   
-} 
-
+  } 
+}  
   
 .my-profile-info-text {
-  font-size: 1em; 
-
+  font-size: 1em;  
 }
 
 .user-name-title{

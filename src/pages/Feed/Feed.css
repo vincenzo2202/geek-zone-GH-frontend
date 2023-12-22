@@ -4,32 +4,29 @@ body{
     background-color: rgb(221, 217, 217);
     font-size: 1em;
     overflow-y:scroll;
-  }
+}
 
 .feed-body{ 
     background-color: rgb(221, 217, 217);
     display: flex; 
     justify-content: center;
     align-items: center;  
-    color: black;  
-    
+    color: black;   
 }
 
 .feed-background{ 
     display: flex;
     flex-direction: row;    
-    justify-content: center;  
-
+    justify-content: center;   
     width: 100vw;
-    background-color: beige;
+    background-color: #F5F5F5;
     margin-top: 2em;
     padding-top: 16px;
 }
 
 .create-feed-card{
     padding: 1em; 
-    width: 40em;
-    height: 6em;
+    width: 40em; 
     border: 1px solid #ccc;
     background-color: white;
     border-radius: 5px;
@@ -64,22 +61,20 @@ body{
     width: 100%;
     margin-left: -10em;
     margin-top: -2.5em;
-}
- 
+} 
 
 @media screen and (max-width: 700px) {
     body{
        font-size: 2.5em;
-       z-index: 1;
-
+       z-index: 1; 
     }
-    .create-feed-card{
-        display: flex;
 
+    .create-feed-card{
+        display: flex; 
         width: 100vw;
         justify-content: center;
-        align-items: center;
-         margin-left: -1em;
+        align-items: center; 
+        margin-left: -1em;
     }
     
     .feed-background{

@@ -22,22 +22,21 @@
          width: 85vw;
          display: flex;
          justify-content: center;
-         align-items: center;
-         
+         align-items: center;  
      }
  }
- 
+
  .input-create-feed-text {
-    width: 100%; 
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    resize: vertical;
-    height: auto;
-    overflow: auto;
-    white-space: pre-wrap; 
+     width: 100%;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+     padding: 5px;
+     margin-bottom: 10px;
+     font-size: 16px;
+     resize: vertical;
+     height: auto;
+     overflow: auto;
+     white-space: pre-wrap;
  }
 
  .button-open-modal {
@@ -50,7 +49,7 @@
      width: 20em;
      height: 2em;
      cursor: text;
-     font-size: 1.5em;
+     font-size: 1.3em;
      display: flex;
      padding-left: 1em;
  }
