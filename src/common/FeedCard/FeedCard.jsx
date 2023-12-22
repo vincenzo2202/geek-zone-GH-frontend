@@ -92,6 +92,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
         deleteFeed(rdxToken, feedId)
             .then(response => {
                 console.log(response); 
+                onDeleteFeed()
 
             })
             .catch(error => console.log(error));
@@ -99,8 +100,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
   
     const goTO = () => {
         navigate(`/userProfile/${user_id}`);
-    }
- 
+    } 
 
     return (
         <div className='card'>

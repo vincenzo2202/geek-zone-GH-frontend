@@ -33,6 +33,7 @@ export const Feed = () => {
     }, [stop]);
 
     console.log(stop);
+    
     const handleDeleteFeed = (id) => {
         setFeed(prevFeed => prevFeed.filter(feedItem => feedItem.id !== id));
         setStop(!stop)
@@ -53,8 +54,7 @@ export const Feed = () => {
                     </div>
                     <div className='line-div'>Here are all the posts </div>
                     {feed.length > 0
-                        ? (
-                            // esto no sive el onclick
+                        ? ( 
                             <div className="feed-container"  > 
                                 {[...feed].reverse().map(feedItem => (
                                     <FeedCard
