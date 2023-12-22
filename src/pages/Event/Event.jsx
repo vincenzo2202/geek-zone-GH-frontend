@@ -48,7 +48,7 @@ export const Event = () => {
                         <CreateEventCard />
                     }
                 </div>
-                <div className='line-div'>Here are all the events </div>
+                <div className='line-div-events'> </div>
                 <div className='event-background'>
                     {
                         [...event].reverse().map((event, index) => (

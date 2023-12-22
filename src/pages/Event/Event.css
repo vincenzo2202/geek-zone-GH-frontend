@@ -1,15 +1,15 @@
-body{
+body {
     height: 100%;
     width: 100vw;
     background-color: rgb(221, 217, 217);
-  }
+}
 
-.event-body{
+.event-body {
     height: 100vh;
     width: 100vw;
 
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
     justify-content: center;
     padding-top: 2em;
     margin: 0;
@@ -18,80 +18,86 @@ body{
     background-color: #F5F5F5;
     margin-top: 1.5em;
     padding-top: 16px;
-    font-size: 1.2em;      
+    font-size: 1.2em;
 }
 
-.event-background{
-    display: flex;
-    flex-direction: column;   
-    align-items: center;  
-    width: 100vw;
+.event-background { 
+    flex-direction: column;
+    align-items: center; 
     background-color: #F5F5F5;
 }
- 
-.create-event-modal{
+
+.create-event-modal {
     width: 40em;
     border: 1px solid #ccc;
     background-color: white;
     border-radius: 5px;
     margin: 10px;
-    
+
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
 }
 
-.center-event{
+.center-event {
     display: flex;
-    flex-direction: column;   
-    align-items: center;  
-    width: 100vw;
-    background-color: #F5F5F5;
+    flex-direction: column; 
+    background-color: #F5F5F5; 
+    margin-top: 3em;
 }
 
-.left-banner-event{
-    height: 100vh; 
-    position: sticky;  
+.left-banner-event {
+    height: 100vh;
+    position: static;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     transform: scale(0.5); 
-    width: 100%;
-    margin-right: -28em;
     margin-top: -2.5em;
 
 }
 
-.right-banner-event{
-    height: 100vh; 
-    position: sticky;  
+.right-banner-event {
+    height: 100vh;
+    position: static;
     left: 0;
-    display: flex; 
+    display: flex;
     justify-content: flex-start;
-    align-items: center; 
-    transform: scale(0.5);
-    width: 100%;
-    margin-left: -28em;
+    align-items: center;
+    transform: scale(0.5);  
     margin-top: -2.5em;
+}
+
+.line-div-events {
+    border-bottom: 0.05em solid #949292;
+    width: 40em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
 }
 
 
 @media screen and (max-width: 600px) {
-    .create-event-modal{
-        width: 100vw;
+    .create-event-modal { 
         font-size: 1.3em;
+        transform: scale(0.7);
     }
 
-    .event-body{
-        margin-top: 2.5em; 
+    .center-event {
+        margin-top: 0;
+        display: flex;
+        align-items: center; 
+    }
+  
+    .event-body {
+        margin-top: 2.5em;
     }
 
-    .left-banner-event{
-      display: none;
+    .left-banner-event {
+        display: none;
     }
 
-    .right-banner-event{
+    .right-banner-event {
         display: none;
     }
 

@@ -6,16 +6,9 @@
     margin: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
-
-@media screen and (max-width: 700px) {
-    .card-event{
-        width: 85vw; 
-        font-size: 1.2em;
-    }
-}
-
+ 
 .event-card {
-    padding: 20px;
+    padding: 1em;
 }
 
 .event-info {
@@ -29,26 +22,57 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
+    display: flex;
 }
 
 .event-title {
     color: #333;
     margin-bottom: 10px;
+    background-color: #F1F1F1;
+    width: 100%;
+    border-radius: 0.3em;
 }
 
 .event-content {
     color: #666;
     margin-bottom: 10px;
+    background-color: #F1F1F1;
+    width: 97.6%;
+    border-radius: 0.3em;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5em;
+
 }
 
 .event-date {
     color: #666;
     margin-bottom: 10px;
+    background-color: #F1F1F1;
+    width: 100%;
+    border-radius: 0.3em;
 }
 
 .event-time {
     color: #666;
     margin-bottom: 10px;
+    background-color: #F1F1F1;
+    width: 100%;
+    border-radius: 0.3em;
+}
+
+.event-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-left: -0.5em;
 }
 
 .delete-card-event {
@@ -64,8 +88,8 @@
     outline: 0;
     border: 0;
     cursor: pointer;
-    will-change: box-shadow,transform;
-    background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100% );
+    will-change: box-shadow, transform;
+    background: radial-gradient(100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100%);
     box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%), 0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%), inset 0px -0.01em 0px rgb(58 65 111 / 50%);
     padding: 0 2em;
     border-radius: 0.3em;
@@ -74,19 +98,19 @@
     text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
     transition: box-shadow 0.15s ease, transform 0.15s ease;
     margin-bottom: 1em;
-  }
-  
-  .join-event-button:hover {
+}
+
+.join-event-button:hover {
     box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #3c4fe0;
     transform: translateY(-0.1em);
-  }
-  
-  .join-event-button:active {
+}
+
+.join-event-button:active {
     box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
     transform: translateY(0em);
-  }
+}
 
-.button-participants{
+.button-participants {
     background-color: transparent;
     color: black;
     display: flex;
@@ -97,15 +121,29 @@
     user-select: none;
 }
 
-.button-participants:hover{
+.button-participants:hover {
     color: black;
     background-color: transparent;
     border: none;
     box-shadow: none;
 }
 
-.button-participants:focus{ 
+.button-participants:focus {
     outline: none;
 }
 
+@media screen and (max-width: 700px) {
+    .card-event {
+        width: 85vw;
+        font-size: 1.2em;
+    } 
  
+    .event-box {  
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;  
+        
+    }
+
+ 
+}

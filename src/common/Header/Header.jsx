@@ -6,6 +6,7 @@ import { logout, selectToken } from '../../pages/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import logo5 from '../../assets/logo5.png';
 
 export const Header = () => {
 
@@ -64,7 +65,7 @@ export const Header = () => {
     return (
         <>
             <div className='logo-header' >
-                <img className='logo-header' src='../../src/assets/logo5.png' alt='logo' onClick={goTo} />
+                <img className='logo-header' src={logo5} alt='logo' onClick={goTo} />
             </div>
 
             <div className='button-container' >

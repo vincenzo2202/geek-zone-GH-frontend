@@ -113,14 +113,16 @@ export const EventCard = ({ eventId, title, content, date, time, creator, role, 
             </div> 
             <div className="event-card" >
                 <div className='event-info' key={eventId}>
-                    <div className='desc'>Title: </div>
-                    <div className="event-title">{title}</div>
-                    <div className='desc'>Content: </div>
-                    <div className="event-content">{content}</div>
+                    <div className='event-box'> 
                     <div className='desc'>Date: </div>
                     <div className="event-date">{date}</div>
                     <div className='desc'>Time: </div>
                     <div className="event-time">{time}</div>
+                    </div> 
+                    <div className='desc'>Title: </div>
+                    <div className="event-title">{title}</div>
+                    <div className='desc'>Content: </div>
+                    <div className="event-content">{content}</div>
 
                 </div>
             </div>
