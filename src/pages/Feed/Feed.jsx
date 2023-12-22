@@ -16,29 +16,28 @@ export const Feed = () => {
     const tokenDecoded = jwtDecode(rdxToken);
 
     const [feed, setFeed] = useState([])
+    const [stop, setStop] = useState(false)
 
     useEffect(() => {
-        if (rdxToken && tokenDecoded.exp > Date.now() / 1000) {
-            getAllFeeds(rdxToken)
-                .then(
-                    response => {
-                        if (response.data.data.length > 0) {
-                            setFeed(response.data.data);
-                        } else {
-                            setFeed([]);
-                        }
-                    })
-                .catch(error => console.log(error));
-        } else {
-            navigate("/");
-            dispatch(logout());
-        }
-    }, []); // aqui si solo sigo al feed entra en bucle infinito 
+        getAllFeeds(rdxToken)
+            .then(
+                response => {
+                    if (response.data.data.length > 0) {
+                        setFeed(response.data.data);
+                        setStop(true)
+                    } else {
+                        setFeed([]);
+                    }
+                })
+            .catch(error => console.log(error));
+    }, [stop]);
 
+    console.log(stop);
     const handleDeleteFeed = (id) => {
-        setFeed(CreateFeedCard.id !== id);
-
+        setFeed(prevFeed => prevFeed.filter(feedItem => feedItem.id !== id));
+        setStop(!stop)
     }
+
     return (
         <div className="feed-body">
             <div className='feed-background'>
@@ -54,7 +53,7 @@ export const Feed = () => {
                     <div className='line-div'>Here are all the posts </div>
                     {feed.length > 0
                         ? (
-                            <div className="feed-container">
+                            <div className="feed-container" onClick={handleDeleteFeed}>
                                 {[...feed].reverse().map(feedItem => (
                                     <FeedCard
                                         key={feedItem.id}

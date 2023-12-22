@@ -12,6 +12,7 @@ export const Header = () => {
     const dispatch = useDispatch();
     const rdxToken = useSelector(selectToken);
     const navigate = useNavigate();
+    const tokenDecoded = jwtDecode(rdxToken);
 
     const [decodedToken, setDecodedToken] = useState(null);
 
@@ -19,21 +20,28 @@ export const Header = () => {
     useEffect(() => {
 
         if (rdxToken !== null) {
-            try {
-                const decoded = jwtDecode(rdxToken);
-                setDecodedToken(decoded);
-                if (decoded.exp < Date.now() / 1000) {
-                    dispatch(logout());
-                    navigate("/");
+            if (rdxToken && tokenDecoded.exp > Date.now() / 1000) {
+                try {
+                    const decoded = jwtDecode(rdxToken);
+                    setDecodedToken(decoded);
+                    if (decoded.exp < Date.now() / 1000) {
+                        dispatch(logout());
+                        navigate("/");
+                    }
+
+                } catch (error) {
+                    console.error("Error decoding token:", error);
                 }
 
-            } catch (error) {
-                console.error("Error decoding token:", error);
+            } else {
+                navigate("/");
+                dispatch(logout());
             }
         } else {
             navigate("/");
             dispatch(logout());
         }
+
     }, [rdxToken]);
 
     const logOutMe = () => {

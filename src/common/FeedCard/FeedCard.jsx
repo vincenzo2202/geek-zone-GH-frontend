@@ -23,8 +23,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
         feed_id: feedId,
         comment: '',
     });
-    const [commentInputError, setCommentInputError] = useState({});
-    // console.log(user_id);
+    const [commentInputError, setCommentInputError] = useState({}); 
     const toggleCollapse = () => {
         if (collapsed) {
             getCommentsByFeedID(rdxToken, feedId)
@@ -84,6 +83,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
         deleteComment(rdxToken, id)
             .then(response => {
                 setComment(delComment => delComment.filter(comment => comment.id !== id));
+
             })
             .catch(error => console.log(error));
     }
@@ -91,11 +91,12 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     const deletedFeed = (feedId) => {
         deleteFeed(rdxToken, feedId)
             .then(response => {
-                console.log(response);
+                console.log(response); 
+
             })
             .catch(error => console.log(error));
-    }
-
+    } 
+  
     const goTO = () => {
         navigate(`/userProfile/${user_id}`);
     }
