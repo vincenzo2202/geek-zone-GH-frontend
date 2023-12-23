@@ -1,17 +1,17 @@
 import axios from "axios";
 
-let route = "http://localhost:8000/api";
+let route = "https://geekzone.zeabur.app";
 
 export const registerUser = async (body) => {
-    return await axios.post(`${route}/register`, body);
+    return await axios.post(`${route}/api/register`, body);
 }
 
 export const logUser = async (body) => {
-    return await axios.post(`${route}/login`, body);
+    return await axios.post(`${route}/api/login`, body);
 }
 
 export const getProfile = async (token) => {
-    return await axios.get(`${route}/profile`, {
+    return await axios.get(`${route}/api/profile`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -19,7 +19,7 @@ export const getProfile = async (token) => {
 }
 
 export const logout = async (token, body) => {    
-    return await axios.post(`${route}/logout`, body, {
+    return await axios.post(`${route}/api/api/logout`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -27,7 +27,7 @@ export const logout = async (token, body) => {
 }
 
 export const getAllFeeds = async (token) => {    
-    return await axios.get(`${route}/feeds`, {
+    return await axios.get(`${route}/api/feeds`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -35,7 +35,7 @@ export const getAllFeeds = async (token) => {
 }
 
 export const getMyFeed = async (token) => {    
-    return await axios.get(`${route}/feeds/profile`, {
+    return await axios.get(`${route}/api/feeds/profile`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -43,7 +43,7 @@ export const getMyFeed = async (token) => {
 }
 
 export const getCommentsByFeedID = async (token,key) => {    
-    return await axios.get(`${route}/comments/${key}`, {
+    return await axios.get(`${route}/api/comments/${key}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -51,7 +51,7 @@ export const getCommentsByFeedID = async (token,key) => {
 }
 
 export const getAllEvents = async (token ) => {    
-    return await axios.get(`${route}/events`, {
+    return await axios.get(`${route}/api/events`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -59,7 +59,7 @@ export const getAllEvents = async (token ) => {
 }
 
 export const getAllUsers = async (token ) => {    
-    return await axios.get(`${route}/allUsers`, {
+    return await axios.get(`${route}/api/allUsers`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -67,7 +67,7 @@ export const getAllUsers = async (token ) => {
 }
 
 export const getMyFollowers= async (token ) => {    
-    return await axios.get(`${route}/followers`, {
+    return await axios.get(`${route}/api/followers`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -75,7 +75,7 @@ export const getMyFollowers= async (token ) => {
 }
 
 export const getMyFollowings= async (token ) => {    
-    return await axios.get(`${route}/followings`, {
+    return await axios.get(`${route}/api/followings`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -83,7 +83,7 @@ export const getMyFollowings= async (token ) => {
 }
 
 export const updateProfile = async ( body,token) => {    
-    return await axios.put(`${route}/profile`, body, {
+    return await axios.put(`${route}/api/profile`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -91,7 +91,7 @@ export const updateProfile = async ( body,token) => {
 }
 
 export const createComment = async (token, body) => {    
-    return await axios.post(`${route}/comments`, body, {
+    return await axios.post(`${route}/api/comments`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -99,7 +99,7 @@ export const createComment = async (token, body) => {
 }
 
 export const deleteComment = async (token, id) => {    
-    return await axios.delete(`${route}/comments/${id}`, {
+    return await axios.delete(`${route}/api/comments/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -107,7 +107,7 @@ export const deleteComment = async (token, id) => {
 }
 
 export const deleteFeed = async (token, id) => {    
-    return await axios.delete(`${route}/deleteFeed/${id}`, {
+    return await axios.delete(`${route}/api/deleteFeed/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -115,7 +115,7 @@ export const deleteFeed = async (token, id) => {
 }
 
 export const createFeed = async (token, body) => {    
-    return await axios.post(`${route}/createFeed`, body, {
+    return await axios.post(`${route}/api/createFeed`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -123,7 +123,7 @@ export const createFeed = async (token, body) => {
 }
 
 export const createEvent = async (token, body) => {    
-    return await axios.post(`${route}/events/create`, body, {
+    return await axios.post(`${route}/api/events/create`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -131,7 +131,7 @@ export const createEvent = async (token, body) => {
 }
 
 export const getUserProfile = async (token,id) => {
-    return await axios.get(`${route}/user/${id}`, {
+    return await axios.get(`${route}/api/user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -139,7 +139,7 @@ export const getUserProfile = async (token,id) => {
 }
 
 export const follow = async (token, body) => {    
-    return await axios.post(`${route}/followers`,{ following_id: body}, {
+    return await axios.post(`${route}/api/followers`,{ following_id: body}, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -147,7 +147,7 @@ export const follow = async (token, body) => {
 }
 
 export const unfollow = async (token, body) => {    
-    return await axios.delete(`${route}/followers/${body}`, {
+    return await axios.delete(`${route}/api/followers/${body}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -155,7 +155,7 @@ export const unfollow = async (token, body) => {
 }
 
 export const getFollowersById = async (token,id) => {
-    return await axios.get(`${route}/followers/${id}`, {
+    return await axios.get(`${route}/api/followers/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -163,7 +163,7 @@ export const getFollowersById = async (token,id) => {
 }
 
 export const likeFeed = async (token, body) => {    
-    return await axios.post(`${route}/like`,{feed_id: body}, {
+    return await axios.post(`${route}/api/like`,{feed_id: body}, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -171,7 +171,7 @@ export const likeFeed = async (token, body) => {
 }
 
 export const unlikedFeed = async (token, body) => {    
-    return await axios.delete(`${route}/like/${body}`, {
+    return await axios.delete(`${route}/api/like/${body}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -179,7 +179,7 @@ export const unlikedFeed = async (token, body) => {
 }
 
 export const getFeedsByUserId = async (token,id) => {
-    return await axios.get(`${route}/feeds/${id}`, {
+    return await axios.get(`${route}/api/feeds/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -187,7 +187,7 @@ export const getFeedsByUserId = async (token,id) => {
 }
 
 export const deleteEvent = async (token, id) => {    
-    return await axios.delete(`${route}/events/${id}`, {
+    return await axios.delete(`${route}/api/events/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -196,7 +196,7 @@ export const deleteEvent = async (token, id) => {
   
 
 export const changeRoleCall = async (token, body) => {    
-    return await axios.put(`${route}/changeRole`,body, {
+    return await axios.put(`${route}/api/changeRole`,body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -204,7 +204,7 @@ export const changeRoleCall = async (token, body) => {
 }
 
 export const joinEvent = async (token, body) => {
-    return await axios.post(`${route}/event_user`,{event_id: body}, {
+    return await axios.post(`${route}/api/event_user`,{event_id: body}, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -212,7 +212,7 @@ export const joinEvent = async (token, body) => {
 }
 
 export const unjoinEvent = async (token, id) => {    
-    return await axios.delete(`${route}/event_user/${id}`, {
+    return await axios.delete(`${route}/api/event_user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -220,7 +220,7 @@ export const unjoinEvent = async (token, id) => {
 }
 
 export const getAllJoinedEvents = async (token,id) => {
-    return await axios.get(`${route}/event_user/${id}`, {
+    return await axios.get(`${route}/api/event_user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -228,7 +228,7 @@ export const getAllJoinedEvents = async (token,id) => {
 }
 
 export const deleteProfileBySuperAdmin = async (token,id) => { 
-    return await axios.delete(`${route}/deleteOneBySuper/${id}`, {
+    return await axios.delete(`${route}/api/deleteOneBySuper/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -237,7 +237,7 @@ export const deleteProfileBySuperAdmin = async (token,id) => {
 }
 
 export const getMyChats = async (token) => {    
-    return await axios.get(`${route}/mychats`, {
+    return await axios.get(`${route}/api/mychats`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -245,7 +245,7 @@ export const getMyChats = async (token) => {
 }
 
 export const createChat = async (token, body) => {
-    return await axios.post(`${route}/newchat`, body, {
+    return await axios.post(`${route}/api/newchat`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -253,7 +253,7 @@ export const createChat = async (token, body) => {
 }
 
 export const getChatById = async (token,id) => {
-    return await axios.get(`${route}/chats/${id}`, {
+    return await axios.get(`${route}/api/chats/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -261,7 +261,7 @@ export const getChatById = async (token,id) => {
 }
 
 export const sendMessage = async (token, body) => {
-    return await axios.post(`${route}/messages`, body, {
+    return await axios.post(`${route}/api/messages`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
