@@ -43,7 +43,8 @@ The project I am planning to develop is called Geek Zone, an innovative virtual 
 
 1.  <strong>Feed:</strong><br>
 The feed is a dynamic section that displays the most recent posts and updates from the users you follow. You can share educational content, leave comments, and view real-time contributions from other users.
-<div style="text-align: center;"><img src= "./src/assets/tatuadores2.gif" width="600"/></div>
+
+    ![gif1](gif1.gif) 
 
 2. <strong>Profile: </strong><br>
 The profile functionality allows users to manage and personalize their personal information. You can edit details such as your name, profile picture, address, and any other relevant information. You can also view your history of posts and activities.
@@ -56,7 +57,7 @@ Teachers can create educational events, such as lectures, seminars, or workshops
 
 5. <strong>Chat:</strong><br>
 The chat feature enables direct communication between users. You can send messages to other students or teachers, create discussion groups, and share information instantly. This functionality promotes collaboration and real-time interaction among members of the educational community.
-<div style="text-align: center;"><img src= "./src/assets/getallappointments.png" width="600"/></div>
+ ![gif4](gif6.gif)
  
 ## Installation Steps:
 
