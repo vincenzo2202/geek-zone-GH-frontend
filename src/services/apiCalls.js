@@ -1,15 +1,17 @@
 import axios from "axios";
 
+let route = "http://localhost:8000/api";
+
 export const registerUser = async (body) => {
-    return await axios.post(`http://localhost:8000/api/register`, body);
+    return await axios.post(`${route}/register`, body);
 }
 
 export const logUser = async (body) => {
-    return await axios.post(`http://localhost:8000/api/login`, body);
+    return await axios.post(`${route}/login`, body);
 }
 
 export const getProfile = async (token) => {
-    return await axios.get(`http://localhost:8000/api/profile`, {
+    return await axios.get(`${route}/profile`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -17,7 +19,7 @@ export const getProfile = async (token) => {
 }
 
 export const logout = async (token, body) => {    
-    return await axios.post(`http://localhost:8000/api/logout`, body, {
+    return await axios.post(`${route}/logout`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -25,7 +27,7 @@ export const logout = async (token, body) => {
 }
 
 export const getAllFeeds = async (token) => {    
-    return await axios.get(`http://localhost:8000/api/feeds`, {
+    return await axios.get(`${route}/feeds`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -33,7 +35,7 @@ export const getAllFeeds = async (token) => {
 }
 
 export const getMyFeed = async (token) => {    
-    return await axios.get(`http://localhost:8000/api/feeds/profile`, {
+    return await axios.get(`${route}/feeds/profile`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -41,7 +43,7 @@ export const getMyFeed = async (token) => {
 }
 
 export const getCommentsByFeedID = async (token,key) => {    
-    return await axios.get(`http://localhost:8000/api/comments/${key}`, {
+    return await axios.get(`${route}/comments/${key}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -49,7 +51,7 @@ export const getCommentsByFeedID = async (token,key) => {
 }
 
 export const getAllEvents = async (token ) => {    
-    return await axios.get(`http://localhost:8000/api/events`, {
+    return await axios.get(`${route}/events`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -57,7 +59,7 @@ export const getAllEvents = async (token ) => {
 }
 
 export const getAllUsers = async (token ) => {    
-    return await axios.get(`http://localhost:8000/api/allUsers`, {
+    return await axios.get(`${route}/allUsers`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -65,7 +67,7 @@ export const getAllUsers = async (token ) => {
 }
 
 export const getMyFollowers= async (token ) => {    
-    return await axios.get(`http://localhost:8000/api/followers`, {
+    return await axios.get(`${route}/followers`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -73,7 +75,7 @@ export const getMyFollowers= async (token ) => {
 }
 
 export const getMyFollowings= async (token ) => {    
-    return await axios.get(`http://localhost:8000/api/followings`, {
+    return await axios.get(`${route}/followings`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -81,7 +83,7 @@ export const getMyFollowings= async (token ) => {
 }
 
 export const updateProfile = async ( body,token) => {    
-    return await axios.put(`http://localhost:8000/api/profile`, body, {
+    return await axios.put(`${route}/profile`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -89,7 +91,7 @@ export const updateProfile = async ( body,token) => {
 }
 
 export const createComment = async (token, body) => {    
-    return await axios.post(`http://localhost:8000/api/comments`, body, {
+    return await axios.post(`${route}/comments`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -97,7 +99,7 @@ export const createComment = async (token, body) => {
 }
 
 export const deleteComment = async (token, id) => {    
-    return await axios.delete(`http://localhost:8000/api/comments/${id}`, {
+    return await axios.delete(`${route}/comments/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -105,7 +107,7 @@ export const deleteComment = async (token, id) => {
 }
 
 export const deleteFeed = async (token, id) => {    
-    return await axios.delete(`http://localhost:8000/api/deleteFeed/${id}`, {
+    return await axios.delete(`${route}/deleteFeed/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -113,7 +115,7 @@ export const deleteFeed = async (token, id) => {
 }
 
 export const createFeed = async (token, body) => {    
-    return await axios.post(`http://localhost:8000/api/createFeed`, body, {
+    return await axios.post(`${route}/createFeed`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -121,7 +123,7 @@ export const createFeed = async (token, body) => {
 }
 
 export const createEvent = async (token, body) => {    
-    return await axios.post(`http://localhost:8000/api/events/create`, body, {
+    return await axios.post(`${route}/events/create`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -129,7 +131,7 @@ export const createEvent = async (token, body) => {
 }
 
 export const getUserProfile = async (token,id) => {
-    return await axios.get(`http://localhost:8000/api/user/${id}`, {
+    return await axios.get(`${route}/user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -137,7 +139,7 @@ export const getUserProfile = async (token,id) => {
 }
 
 export const follow = async (token, body) => {    
-    return await axios.post(`http://localhost:8000/api/followers`,{ following_id: body}, {
+    return await axios.post(`${route}/followers`,{ following_id: body}, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -145,7 +147,7 @@ export const follow = async (token, body) => {
 }
 
 export const unfollow = async (token, body) => {    
-    return await axios.delete(`http://localhost:8000/api/followers/${body}`, {
+    return await axios.delete(`${route}/followers/${body}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -153,7 +155,7 @@ export const unfollow = async (token, body) => {
 }
 
 export const getFollowersById = async (token,id) => {
-    return await axios.get(`http://localhost:8000/api/followers/${id}`, {
+    return await axios.get(`${route}/followers/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -161,7 +163,7 @@ export const getFollowersById = async (token,id) => {
 }
 
 export const likeFeed = async (token, body) => {    
-    return await axios.post(`http://localhost:8000/api/like`,{feed_id: body}, {
+    return await axios.post(`${route}/like`,{feed_id: body}, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -169,7 +171,7 @@ export const likeFeed = async (token, body) => {
 }
 
 export const unlikedFeed = async (token, body) => {    
-    return await axios.delete(`http://localhost:8000/api/like/${body}`, {
+    return await axios.delete(`${route}/like/${body}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -177,7 +179,7 @@ export const unlikedFeed = async (token, body) => {
 }
 
 export const getFeedsByUserId = async (token,id) => {
-    return await axios.get(`http://localhost:8000/api/feeds/${id}`, {
+    return await axios.get(`${route}/feeds/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -185,7 +187,7 @@ export const getFeedsByUserId = async (token,id) => {
 }
 
 export const deleteEvent = async (token, id) => {    
-    return await axios.delete(`http://localhost:8000/api/events/${id}`, {
+    return await axios.delete(`${route}/events/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -194,7 +196,7 @@ export const deleteEvent = async (token, id) => {
   
 
 export const changeRoleCall = async (token, body) => {    
-    return await axios.put(`http://localhost:8000/api/changeRole`,body, {
+    return await axios.put(`${route}/changeRole`,body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -202,7 +204,7 @@ export const changeRoleCall = async (token, body) => {
 }
 
 export const joinEvent = async (token, body) => {
-    return await axios.post(`http://localhost:8000/api/event_user`,{event_id: body}, {
+    return await axios.post(`${route}/event_user`,{event_id: body}, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -210,7 +212,7 @@ export const joinEvent = async (token, body) => {
 }
 
 export const unjoinEvent = async (token, id) => {    
-    return await axios.delete(`http://localhost:8000/api/event_user/${id}`, {
+    return await axios.delete(`${route}/event_user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -218,7 +220,7 @@ export const unjoinEvent = async (token, id) => {
 }
 
 export const getAllJoinedEvents = async (token,id) => {
-    return await axios.get(`http://localhost:8000/api/event_user/${id}`, {
+    return await axios.get(`${route}/event_user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -226,7 +228,7 @@ export const getAllJoinedEvents = async (token,id) => {
 }
 
 export const deleteProfileBySuperAdmin = async (token,id) => { 
-    return await axios.delete(`http://localhost:8000/api/deleteOneBySuper/${id}`, {
+    return await axios.delete(`${route}/deleteOneBySuper/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -235,7 +237,7 @@ export const deleteProfileBySuperAdmin = async (token,id) => {
 }
 
 export const getMyChats = async (token) => {    
-    return await axios.get(`http://localhost:8000/api/mychats`, {
+    return await axios.get(`${route}/mychats`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -243,7 +245,7 @@ export const getMyChats = async (token) => {
 }
 
 export const createChat = async (token, body) => {
-    return await axios.post(`http://localhost:8000/api/newchat`, body, {
+    return await axios.post(`${route}/newchat`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -251,7 +253,7 @@ export const createChat = async (token, body) => {
 }
 
 export const getChatById = async (token,id) => {
-    return await axios.get(`http://localhost:8000/api/chats/${id}`, {
+    return await axios.get(`${route}/chats/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -259,7 +261,7 @@ export const getChatById = async (token,id) => {
 }
 
 export const sendMessage = async (token, body) => {
-    return await axios.post(`http://localhost:8000/api/messages`, body, {
+    return await axios.post(`${route}/messages`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
