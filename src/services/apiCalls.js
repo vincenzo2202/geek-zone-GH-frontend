@@ -19,7 +19,7 @@ export const getProfile = async (token) => {
 }
 
 export const logout = async (token, body) => {    
-    return await axios.post(`${route}/api/api/logout`, body, {
+    return await axios.post(`${route}/api/logout`, body, {
         headers: {
             Authorization: `Bearer ${token}`
         }
