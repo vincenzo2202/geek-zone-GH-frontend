@@ -13,7 +13,6 @@ Developed as part of the final project in the Full Stack Developer Bootcamp at G
 <div style="text-align: center;">
     <img src="./src/assets/view1.png" style="max-height: 500px; width: 650;" />
 </div>
-
 <br>
 
 ## Contenido
