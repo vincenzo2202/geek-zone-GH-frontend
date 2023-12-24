@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let route = "https://geekzone.zeabur.app";
+let route = "http://localhost:8000";
 
 export const registerUser = async (body) => {
     return await axios.post(`${route}/api/register`, body);

@@ -68,8 +68,7 @@ export const Login = () => {
                         setTimeout(() => {
                             navigate("/feed");
                         }, 300)
-                    }
-                    console.log(token);
+                    } 
                 })
                 .catch(error => {
                     console.log(error.response.data.message);

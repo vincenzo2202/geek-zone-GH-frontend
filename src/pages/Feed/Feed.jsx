@@ -31,9 +31,7 @@ export const Feed = () => {
                     }
                 })
             .catch(error => console.log(error));
-    }, [stop]);
-
-    console.log(stop);
+    }, [stop]); 
     
     const handleDeleteFeed = (id) => {
         setFeed(prevFeed => prevFeed.filter(feedItem => feedItem.id !== id));
@@ -44,10 +42,8 @@ export const Feed = () => {
     return (
         <div className="feed-body">
             <div className='feed-background'>
-                <div className='left-feed-banner'>
-
-                    <img className='content-left-banner' src={banner_english}  alt='banner_english' />
-
+                <div className='left-feed-banner'> 
+                    <img className='content-left-banner' src={banner_english}  alt='banner_english' /> 
                 </div>
                 <div className='center-feed'>
                     <div className='create-feed-card'>

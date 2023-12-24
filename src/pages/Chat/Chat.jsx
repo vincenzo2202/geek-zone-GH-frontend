@@ -77,15 +77,17 @@ export const Chat = () => {
 
     const getChatId = (id) => { 
         const chatId = id || rdxchatId;
-        getChatById(rdxToken, chatId)
-            .then(
-                response => {
-                    setChatIdInfo(response.data.data);
-                    scrollToBottom();
-                })
-            .catch(error => console.log(error));
-        setCommentInput({ chat_id: chatId });
-        dispatch(chat(id))
+        if (chatId){
+            getChatById(rdxToken, chatId)
+                .then(
+                    response => {
+                        setChatIdInfo(response.data.data);
+                        scrollToBottom();
+                    })
+                .catch(error => console.log(error));
+            setCommentInput({ chat_id: chatId });
+            dispatch(chat(id))
+        }
     }
     useEffect(() => {
         getChatId();
@@ -123,8 +125,7 @@ export const Chat = () => {
                         .catch(error => console.log(error));
                 })
             .catch(error => console.log(error));
-    };
-    console.log(commentInput);
+    }; 
 
     // fuction scrollToBottom  
     function scrollToBottom(dep) {
@@ -217,7 +218,7 @@ export const Chat = () => {
                             placeholder={'Enter text here...'}
                             functionProp={functionHandler}
                             functionBlur={functionHandler}
-                            value={commentInput.message}
+                            value={commentInput.message || ''}
                             onKeyPress={event => {
                                 if (event.key === 'Enter') {
                                     send();

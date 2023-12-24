@@ -65,8 +65,7 @@ export const FeedCard = ({ feedId, userPhoto, user_id, userName, userLast_name, 
     }
 
     const SendComment = () => {
-        if (commentInput.comment !== '') {
-            console.log(commentInput);
+        if (commentInput.comment !== '') { 
             createComment(rdxToken, commentInput)
                 .then(
                     response => {

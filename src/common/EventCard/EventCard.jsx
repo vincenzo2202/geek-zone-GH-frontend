@@ -13,9 +13,7 @@ export const EventCard = ({ eventId, title, content, date, time, creator, role, 
     const rdxToken = useSelector(selectToken);
     const tokenDecoded = jwtDecode(rdxToken); 
 
-    const deletedEvent = (eventId) => {
-        console.log(eventId);
-        console.log(rdxToken);
+    const deletedEvent = (eventId) => { 
         deleteEvent(rdxToken, eventId)
             .then(response => {
                 console.log('deleted');

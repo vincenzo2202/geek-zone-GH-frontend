@@ -79,8 +79,7 @@ export const Profile = () => {
     const handleDeleteFeed = (id) => {
         setMyFeed(prevFeeds => prevFeeds.filter(feed => feed.id !== id));
         setStop(!stop)
-    } 
-console.log(feed);
+    }  
     return (
 
         <div className="profile-body-main">

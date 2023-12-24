@@ -78,9 +78,7 @@ export const UpdateProfile = () => {
         if (credentialsWithNumber.photo) {
             credentialsWithNumber.photo = photoDefault(credentialsWithNumber.photo);
         }
- 
-        console.log(credentials);
-        console.log(rdxToken);
+  
         updateProfile(credentialsWithNumber, rdxToken)
             .then((response) => {
                 console.log(response.data);
