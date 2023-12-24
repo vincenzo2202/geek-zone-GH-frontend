@@ -45,7 +45,9 @@ The project I am planning to develop is called Geek Zone, an innovative virtual 
 1.  <strong>Feed:</strong><br>
 The feed is a dynamic section that displays the most recent posts and updates from the users you follow. You can share educational content, leave comments, and view real-time contributions from other users.
 
-    ![gif1](gif1.gif) 
+  <div style="text-align: center;">
+    <img src="./src/assets/gif1.gif" style="max-height: 500px; width: 650;" />
+  </div>
 
 2. <strong>Profile: </strong><br>
 The profile functionality allows users to manage and personalize their personal information. You can edit details such as your name, profile picture, address, and any other relevant information. You can also view your history of posts and activities.
@@ -58,7 +60,10 @@ Teachers can create educational events, such as lectures, seminars, or workshops
 
 5. <strong>Chat:</strong><br>
 The chat feature enables direct communication between users. You can send messages to other students or teachers, create discussion groups, and share information instantly. This functionality promotes collaboration and real-time interaction among members of the educational community.
- ![gif4](gif6.gif)
+
+<div style="text-align: center;">
+    <img src="./src/assets/gif6.gif" style="max-height: 500px; width: 650;" />
+</div>
  
 ## Installation Steps:
 
@@ -198,9 +203,24 @@ This project has been made possible thanks to the hard work of my teachers Danie
 
 ## Pictures 
 
- ![gif1](gif1.gif) 
- ![gif2](gif2.gif) 
- ![gif3](gif3.gif)
- ![gif4](gif6.gif)
- ![gif5](gif5.gif) 
- ![gif6](gif4.gif)
+ 
+
+ <div style="text-align: center;">
+    <img src="./src/assets/gif1.gif" style="max-height: 500px; width: 650;" />
+</div>
+<div style="text-align: center;">
+    <img src="./src/assets/gif2.gif" style="max-height: 500px; width: 650;" />
+</div>
+<div style="text-align: center;">
+    <img src="./src/assets/gif3.gif" style="max-height: 500px; width: 650;" />
+</div>
+<div style="text-align: center;">
+    <img src="./src/assets/gif4.gif" style="max-height: 500px; width: 650;" />
+</div>
+<div style="text-align: center;">
+    <img src="./src/assets/gif5.gif" style="max-height: 500px; width: 650;" />
+</div>
+<div style="text-align: center;">
+    <img src="./src/assets/gif6.gif" style="max-height: 500px; width: 650;" />
+</div>
+ 
