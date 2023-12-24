@@ -43,7 +43,7 @@ body {
     margin-left: 1em;   
     z-index: 115;
     cursor: pointer;  
-    position: absolute;  
+    position: fixed;  
     top: 0.2em;
 }
 
