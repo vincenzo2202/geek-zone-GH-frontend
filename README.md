@@ -2,7 +2,9 @@
 
 <h1 align="center"> 💥Geek Zone 💥</h1>
  
-<div style="text-align: center;"><img src= "./src/assets/logo1.png" width="500"/></div>
+<div style="text-align: center;"> 
+    <img src= "./src/assets/logo1.png" width="500"/>
+</div>
  
 <br>
 <p align="center"><a href="https://views.d6m2hk6zqt0er.amplifyapp.com/">https://views.d6m2hk6zqt0er.amplifyapp.com/</a></p> 
