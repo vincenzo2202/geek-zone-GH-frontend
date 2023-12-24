@@ -132,7 +132,8 @@ export const CreateEventCard = () => {
             name={'event_date'}
             placeholder={'Date'}
             functionProp={functionHandler}
-            functionBlur={errorCheck}
+            functionBlur={errorCheck} 
+            min={new Date().toISOString().split('T')[0]} 
           />
           <CustomInput
             design={'input-create-event-time'}
