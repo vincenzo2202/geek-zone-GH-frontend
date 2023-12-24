@@ -13,7 +13,7 @@ Developed as part of the final project in the Full Stack Developer Bootcamp at G
 <div style="text-align: center;">
     <img src="./src/assets/view1.png" style="max-height: 500px; width: 650;" />
 </div>
-<br>
+<br> 
 
 ## Contenido
 
@@ -31,7 +31,8 @@ Developed as part of the final project in the Full Stack Developer Bootcamp at G
 
  <p align="center">_______________________________________________</p>
 
-## Introduction
+## Introduction 
+
 
 The project I am planning to develop is called Geek Zone, an innovative virtual campus designed for students and teachers. This virtual environment facilitates connection among users, providing them the opportunity to exchange educational content, follow each other, engage in enriching conversations, and organize educational events. The platform aims to provide an interactive and collaborative experience, fostering the educational community and enhancing the learning process for all its users.
 
