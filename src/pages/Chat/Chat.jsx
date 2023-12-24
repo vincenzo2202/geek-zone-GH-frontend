@@ -81,8 +81,7 @@ export const Chat = () => {
             getChatById(rdxToken, chatId)
                 .then(
                     response => {
-                        setChatIdInfo(response.data.data);
-                        scrollToBottom();
+                        setChatIdInfo(response.data.data); 
                     })
                 .catch(error => console.log(error));
             setCommentInput({ chat_id: chatId });
