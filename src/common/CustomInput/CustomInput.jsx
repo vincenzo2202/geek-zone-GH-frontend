@@ -1,7 +1,7 @@
 import React from "react";
 import "./CustomInput.css"
 
-export const CustomInput = ({ design, type, name, placeholder, functionProp, functionBlur , value, onKeyPress,autoComplete, min}) => {
+export const CustomInput = ({ design, type, name, placeholder, functionProp, functionBlur , value, onKeyPress,autoComplete, min, max}) => {
     return (
         <input
             className={design}
@@ -13,7 +13,7 @@ export const CustomInput = ({ design, type, name, placeholder, functionProp, fun
             value={value}
             onKeyPress={onKeyPress} 
             autoComplete={autoComplete}
-            min={min} 
+            min={min}  
         />
     )
 }

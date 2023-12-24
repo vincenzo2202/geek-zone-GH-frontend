@@ -141,7 +141,7 @@ export const CreateEventCard = () => {
             name={'event_time'}
             placeholder={'Time'}
             functionProp={functionHandler}
-            functionBlur={errorCheck}
+            functionBlur={errorCheck} 
           />
         </div>
 

@@ -4,12 +4,13 @@ import { Button, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../userSlice';
 import { useNavigate } from 'react-router-dom';
-import { createChat, getAllUsers, getChatById, getMyChats, sendMessage } from '../../services/apiCalls';
+import { createChat, deleteChat, getAllUsers, getChatById, getMyChats, sendMessage } from '../../services/apiCalls';
 import { jwtDecode } from 'jwt-decode';
 import { CustomInput } from '../../common/CustomInput/CustomInput';
 import { chat, selectChat } from '../chatSlice';
+import { DeleteLink } from '../../common/DeleteLink/DeleteLink';
 
-export const Chat = () => { 
+export const Chat = () => {
     const rdxToken = useSelector(selectToken);
     const decodedtoken = jwtDecode(rdxToken);
     const rdxchatId = useSelector(selectChat);
@@ -37,7 +38,7 @@ export const Chat = () => {
         setIsModalOpen(false);
     };
 
- 
+
     useEffect(() => {
         getMyChats(rdxToken)
             .then(
@@ -53,7 +54,7 @@ export const Chat = () => {
                 })
             .catch(error => console.log(error));
     }, []);
- 
+
     const newChat = (id) => {
         let chatData = {
             "name": `Chat with ${id}`,
@@ -73,14 +74,14 @@ export const Chat = () => {
                 })
             .catch(error => console.log(error));
     }
- 
-    const getChatId = (id) => { 
+
+    const getChatId = (id) => {
         const chatId = id || rdxchatId;
-        if (chatId){
+        if (chatId) {
             getChatById(rdxToken, chatId)
                 .then(
                     response => {
-                        setChatIdInfo(response.data.data); 
+                        setChatIdInfo(response.data.data);
                     })
                 .catch(error => console.log(error));
             setCommentInput({ chat_id: chatId });
@@ -91,7 +92,7 @@ export const Chat = () => {
     useEffect(() => {
         getChatId();
     }, []);
-      
+
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
             ...prevState,
@@ -100,7 +101,7 @@ export const Chat = () => {
 
     };
 
-    const send = () => { 
+    const send = () => {
         sendMessage(rdxToken, commentInput)
             .then(
                 response => {
@@ -112,12 +113,12 @@ export const Chat = () => {
                         .then(
                             response => {
                                 setChatIdInfo(response.data.data);
-                                
+
                             })
                         .catch(error => console.log(error));
                 })
             .catch(error => console.log(error));
-    }; 
+    };
 
     // fuction scrollToBottom  
     function scrollToBottom(dep) {
@@ -129,9 +130,28 @@ export const Chat = () => {
         }, [dep]);
         return ref;
     }
-    
+
     const messagesContainerRef = scrollToBottom(chatIdInfo);
 
+    const deletedChat = (id) => {
+        console.log("id"); 
+        deleteChat(rdxToken, id)
+            .then(
+                response => {
+                    console.log('chat deleted');
+                    getMyChats(rdxToken)
+                        .then(
+                            response => {
+                                setMyChats(response.data.data);
+                                setChatIdInfo([]);
+                            })
+                        .catch(error => console.log(error));
+                })
+            .catch(error => console.log(error));
+    }
+
+  
+ 
     return (
         <div className='chat-body'>
             <div className='chat-header'><h1>Geek Zone Chat</h1>  </div>
@@ -159,12 +179,13 @@ export const Chat = () => {
                     </div>
                     <div className='chat-list-rooms'  >
                         {
-                           myChats && myChats.map(chat => {
+                            myChats && myChats.map(chat => {
                                 const otherUser = chat.members_info.filter(member => member.id != decodedtoken.sub)[0];
                                 return (
                                     <div className='chat-list-room' key={chat.id} >
                                         <div className='chat-list-room-name' key={chat.id} chat={chat.id} onClick={() => getChatId(chat.id)}>
                                             {otherUser ? `${otherUser.name} ${otherUser.last_name}` : 'Loading...'}
+                                      
                                         </div>
                                     </div>
                                 )
@@ -177,14 +198,29 @@ export const Chat = () => {
                         {chatIdInfo?.users_many_to_manythrough_chat_user?.map(user => {
                             if (user.id != decodedtoken.sub) {
                                 return (
-                                    <div className='chat-with-name' key={user.id}>
+                                    <div className='chat-with-name'>
+                                    <div className='chat-with-name-user' key={user.id}>
                                         {`${user.name} ${user.last_name}`}
+                                    </div>
+                                    <div className='delete-card-event' onClick={deletedChat}>
+                                            { 
+                                                <div>
+                                                    <DeleteLink
+                                                        deleted={() => deletedChat(chatIdInfo.id)}
+                                                        title={<div className="button-delete-chat" >
+                                                            <img className="del" src="https://cdn-icons-png.flaticon.com/512/58/58326.png" alt="" />
+                                                        </div>}
+
+                                                    />
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 );
                             };
                         })}
                         <div className='message-second-container'>
-                            <div className='message-container-exterior'  ref={messagesContainerRef}>
+                            <div className='message-container-exterior' ref={messagesContainerRef}>
                                 {
                                     chatIdInfo && chatIdInfo.messages && chatIdInfo.messages.map(message => {
                                         return (
@@ -206,7 +242,7 @@ export const Chat = () => {
                         <CustomInput
                             design={'input-create-comment'}
                             type={'text'}
-                            name={'message' }
+                            name={'message'}
                             placeholder={'Enter text here...'}
                             functionProp={functionHandler}
                             functionBlur={functionHandler}
@@ -217,7 +253,7 @@ export const Chat = () => {
                                 }
                             }}
                             autoComplete={'off'}
-                            
+
                         />
                         <button className='button-chat-send' onClick={send}>Send</button>
                     </div>

@@ -267,3 +267,11 @@ export const sendMessage = async (token, body) => {
         }
     });
 }
+
+export const deleteChat = async (token, id) => {    
+    return await axios.delete(`${route}/api/chats/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
