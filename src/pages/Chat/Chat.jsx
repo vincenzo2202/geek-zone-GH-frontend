@@ -120,6 +120,25 @@ export const Chat = () => {
             .catch(error => console.log(error));
     };
 
+    const deletedChat = (id) => {
+        console.log("id"); 
+        deleteChat(rdxToken, id)
+            .then(
+                response => {
+                    console.log('chat deleted');
+                    dispatch(chat(""))
+                    setChatIdInfo([]);
+                    getMyChats(rdxToken)
+                    .then(
+                        response => {
+                            setMyChats(response.data.data);
+                          
+                        })
+                        .catch(error => console.log(error));
+                })
+            .catch(error => console.log(error));
+    }
+
     // fuction scrollToBottom  
     function scrollToBottom(dep) {
         const ref = useRef(null);
@@ -131,27 +150,7 @@ export const Chat = () => {
         return ref;
     }
 
-    const messagesContainerRef = scrollToBottom(chatIdInfo);
-
-    const deletedChat = (id) => {
-        console.log("id"); 
-        deleteChat(rdxToken, id)
-            .then(
-                response => {
-                    console.log('chat deleted');
-                    getMyChats(rdxToken)
-                        .then(
-                            response => {
-                                setMyChats(response.data.data);
-                                setChatIdInfo([]);
-                            })
-                        .catch(error => console.log(error));
-                })
-            .catch(error => console.log(error));
-    }
-
-  
- 
+    const messagesContainerRef = scrollToBottom(chatIdInfo);  
     return (
         <div className='chat-body'>
             <div className='chat-header'><h1>Geek Zone Chat</h1>  </div>
@@ -161,7 +160,7 @@ export const Chat = () => {
                         <Button className='toggle-select-user' type="" onClick={showModal}>
                             New Chat
                         </Button>
-                        <Modal title="Select a user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} className='modal-container'>
+                        <Modal title="Select a user" open={isModalOpen}   onCancel={handleCancel} className='modal-container'>
                             <div className='modal-box'>
                                 {
                                     allUsers.length > 0
@@ -193,8 +192,8 @@ export const Chat = () => {
                         }
                     </div>
                 </div>
-                <div className='chat-conversation-container'>
-                    <div className='messages-container'>
+                <div className='chat-conversation-container'key={chatIdInfo.id} >
+                    <div className='messages-container' key={chatIdInfo.id}>
                         {chatIdInfo?.users_many_to_manythrough_chat_user?.map(user => {
                             if (user.id != decodedtoken.sub) {
                                 return (
@@ -202,7 +201,7 @@ export const Chat = () => {
                                     <div className='chat-with-name-user' key={user.id}>
                                         {`${user.name} ${user.last_name}`}
                                     </div>
-                                    <div className='delete-card-event' onClick={deletedChat}>
+                                    <div className='delete-card-event'>
                                             { 
                                                 <div>
                                                     <DeleteLink
