@@ -159,7 +159,7 @@ export const Chat = () => {
                     </div>
                     <div className='chat-list-rooms'  >
                         {
-                            myChats.map(chat => {
+                           myChats && myChats.map(chat => {
                                 const otherUser = chat.members_info.filter(member => member.id != decodedtoken.sub)[0];
                                 return (
                                     <div className='chat-list-room' key={chat.id} >
