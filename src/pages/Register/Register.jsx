@@ -3,7 +3,7 @@ import './Register.css';
 import { CustomInput } from '../../common/CustomInput/CustomInput';
 import { validator } from "../../services/validations";
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../services/apiCalls';
+import { logUser, registerUser } from '../../services/apiCalls';
 
 import { useDispatch } from "react-redux";  //useDispatch es necesario para emitir acciones
 import { login } from "../userSlice";
@@ -15,7 +15,7 @@ export const Register = () => {
     const navigate = useNavigate();
     const rdxToken = useSelector(selectToken);
     const dispatch = useDispatch();
- 
+
     const [credentials, setCredentials] = useState({
         name: "",
         last_name: "",
@@ -23,7 +23,7 @@ export const Register = () => {
         password: "",
         city: "",
         phone_number: "",
-        photo:""
+        photo: ""
     });
 
     const [credentialsError, setCredentialsError] = useState({
@@ -33,15 +33,8 @@ export const Register = () => {
         passwordError: "",
         cityError: "",
         phone_numberError: "",
-        photoError:""
+        photoError: ""
     });
-
-    useEffect(() => {
-        if (rdxToken) {
-            navigate("/");
-        }
-    }, []);
- 
 
     const [message, setMessage] = useState("");
 
@@ -78,7 +71,7 @@ export const Register = () => {
                 .then((response) => {
                     const { message } = response.data;
                     setMessage(message);
-
+                    logIn();
                 })
                 .catch(error => {
                     console.log(error);
@@ -86,100 +79,98 @@ export const Register = () => {
         }
     };
 
-    useEffect(() => {
-        if (message == "user registered succesfully") { 
-            console.log(credentials);
-            logUser(credentials)
-                .then((response) => {
-                    const { message, token } = response.data;
-                    setMessage(message);
-                    if (message === "user logged succesfully") {
-                        dispatch(login(token)) 
-
-                        setTimeout(() => {
-                            navigate("/profile");
-                        }, 300)
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
+    const logIn = () => {
+        let logingCredentials = {
+            email: credentials.email,
+            password: credentials.password
+        };
+        logUser(logingCredentials)
+            .then((response) => {
+                const { token } = response.data;
+                dispatch(login(token));
+                setTimeout(() => {
+                    navigate("/feed");
                 });
-        }
-    }, [message])
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
     return (
         <div className="register-body">
-        <div className="input-card-register">
-            <div className="title-register-top">Register</div>
-            <div className="inputs-register-container">
-            <div className='errorMsg'>{credentialsError.nameError}</div>
-                <CustomInput
-                    design={"inputDesign"}
-                    type={"name"}
-                    name={"name"}
-                    placeholder={"Name"}
-                    functionProp={functionHandler}
-                    functionBlur={errorCheck}
-                />
-                <div className='errorMsg'>{credentialsError.last_nameError}</div>
-                <CustomInput
-                    design={"inputDesign"}
-                    type={"name"}
-                    name={"last_name"}
-                    placeholder={"Last Name"}
-                    functionProp={functionHandler}
-                    functionBlur={errorCheck}
-                />
-                <div className='errorMsg'>{credentialsError.emailError}</div>
-                <CustomInput
-                    design={"inputDesign"}
-                    type={"mail"}
-                    name={"email"}
-                    placeholder={"user@gmail.com"}
-                    functionProp={functionHandler}
-                    functionBlur={errorCheck}
-                />
-                <div className='errorMsg'>{credentialsError.passwordError}</div>
-                <CustomInput
-                    design={"inputDesign"}
-                    type={"password"}
-                    name={"password"}
-                    placeholder={"Password"}
-                    functionProp={functionHandler}
-                    functionBlur={errorCheck}
-                />
-                <div className='errorMsg'>{credentialsError.cityError}</div>
-                <CustomInput
-                    design={"inputDesign"}
-                    type={"text"}
-                    name={"city"}
-                    placeholder={"City"}
-                    functionProp={functionHandler}
-                    functionBlur={errorCheck}
-                />
-                <div className='errorMsg'>{credentialsError.phone_numberError}</div>
-                <CustomInput
-                    design={"inputDesign"}
-                    type={"number"}
-                    name={"phone_number"}
-                    placeholder={"Phone Number"}
-                    functionProp={functionHandler}
-                    functionBlur={errorCheck}
-                />
-                <div className="not-necesarilly">* Optional</div> 
-                <div className='errorMsg'>{credentialsError.photoError}</div>
-                <CustomInput
-                    design={"inputDesign"}
-                    type={"text"}
-                    name={"photo"}
-                    placeholder={"Introduce an URL image"}
-                    functionProp={functionHandler}
-                    functionBlur={errorCheck}
-                /> 
+            <div className="input-card-register">
+                <div className="title-register-top">Register</div>
+                <div className="inputs-register-container">
+                    <div className='errorMsg'>{credentialsError.nameError}</div>
+                    <CustomInput
+                        design={"inputDesign"}
+                        type={"name"}
+                        name={"name"}
+                        placeholder={"Name"}
+                        functionProp={functionHandler}
+                        functionBlur={errorCheck}
+                    />
+                    <div className='errorMsg'>{credentialsError.last_nameError}</div>
+                    <CustomInput
+                        design={"inputDesign"}
+                        type={"name"}
+                        name={"last_name"}
+                        placeholder={"Last Name"}
+                        functionProp={functionHandler}
+                        functionBlur={errorCheck}
+                    />
+                    <div className='errorMsg'>{credentialsError.emailError}</div>
+                    <CustomInput
+                        design={"inputDesign"}
+                        type={"mail"}
+                        name={"email"}
+                        placeholder={"user@gmail.com"}
+                        functionProp={functionHandler}
+                        functionBlur={errorCheck}
+                    />
+                    <div className='errorMsg'>{credentialsError.passwordError}</div>
+                    <CustomInput
+                        design={"inputDesign"}
+                        type={"password"}
+                        name={"password"}
+                        placeholder={"Password"}
+                        functionProp={functionHandler}
+                        functionBlur={errorCheck}
+                    />
+                    <div className='errorMsg'>{credentialsError.cityError}</div>
+                    <CustomInput
+                        design={"inputDesign"}
+                        type={"text"}
+                        name={"city"}
+                        placeholder={"City"}
+                        functionProp={functionHandler}
+                        functionBlur={errorCheck}
+                    />
+                    <div className='errorMsg'>{credentialsError.phone_numberError}</div>
+                    <CustomInput
+                        design={"inputDesign"}
+                        type={"number"}
+                        name={"phone_number"}
+                        placeholder={"Phone Number"}
+                        functionProp={functionHandler}
+                        functionBlur={errorCheck}
+                    />
+                    <div className="not-necesarilly">* Optional</div>
+                    <div className='errorMsg'>{credentialsError.photoError}</div>
+                    <CustomInput
+                        design={"inputDesign"}
+                        type={"text"}
+                        name={"photo"}
+                        placeholder={"Introduce an URL image"}
+                        functionProp={functionHandler}
+                        functionBlur={errorCheck}
+                    />
+                </div>
+                <div className='animated-button-register' onClick={SignUp}>Sign up</div>
+                <p>{message}</p>
             </div>
-            <div className='animated-button-register' onClick={SignUp}>Sign up</div>
-            <p>{message}</p>
         </div>
-    </div>
     );
 };
- 
+

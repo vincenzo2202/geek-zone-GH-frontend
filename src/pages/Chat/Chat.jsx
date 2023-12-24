@@ -9,16 +9,21 @@ import { jwtDecode } from 'jwt-decode';
 import { CustomInput } from '../../common/CustomInput/CustomInput';
 import { chat, selectChat } from '../chatSlice';
 
-export const Chat = () => {
-
+export const Chat = () => { 
     const rdxToken = useSelector(selectToken);
     const decodedtoken = jwtDecode(rdxToken);
     const rdxchatId = useSelector(selectChat);
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [myChats, setMyChats] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
+    const [chatIdInfo, setChatIdInfo] = useState([]);
+    const [commentInput, setCommentInput] = useState({
+        chat_id: rdxchatId,
+        message: '',
+    });
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -32,9 +37,7 @@ export const Chat = () => {
         setIsModalOpen(false);
     };
 
-    const [myChats, setMyChats] = useState([]);
-    const [allUsers, setAllUsers] = useState([]);
-
+ 
     useEffect(() => {
         getMyChats(rdxToken)
             .then(
@@ -50,9 +53,7 @@ export const Chat = () => {
                 })
             .catch(error => console.log(error));
     }, []);
-
-
-
+ 
     const newChat = (id) => {
         let chatData = {
             "name": `Chat with ${id}`,
@@ -72,9 +73,7 @@ export const Chat = () => {
                 })
             .catch(error => console.log(error));
     }
-
-    const [chatIdInfo, setChatIdInfo] = useState([]);
-
+ 
     const getChatId = (id) => { 
         const chatId = id || rdxchatId;
         if (chatId){
@@ -88,16 +87,11 @@ export const Chat = () => {
             dispatch(chat(id))
         }
     }
+
     useEffect(() => {
         getChatId();
     }, []);
-    console.log();
-
-    const [commentInput, setCommentInput] = useState({
-        chat_id: rdxchatId,
-        message: '',
-    });
-
+      
     const functionHandler = (e) => {
         setCommentInput((prevState) => ({
             ...prevState,
@@ -106,8 +100,7 @@ export const Chat = () => {
 
     };
 
-    const send = () => {
-
+    const send = () => { 
         sendMessage(rdxToken, commentInput)
             .then(
                 response => {
