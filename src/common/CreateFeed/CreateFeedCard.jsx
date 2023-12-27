@@ -68,9 +68,8 @@ export const CreateFeedCard = () => {
               title: '',
               content: '',
               photo: ''
-            }));
-            // TODO // apaño para que se actualice el feed 
-            history.go(0);//TODO
+            })); 
+            history.go(0); 
 
           })
         .catch(error => console.log(error));

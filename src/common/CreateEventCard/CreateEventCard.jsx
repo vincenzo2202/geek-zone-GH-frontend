@@ -72,9 +72,8 @@ export const CreateEventCard = () => {
               content: '', 
               event_date: '',
               event_time: '',
-            }));
-            // TODO // apaño para que se actualice el event
-            history.go(0);//TODO
+            })); 
+            history.go(0); 
 
           })
         .catch(error => console.log(error));
