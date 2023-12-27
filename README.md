@@ -8,7 +8,8 @@
  
 <br>
 <p align="center"><a href="https://views.d6m2hk6zqt0er.amplifyapp.com/">https://views.d6m2hk6zqt0er.amplifyapp.com/</a></p> 
-
+ 
+ 
 # Welcome to my frontend Geek Zone app using react
 Developed as part of the final project in the Full Stack Developer Bootcamp at Geekshubs Academy.
 
