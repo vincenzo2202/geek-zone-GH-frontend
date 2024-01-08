@@ -10,7 +10,6 @@ export const chatSlice = createSlice({
             state.chat = action.payload
         }
     }
-
 });
 
 export const { chat } = chatSlice.actions;
