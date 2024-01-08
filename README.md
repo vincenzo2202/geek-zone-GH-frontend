@@ -1,10 +1,8 @@
  ###### 
 
 <h1 align="center"> 💥Geek Zone 💥</h1>
- 
-<div style="text-align: center; margin: auto;">
-    <img src="./src/assets/logo1.png" width="500" alt="Logo" style="display: block; margin: auto;">
-</div>
+  
+![Logo](./src/assets/logo1.png)
  
 <br>
 <p align="center"><a href="https://views.d6m2hk6zqt0er.amplifyapp.com/">https://views.d6m2hk6zqt0er.amplifyapp.com/</a></p> 
