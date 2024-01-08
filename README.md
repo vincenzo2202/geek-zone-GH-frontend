@@ -2,8 +2,8 @@
 
 <h1 align="center"> 💥Geek Zone 💥</h1>
  
-<div style="text-align: center;"> 
-    <img src= "./src/assets/logo1.png" width="500"/>
+<div style="text-align: center; margin: auto;">
+    <img src="./src/assets/logo1.png" width="500" alt="Logo" style="display: block; margin: auto;">
 </div>
  
 <br>
